@@ -1,76 +1,121 @@
-import 'package:jaspr/dom.dart';
+﻿import 'package:jaspr/dom.dart';
+
+const bgColor = Color('#fbf9f4');
+const surfaceColor = Color('#fbf9f4');
+const surfaceContainerLowest = Color('#ffffff');
+const surfaceContainerLow = Color('#f5f3ee');
+const surfaceContainer = Color('#f0eee9');
+const surfaceContainerHigh = Color('#eae8e3');
+const surfaceContainerHighest = Color('#e4e2dd');
+const surfaceVariant = Color('#e4e2dd');
+const primaryColor = Color('#523fb9');
+const primaryContainer = Color('#6b59d3');
+const onPrimary = Color('#ffffff');
+const primaryFixed = Color('#e5deff');
+const onPrimaryFixedVariant = Color('#452fab');
+const inversePrimary = Color('#c8bfff');
+const onSurface = Color('#1b1c19');
+const onSurfaceVariant = Color('#484553');
+const inverseSurface = Color('#30312e');
+const inverseOnSurface = Color('#f2f1ec');
+const secondaryContainer = Color('#d1e6f2');
+const onSecondaryContainer = Color('#546771');
+const outlineColor = Color('#787585');
+const outlineVariant = Color('#c9c4d5');
+const accentColor = primaryColor;
+const accentHoverColor = onPrimaryFixedVariant;
+const textPrimary = onSurface;
+const textSecondary = onSurfaceVariant;
+const borderColor = outlineVariant;
+const tagBgColor = primaryFixed;
 
 // ============================================================
-// Color Palette — Dark Portfolio Theme
-// ============================================================
-
-/// Deep slate page background.
-const bgColor = Color('#0F172A');
-
-/// Slightly elevated surface used for the navbar and cards.
-const surfaceColor = Color('#1E293B');
-
-/// Electric sky-blue accent — buttons, links, highlights.
-const accentColor = Color('#38BDF8');
-
-/// Darker shade of accent for hover states.
-const accentHoverColor = Color('#0EA5E9');
-
-/// Near-white for primary headings and body copy.
-const textPrimary = Color('#F8FAFC');
-
-/// Muted slate for secondary text and labels.
-const textSecondary = Color('#94A3B8');
-
-/// Subtle border dividers.
-const borderColor = Color('#334155');
-
-/// Dark blue fill used for skill/tech tag badges.
-const tagBgColor = Color('#0C2D48');
-
-// ============================================================
-// Global base styles — applied site-wide via @css
+// Global styles — Lumina System
 // ============================================================
 @css
 List<StyleRule> get styles => [
-  // Load Inter — a clean, modern geometric sans-serif.
-  css.import(
-    'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap',
-  ),
+  css.import('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap'),
+  css.import('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@400,0&display=swap'),
 
-  // Universal box-sizing reset so padding doesn't grow element dimensions.
-  css('*, *::before, *::after').styles(
-    boxSizing: BoxSizing.borderBox,
-  ),
+  css('*, *::before, *::after').styles(boxSizing: BoxSizing.borderBox),
 
-  // Base page defaults — dark background, Inter typeface.
   css('html, body').styles(
     width: 100.percent,
-    margin: .zero,
     padding: .zero,
-    backgroundColor: bgColor,
-    color: textPrimary,
+    margin: .zero,
+    color: onSurface,
     fontFamily: const .list([FontFamily('Inter'), FontFamilies.sansSerif]),
+    backgroundColor: bgColor,
+    raw: {'scroll-behavior': 'smooth', '-webkit-font-smoothing': 'antialiased'},
+  ),
+  css('h1, h2, h3, h4, h5, h6').styles(padding: .zero, margin: .zero),
+  css('p').styles(padding: .zero, margin: .zero),
+  css('a').styles(textDecoration: TextDecoration(line: .none)),
+  css('button').styles(cursor: Cursor.pointer),
+
+  // Lumina typography scale ─────────────────────────────────
+  css(
+    '.t-display',
+  ).styles(fontSize: 57.px, fontWeight: .w600, raw: {'line-height': '64px', 'letter-spacing': '-0.02em'}),
+  css(
+    '.t-headline',
+  ).styles(fontSize: 32.px, fontWeight: .w600, raw: {'line-height': '40px', 'letter-spacing': '0.01em'}),
+  css(
+    '.t-headline-m',
+  ).styles(fontSize: 28.px, fontWeight: .w600, raw: {'line-height': '36px', 'letter-spacing': '0.01em'}),
+  css('.t-title').styles(fontSize: 22.px, fontWeight: .w500, raw: {'line-height': '28px'}),
+  css(
+    '.t-body-lg',
+  ).styles(fontSize: 16.px, fontWeight: .w400, raw: {'line-height': '24px', 'letter-spacing': '0.01em'}),
+  css('.t-body').styles(fontSize: 14.px, fontWeight: .w400, raw: {'line-height': '20px', 'letter-spacing': '0.01em'}),
+  css('.t-label').styles(
+    fontSize: 12.px,
+    fontWeight: .w500,
+    textTransform: TextTransform.upperCase,
+    raw: {'line-height': '16px', 'letter-spacing': '0.05em'},
   ),
 
-  // Remove default heading/paragraph spacing so components control their own.
-  css('h1, h2, h3, h4, h5, h6').styles(margin: .zero, padding: .zero),
-  css('p').styles(margin: .zero, padding: .zero),
+  // Material Symbols icon font ──────────────────────────────
+  css('.material-symbols-outlined').styles(
+    raw: {
+      'font-family': "'Material Symbols Outlined'",
+      'font-variation-settings': "'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24",
+      'user-select': 'none',
+      'vertical-align': 'middle',
+      'font-style': 'normal',
+      'display': 'inline-block',
+    },
+  ),
 
-  // Strip underlines from links globally; each component re-styles as needed.
-  css('a').styles(textDecoration: TextDecoration(line: .none)),
-
-  // Reusable max-width container — centres content with side gutters.
-  // Applied alongside component-specific classes: e.g. classes: 'hero container'
+  // Layout utility ──────────────────────────────────────────
   css('.container').styles(
-    maxWidth: 1200.px,
     width: 100.percent,
-    padding: .symmetric(horizontal: 2.rem),
+    maxWidth: 1200.px,
+    padding: .symmetric(horizontal: 4.rem),
     raw: {'margin': '0 auto'},
   ),
 
-  // Mobile: tighten the container side gutters.
-  css.media(MediaQuery.screen(maxWidth: 600.px), [
-    css('.container').styles(padding: .symmetric(horizontal: 1.25.rem)),
+  // Tonal card base (no hard borders — tonal layering only) ─
+  css('.tonal-card').styles(
+    radius: BorderRadius.circular(12.px),
+    backgroundColor: surfaceContainer,
+    raw: {'box-shadow': '0px 4px 20px rgba(26, 28, 30, 0.04)'},
+  ),
+
+  // Status dot pulse animation ──────────────────────────────
+  css.keyframes('pulse-dot', {
+    '0%, 100%': Styles(opacity: 1),
+    '50%': Styles(opacity: 0.4),
+  }),
+  css('.pulse-dot').styles(raw: {'animation': 'pulse-dot 2s cubic-bezier(0.4,0,0.6,1) infinite'}),
+
+  // Anchor offset for the sticky 64 px topbar ───────────────
+  css('#about, #projects, #career, #contact').styles(raw: {'scroll-margin-top': '5rem'}),
+
+  // Responsive overrides ────────────────────────────────────
+  css.media(MediaQuery.screen(maxWidth: 768.px), [
+    css('.container').styles(padding: .symmetric(horizontal: 1.rem)),
+    css('.t-display').styles(fontSize: 36.px),
+    css('.t-headline').styles(fontSize: 28.px),
   ]),
 ];

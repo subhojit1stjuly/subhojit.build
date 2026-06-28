@@ -3,55 +3,39 @@ import 'package:jaspr/jaspr.dart';
 
 import '../constants/theme.dart';
 
-// ── Project data ─────────────────────────────────────────────────────────────
-
 class _Project {
-  const _Project({
-    required this.title,
-    required this.description,
-    required this.tags,
-    required this.sourceUrl,
-  });
-
-  final String title;
-  final String description;
+  const _Project({required this.title, required this.desc, required this.category, required this.tags, required this.url, required this.imageColor});
+  final String title, desc, category, url, imageColor;
   final List<String> tags;
-  final String sourceUrl;
 }
 
 const _projects = [
   _Project(
-    title: 'Flutter E-Commerce App',
-    description:
-        'A production-grade shopping app built with Flutter and Riverpod. '
-        'Features real-time inventory sync, smooth page transitions, '
-        'and a 60 fps product-detail parallax hero.',
-    tags: ['Flutter', 'Riverpod', 'Firebase', 'Dart'],
-    sourceUrl: 'https://github.com/subhojit',
+    title: 'Flutter E-Commerce Platform',
+    desc: 'Production app with real-time inventory, smooth 60fps transitions, and a custom parallax product hero. Serves 200k+ monthly active users.',
+    category: 'Mobile',
+    tags: ['Flutter', 'Riverpod', 'Firebase'],
+    url: 'https://github.com/subhojit',
+    imageColor: '#d1e6f2',
   ),
   _Project(
     title: 'Dart CLI Toolchain',
-    description:
-        'A developer-productivity CLI built in pure Dart. Automates '
-        'code-generation, asset optimisation, and release tagging for '
-        'multi-module Flutter mono-repos.',
-    tags: ['Dart', 'CLI', 'GitHub Actions', 'CI/CD'],
-    sourceUrl: 'https://github.com/subhojit',
+    desc: 'Developer-productivity CLI automating code-generation, asset optimisation, and release tagging for Flutter mono-repos. Used internally by 3 product teams.',
+    category: 'Tooling',
+    tags: ['Dart', 'CLI', 'GitHub Actions'],
+    url: 'https://github.com/subhojit',
+    imageColor: '#e5deff',
   ),
   _Project(
-    title: 'State Management Demo',
-    description:
-        'A reference implementation comparing Riverpod, Bloc, and Provider '
-        'across identical feature slices — useful for onboarding new '
-        'engineers and architecture discussions.',
-    tags: ['Flutter', 'Bloc', 'Riverpod', 'Clean Arch'],
-    sourceUrl: 'https://github.com/subhojit',
+    title: 'State Management Reference',
+    desc: 'Opinionated reference implementation comparing Riverpod, Bloc, and Provider across identical feature slices. Onboarding resource for new engineers.',
+    category: 'Open Source',
+    tags: ['Flutter', 'Bloc', 'Riverpod'],
+    url: 'https://github.com/subhojit',
+    imageColor: '#f0eee9',
   ),
 ];
 
-// ── Projects section ──────────────────────────────────────────────────────────
-
-/// Responsive 3-column grid of project cards.
 class ProjectsSection extends StatelessComponent {
   const ProjectsSection({super.key});
 
@@ -62,11 +46,20 @@ class ProjectsSection extends StatelessComponent {
       classes: 'projects-section',
       [
         div(classes: 'projects-inner container', [
-          div(classes: 'section-heading', [
-            h2(classes: 'section-title', [.text('Projects')]),
-            div(classes: 'section-divider', []),
+          // Section header with "View All" link
+          div(classes: 'projects-header', [
+            div([
+              p(classes: 'projects-eyebrow t-label', [.text('Featured Projects')]),
+              h2(classes: 'projects-title t-headline', [.text('What I\'ve Built')]),
+            ]),
+            a(href: 'https://github.com/subhojit', classes: 'projects-all-link',
+                attributes: {'target': '_blank', 'rel': 'noopener'}, [
+              .text('All Projects \u2192'),
+            ]),
           ]),
-          div(classes: 'projects-grid', [
+
+          // Project list
+          div(classes: 'projects-list', [
             for (final p in _projects) _ProjectCard(project: p),
           ]),
         ]),
@@ -74,113 +67,140 @@ class ProjectsSection extends StatelessComponent {
     );
   }
 
-  // All styles for both section AND card live here so @css picks them up.
   @css
   static List<StyleRule> get styles => [
-    css('.projects-section').styles(
-      padding: .symmetric(vertical: 6.rem),
+    css('.projects-section').styles(padding: .symmetric(vertical: 5.rem)),
+    css('.projects-header').styles(
+      display: .flex,
+      justifyContent: .spaceBetween,
+      alignItems: .end,
+      flexWrap: .wrap,
+      gap: Gap.all(1.rem),
+      raw: {'margin-bottom': '2.5rem'},
     ),
-    css('.projects-grid').styles(
-      display: .grid,
-      gridTemplate: GridTemplate(
-        columns: GridTracks([
-          GridTrack(TrackSize.fr(1)),
-          GridTrack(TrackSize.fr(1)),
-          GridTrack(TrackSize.fr(1)),
-        ]),
-      ),
-      gap: Gap.all(1.75.rem),
+    css('.projects-eyebrow').styles(color: primaryColor, raw: {'margin-bottom': '0.5rem'}),
+    css('.projects-title').styles(color: onSurface),
+    css('.projects-all-link').styles(
+      fontSize: 14.px,
+      fontWeight: .w600,
+      color: primaryColor,
+      raw: {'white-space': 'nowrap'},
+      transition: Transition('color', duration: Duration(milliseconds: 150)),
     ),
-    css.media(MediaQuery.screen(maxWidth: 768.px), [
-      css('.projects-section').styles(padding: .symmetric(vertical: 4.rem)),
-      css('.projects-grid').styles(
-        gridTemplate: GridTemplate(
-          columns: GridTracks([GridTrack(TrackSize.fr(1))]),
-        ),
-      ),
-    ]),
-    css('.project-card').styles(
+    css('.projects-all-link:hover').styles(color: onPrimaryFixedVariant),
+    css('.projects-list').styles(
       display: .flex,
       flexDirection: .column,
-      backgroundColor: surfaceColor,
-      border: Border.all(color: borderColor, style: BorderStyle.solid, width: 1.px),
-      radius: BorderRadius.circular(12.px),
-      padding: .all(1.75.rem),
+      gap: Gap.all(1.5.rem),
+    ),
+
+    // Card
+    css('.project-card').styles(
+      backgroundColor: surfaceContainerLowest,
+      radius: BorderRadius.circular(16.px),
+      overflow: .clip,
+      display: .flex,
+      flexDirection: .column,
       transition: Transition.combine([
-        Transition('transform',    duration: Duration(milliseconds: 250), curve: Curve.ease),
-        Transition('box-shadow',   duration: Duration(milliseconds: 250), curve: Curve.ease),
-        Transition('border-color', duration: Duration(milliseconds: 250), curve: Curve.ease),
+        Transition('box-shadow', duration: Duration(milliseconds: 200)),
+        Transition('transform', duration: Duration(milliseconds: 200)),
       ]),
+      raw: {'box-shadow': '0px 2px 8px rgba(26,28,30,0.04)'},
     ),
     css('.project-card:hover').styles(
-      shadow: BoxShadow(offsetX: 0.px, offsetY: 8.px, blur: 30.px, color: Color('#38BDF820')),
-      border: Border.all(color: accentColor, style: BorderStyle.solid, width: 1.px),
-      raw: {'transform': 'translateY(-4px)'},
+      raw: {
+        'box-shadow': '0px 8px 24px rgba(26,28,30,0.10)',
+        'transform': 'translateY(-2px)',
+      },
     ),
-    css('.card-body').styles(flex: Flex(grow: 1)),
-    css('.card-title').styles(
-      fontSize: 1.25.rem,
-      fontWeight: .w700,
-      color: textPrimary,
-      raw: {'margin-bottom': '0.75rem'},
-    ),
-    css('.card-desc').styles(
-      fontSize: 0.9375.rem,
-      lineHeight: 1.7.em,
-      color: textSecondary,
-      raw: {'margin-bottom': '1.25rem'},
-    ),
-    css('.card-tags').styles(
+    css('.project-image').styles(
+      height: 180.px,
       display: .flex,
-      flexWrap: .wrap,
-      gap: Gap.all(0.5.rem),
-      raw: {'margin-bottom': '1.5rem'},
+      alignItems: .center,
+      justifyContent: .center,
+      raw: {'position': 'relative'},
     ),
-    css('.tag').styles(
-      display: .inlineFlex,
-      fontSize: 0.75.rem,
-      fontWeight: .w500,
-      color: accentColor,
-      backgroundColor: tagBgColor,
+    css('.project-category-chip').styles(
+      position: .absolute(bottom: 12.px, left: 12.px),
+      fontSize: 11.px,
+      fontWeight: .w600,
+      color: primaryColor,
+      backgroundColor: primaryFixed,
       padding: .symmetric(horizontal: 0.625.rem, vertical: 0.25.rem),
       radius: BorderRadius.circular(4.px),
+      textTransform: TextTransform.upperCase,
+      raw: {'letter-spacing': '0.05em'},
     ),
-    css('.card-link').styles(
+    css('.project-body').styles(padding: .all(1.5.rem)),
+    css('.project-title').styles(
+      fontSize: 18.px,
+      fontWeight: .w700,
+      color: onSurface,
+      raw: {'margin-bottom': '0.5rem'},
+    ),
+    css('.project-desc').styles(
+      fontSize: 14.px,
+      color: onSurfaceVariant,
+      lineHeight: 1.6.em,
+      raw: {'margin-bottom': '1rem'},
+    ),
+    css('.project-tags').styles(display: .flex, flexWrap: .wrap, gap: Gap.all(0.375.rem), raw: {'margin-bottom': '1rem'}),
+    css('.project-tag').styles(
+      fontSize: 11.px,
+      fontWeight: .w500,
+      color: onSurfaceVariant,
+      backgroundColor: surfaceContainerHigh,
+      padding: .symmetric(horizontal: 0.5.rem, vertical: 0.25.rem),
+      radius: BorderRadius.circular(4.px),
+    ),
+    css('.project-link').styles(
       display: .inlineFlex,
       alignItems: .center,
-      fontSize: 0.9375.rem,
+      fontSize: 13.px,
       fontWeight: .w600,
-      color: accentColor,
-      transition: Transition('color', duration: Duration(milliseconds: 200), curve: Curve.ease),
+      color: primaryColor,
+      gap: Gap.all(0.25.rem),
+      transition: Transition('color', duration: Duration(milliseconds: 150)),
     ),
-    css('.card-link:hover').styles(color: accentHoverColor),
+    css('.project-link:hover').styles(color: onPrimaryFixedVariant),
+
+    // Desktop: two-column card grid
+    css.media(MediaQuery.screen(minWidth: 768.px), [
+      css('.projects-list').styles(
+        display: .grid,
+        gridTemplate: GridTemplate(
+          columns: GridTracks([GridTrack(TrackSize.fr(1)), GridTrack(TrackSize.fr(1))]),
+        ),
+        gap: Gap.all(1.5.rem),
+      ),
+    ]),
   ];
 }
 
-// ── Card sub-component ────────────────────────────────────────────────────────
-
-/// Styles are declared in [ProjectsSection.styles].
 class _ProjectCard extends StatelessComponent {
   const _ProjectCard({required this.project});
-
   final _Project project;
 
   @override
   Component build(BuildContext context) {
     return div(classes: 'project-card', [
-      div(classes: 'card-body', [
-        h3(classes: 'card-title', [.text(project.title)]),
-        p(classes: 'card-desc', [.text(project.description)]),
+      // Tonal image placeholder with category chip
+      div(classes: 'project-image', styles: Styles(backgroundColor: Color(project.imageColor)), [
+        span(classes: 'material-symbols-outlined', styles: Styles(fontSize: 36.px, color: primaryColor), [.text('code')]),
+        div(classes: 'project-category-chip', [.text(project.category)]),
       ]),
-      div(classes: 'card-tags', [
-        for (final tag in project.tags) span(classes: 'tag', [.text(tag)]),
+      div(classes: 'project-body', [
+        p(classes: 'project-title', [.text(project.title)]),
+        p(classes: 'project-desc', [.text(project.desc)]),
+        div(classes: 'project-tags', [
+          for (final tag in project.tags) span(classes: 'project-tag', [.text(tag)]),
+        ]),
+        a(href: project.url, classes: 'project-link',
+            attributes: {'target': '_blank', 'rel': 'noopener'}, [
+          .text('View Source'),
+          span(classes: 'material-symbols-outlined', [.text('open_in_new')]),
+        ]),
       ]),
-      a(
-        href: project.sourceUrl,
-        classes: 'card-link',
-        attributes: {'target': '_blank', 'rel': 'noopener noreferrer'},
-        [.text('View Source →')],
-      ),
     ]);
   }
 }

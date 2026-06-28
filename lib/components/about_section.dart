@@ -3,30 +3,24 @@ import 'package:jaspr/jaspr.dart';
 
 import '../constants/theme.dart';
 
-// Flat list of technical skills to render as badge chips.
-const _skills = [
-  'Flutter',
-  'Dart',
-  'Riverpod',
-  'Bloc',
-  'Firebase',
-  'REST APIs',
-  'GraphQL',
-  'SQLite',
-  'CI/CD',
-  'GitHub Actions',
-  'Performance Tuning',
-  'Clean Architecture',
-  'MVVM',
-  'TDD',
-  'Android',
-  'iOS',
+class _Credential {
+  const _Credential({required this.type, required this.name, required this.icon, required this.meta});
+  final String type, name, icon, meta;
+}
+
+const _credentials = [
+  _Credential(type: 'Certification', name: 'Google Associate Android Developer', icon: 'android', meta: 'Active since 2022'),
+  _Credential(type: 'Certification', name: 'AWS Cloud Practitioner', icon: 'cloud', meta: 'Active since 2023'),
+  _Credential(type: 'Specialisation', name: 'Flutter & Dart', icon: 'code', meta: '5+ years'),
+  _Credential(type: 'Education', name: 'B.Tech Computer Science', icon: 'school', meta: 'Class of 2019'),
 ];
 
-/// About section — two-column layout on desktop, single column on mobile.
-///
-/// Left column  : Bio paragraph + professional summary.
-/// Right column : Skill badge grid.
+const _skills = [
+  'Flutter', 'Dart', 'Riverpod', 'Bloc', 'Firebase',
+  'REST APIs', 'GraphQL', 'SQLite', 'CI/CD', 'GitHub Actions',
+  'Performance Tuning', 'Clean Architecture', 'MVVM', 'TDD', 'Android', 'iOS',
+];
+
 class AboutSection extends StatelessComponent {
   const AboutSection({super.key});
 
@@ -37,46 +31,41 @@ class AboutSection extends StatelessComponent {
       classes: 'about-section',
       [
         div(classes: 'about-inner container', [
-          // ── Section heading ──────────────────────────────────
-          div(classes: 'section-heading', [
-            h2(classes: 'section-title', [.text('About Me')]),
-            div(classes: 'section-divider', []),
+          div(classes: 'about-header', [
+            p(classes: 'about-eyebrow t-label', [.text('About Me')]),
+            h2(classes: 'about-title t-headline', [
+              .text('Crafting Apps with\nPurpose & Precision'),
+            ]),
           ]),
-
-          // ── Two-column body ───────────────────────────────────
           div(classes: 'about-body', [
-            // Left: bio copy.
             div(classes: 'about-bio', [
-              p(classes: 'bio-text', [
+              p(classes: 'about-bio-text t-body-lg', [
                 .text(
-                  'I\'m a Senior Software Engineer with a passion for building '
-                  'mobile experiences that feel native, performant, and '
-                  'delightful. I\'ve shipped production Flutter apps to '
-                  'millions of users across Android and iOS.',
+                  "I\'m a Senior Software Engineer passionate about building "
+                  "mobile experiences that feel native, performant, and "
+                  "delightful. I\'ve shipped production Flutter apps reaching "
+                  "millions of users across Android and iOS.",
                 ),
               ]),
-              p(classes: 'bio-text', [
+              p(classes: 'about-bio-text t-body-lg', [
                 .text(
-                  'My focus areas include mobile architecture (Clean '
-                  'Architecture & MVVM), state management (Riverpod & Bloc), '
-                  'smooth 60/120 fps animations, and developer-experience '
-                  'tooling that helps teams move faster.',
+                  'My focus: mobile architecture (Clean Arch & MVVM), state '
+                  'management (Riverpod & Bloc), smooth 60/120 fps animations, '
+                  'and developer-experience tooling that helps teams ship faster.',
                 ),
               ]),
-              p(classes: 'bio-text', [
-                .text(
-                  'When I\'m not pushing pixels, I\'m contributing to open-source, '
-                  'writing dev articles, or exploring the latest Dart language '
-                  'features.',
-                ),
+              div(classes: 'skills-section', [
+                p(classes: 'skills-label t-label', [.text('Core Stack')]),
+                div(classes: 'skills-wrap', [
+                  for (final skill in _skills)
+                    span(classes: 'skill-chip', [.text(skill)]),
+                ]),
               ]),
             ]),
-
-            // Right: skill badges.
-            div(classes: 'about-skills', [
-              h3(classes: 'skills-heading', [.text('Core Stack')]),
-              div(classes: 'skills-grid', [
-                for (final skill in _skills) span(classes: 'skill-badge', [.text(skill)]),
+            div(classes: 'about-credentials', [
+              p(classes: 'cred-header t-label', [.text('Validations')]),
+              div(classes: 'cred-grid', [
+                for (final c in _credentials) _CredentialCard(cred: c),
               ]),
             ]),
           ]),
@@ -87,93 +76,94 @@ class AboutSection extends StatelessComponent {
 
   @css
   static List<StyleRule> get styles => [
-    // Section outer wrapper — generous vertical breathing room.
     css('.about-section').styles(
-      padding: .symmetric(vertical: 6.rem),
+      padding: .symmetric(vertical: 5.rem),
+      backgroundColor: surfaceContainerLow,
     ),
-
-    // ── Section heading ──────────────────────────────────────────
-    css('.section-heading').styles(
-      raw: {'margin-bottom': '3.5rem'},
-    ),
-
-    css('.section-title').styles(
-      color: textPrimary,
-      fontSize: 2.25.rem,
-      fontWeight: .w700,
-      raw: {'margin-bottom': '0.75rem'},
-    ),
-
-    // Short accent underline beneath the section title.
-    css('.section-divider').styles(
-      width: 48.px,
-      height: 4.px,
-      radius: BorderRadius.circular(2.px),
-      backgroundColor: accentColor,
-    ),
-
-    // ── Two-column body ──────────────────────────────────────────
-    // On desktop: side-by-side flex row.
-    // On mobile : stacks via flex-wrap.
+    css('.about-header').styles(raw: {'margin-bottom': '3rem'}),
+    css('.about-eyebrow').styles(color: primaryColor, raw: {'margin-bottom': '0.5rem'}),
+    css('.about-title').styles(color: onSurface, raw: {'white-space': 'pre-line'}),
     css('.about-body').styles(
       display: .flex,
       flexWrap: .wrap,
+      gap: Gap.all(3.rem),
       alignItems: .start,
-      gap: Gap.all(4.rem),
     ),
-
-    // ── Bio column ───────────────────────────────────────────────
     css('.about-bio').styles(
-      flex: Flex(grow: 1, shrink: 1, basis: 300.px),
-    ),
-
-    css('.bio-text').styles(
-      color: textSecondary,
-      fontSize: 1.0625.rem,
-      lineHeight: 1.75.em,
-      raw: {'margin-bottom': '1.25rem'},
-    ),
-    css('.bio-text:last-child').styles(raw: {'margin-bottom': '0'}),
-
-    // ── Skills column ─────────────────────────────────────────────
-    css('.about-skills').styles(
-      flex: Flex(grow: 1, shrink: 1, basis: 280.px),
-    ),
-
-    css('.skills-heading').styles(
-      color: textSecondary,
-      fontSize: 1.rem,
-      fontWeight: .w600,
-      textTransform: TextTransform.upperCase,
-      letterSpacing: 0.08.em,
-      raw: {'margin-bottom': '1.25rem'},
-    ),
-
-    // Wrap-flex grid of badge chips.
-    css('.skills-grid').styles(
+      flex: Flex(grow: 1, shrink: 1, basis: 320.px),
       display: .flex,
-      flexWrap: .wrap,
-      gap: Gap.all(0.625.rem),
+      flexDirection: .column,
+      gap: Gap.all(1.25.rem),
     ),
-
-    // Individual skill badge.
-    css('.skill-badge').styles(
+    css('.about-bio-text').styles(color: onSurfaceVariant, lineHeight: 1.75.em),
+    css('.skills-section').styles(raw: {'margin-top': '0.75rem'}),
+    css('.skills-label').styles(color: onSurfaceVariant, raw: {'margin-bottom': '0.75rem'}),
+    css('.skills-wrap').styles(display: .flex, flexWrap: .wrap, gap: Gap.all(0.5.rem)),
+    css('.skill-chip').styles(
       display: .inlineFlex,
-      padding: .symmetric(horizontal: 0.875.rem, vertical: 0.375.rem),
-      radius: BorderRadius.circular(99.px),
-      alignItems: .center,
-      color: accentColor,
-      fontSize: 0.8125.rem,
+      fontSize: 12.px,
       fontWeight: .w500,
-      backgroundColor: tagBgColor,
+      color: primaryColor,
+      backgroundColor: primaryFixed,
+      padding: .symmetric(horizontal: 0.75.rem, vertical: 0.375.rem),
+      radius: BorderRadius.circular(99.px),
     ),
-
-    // Mobile: let columns stack full-width.
-    css.media(MediaQuery.screen(maxWidth: 600.px), [
-      css('.about-section').styles(padding: .symmetric(vertical: 4.rem)),
-      css('.about-body').styles(gap: Gap.all(2.5.rem)),
+    css('.about-credentials').styles(flex: Flex(grow: 1, shrink: 1, basis: 280.px)),
+    css('.cred-header').styles(color: onSurfaceVariant, raw: {'margin-bottom': '0.75rem'}),
+    css('.cred-grid').styles(
+      display: .grid,
+      gridTemplate: GridTemplate(
+        columns: GridTracks([GridTrack(TrackSize.fr(1)), GridTrack(TrackSize.fr(1))]),
+      ),
+      gap: Gap.all(0.75.rem),
+    ),
+    css('.cred-card').styles(
+      backgroundColor: surfaceContainerLowest,
+      radius: BorderRadius.circular(12.px),
+      padding: .all(1.rem),
+      display: .flex,
+      flexDirection: .column,
+      gap: Gap.all(0.5.rem),
+      raw: {'box-shadow': '0px 2px 8px rgba(26,28,30,0.04)'},
+    ),
+    css('.cred-icon').styles(
+      display: .inlineFlex,
+      alignItems: .center,
+      justifyContent: .center,
+      width: 36.px,
+      height: 36.px,
+      radius: BorderRadius.circular(8.px),
+      backgroundColor: primaryFixed,
+      color: primaryColor,
+      raw: {'margin-bottom': '0.25rem'},
+    ),
+    css('.cred-type').styles(fontSize: 10.px, fontWeight: .w500,
+        textTransform: TextTransform.upperCase, color: primaryColor,
+        raw: {'letter-spacing': '0.06em'}),
+    css('.cred-name').styles(fontSize: 13.px, fontWeight: .w600, color: onSurface,
+        raw: {'line-height': '1.4'}),
+    css('.cred-meta').styles(fontSize: 11.px, color: onSurfaceVariant),
+    css.media(MediaQuery.screen(maxWidth: 768.px), [
+      css('.about-section').styles(padding: .symmetric(vertical: 3.5.rem)),
       css('.about-bio').styles(flex: Flex(grow: 1, shrink: 1, basis: 100.percent)),
-      css('.about-skills').styles(flex: Flex(grow: 1, shrink: 1, basis: 100.percent)),
+      css('.about-credentials').styles(flex: Flex(grow: 1, shrink: 1, basis: 100.percent)),
     ]),
   ];
+}
+
+class _CredentialCard extends StatelessComponent {
+  const _CredentialCard({required this.cred});
+  final _Credential cred;
+
+  @override
+  Component build(BuildContext context) {
+    return div(classes: 'cred-card', [
+      div(classes: 'cred-icon', [
+        span(classes: 'material-symbols-outlined', [.text(cred.icon)]),
+      ]),
+      p(classes: 'cred-type', [.text(cred.type)]),
+      p(classes: 'cred-name', [.text(cred.name)]),
+      p(classes: 'cred-meta', [.text(cred.meta)]),
+    ]);
+  }
 }
