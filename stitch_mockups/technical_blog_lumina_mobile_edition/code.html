@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Blog - ENGINEER.OS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-container": "#9c5d00",
+                    "surface-tint": "#5d4ac4",
+                    "secondary-container": "#d1e6f2",
+                    "surface-bright": "#fbf9f4",
+                    "tertiary-fixed-dim": "#ffb86c",
+                    "on-primary-container": "#f1ecff",
+                    "outline": "#787585",
+                    "on-tertiary": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "surface-dim": "#dbdad5",
+                    "surface": "#fbf9f4",
+                    "on-secondary-fixed": "#0a1e26",
+                    "on-secondary": "#ffffff",
+                    "surface-variant": "#e4e2dd",
+                    "secondary-fixed-dim": "#b5cad5",
+                    "surface-container-low": "#f5f3ee",
+                    "inverse-on-surface": "#f2f1ec",
+                    "on-primary-fixed-variant": "#452fab",
+                    "error": "#ba1a1a",
+                    "on-tertiary-fixed-variant": "#683c00",
+                    "on-tertiary-container": "#ffebda",
+                    "primary-fixed": "#e5deff",
+                    "outline-variant": "#c9c4d5",
+                    "primary": "#523fb9",
+                    "error-container": "#ffdad6",
+                    "on-background": "#1b1c19",
+                    "on-surface": "#1b1c19",
+                    "on-tertiary-fixed": "#2c1600",
+                    "surface-container": "#f0eee9",
+                    "secondary-fixed": "#d1e6f2",
+                    "background": "#fbf9f4",
+                    "tertiary": "#7a4800",
+                    "surface-container-highest": "#e4e2dd",
+                    "on-secondary-container": "#546771",
+                    "primary-container": "#6b59d3",
+                    "on-secondary-fixed-variant": "#374953",
+                    "inverse-primary": "#c8bfff",
+                    "on-error": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-fixed": "#190064",
+                    "secondary": "#4e616b",
+                    "primary-fixed-dim": "#c8bfff",
+                    "surface-container-high": "#eae8e3",
+                    "inverse-surface": "#30312e",
+                    "on-error-container": "#93000a",
+                    "tertiary-fixed": "#ffdcbc",
+                    "on-surface-variant": "#484553"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "sm": "12px",
+                    "margin-desktop": "64px",
+                    "md": "16px",
+                    "base": "8px",
+                    "gutter": "24px",
+                    "xs": "4px",
+                    "lg": "24px",
+                    "margin-mobile": "16px",
+                    "xl": "32px"
+            },
+            "fontFamily": {
+                    "title-lg": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "body-md": ["Inter"],
+                    "display-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "title-lg": ["22px", {"lineHeight": "28px", "letterSpacing": "0", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "letterSpacing": "0.01em", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "400"}],
+                    "display-lg": ["57px", {"lineHeight": "64px", "letterSpacing": "-0.02em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #fbf9f4;
+            font-family: 'Inter', sans-serif;
+        }
+        .tonal-card {
+            background-color: #f3f0e9;
+            transition: transform 0.2s ease;
+        }
+        .tonal-card:active {
+            transform: scale(0.98);
+        }
+        .nav-drawer-overlay {
+            background-color: rgba(27, 28, 25, 0.4);
+            backdrop-filter: blur(4px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="flex flex-col min-h-screen">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 flex items-center justify-between px-margin-mobile h-16 w-full bg-surface dark:bg-surface-dim">
+<div class="flex items-center gap-4">
+<button class="cursor-pointer active:opacity-70 transition-opacity text-primary dark:text-primary-fixed" id="menu-trigger">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<span class="font-title-lg text-title-lg font-bold tracking-tighter text-primary dark:text-primary-fixed">ENGINEER.OS</span>
+</div>
+<div class="cursor-pointer active:opacity-70 transition-opacity">
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container text-xs font-bold">
+                AR
+            </div>
+</div>
+</header>
+<!-- NavigationDrawer (Hidden by default) -->
+<div class="fixed inset-0 z-[60] hidden" id="nav-drawer">
+<div class="absolute inset-0 nav-drawer-overlay" id="drawer-backdrop"></div>
+<aside class="h-full w-80 rounded-r-xl bg-surface-container-low dark:bg-surface-container-low fixed inset-y-0 left-0 flex flex-col py-6 shadow-md dark:shadow-none transition-transform -translate-x-full" id="drawer-content">
+<div class="px-6 mb-8 flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">person</span>
+</div>
+<div>
+<p class="font-title-lg text-title-lg font-bold text-primary dark:text-primary-fixed">Alex Rivers</p>
+<p class="font-body-md text-body-md text-on-surface-variant">Systems Architect</p>
+</div>
+</div>
+<nav class="flex-grow space-y-1">
+<a class="flex items-center gap-4 text-on-surface-variant dark:text-on-surface-variant px-4 py-3 mx-2 hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-full transition-all" href="#">
+<span class="material-symbols-outlined">folder_open</span>
+<span class="font-body-md text-body-md">Portfolio</span>
+</a>
+<a class="flex items-center gap-4 text-on-surface-variant dark:text-on-surface-variant px-4 py-3 mx-2 hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-full transition-all" href="#">
+<span class="material-symbols-outlined">work_history</span>
+<span class="font-body-md text-body-md">Experience</span>
+</a>
+<!-- Active Tab: Blog -->
+<a class="flex items-center gap-4 bg-secondary-container dark:bg-tertiary-container text-on-secondary-container dark:text-on-tertiary-container rounded-full px-4 py-3 mx-2 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">article</span>
+<span class="font-body-md text-body-md">Blog</span>
+</a>
+<a class="flex items-center gap-4 text-on-surface-variant dark:text-on-surface-variant px-4 py-3 mx-2 hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-full transition-all" href="#">
+<span class="material-symbols-outlined">alternate_email</span>
+<span class="font-body-md text-body-md">Contact</span>
+</a>
+</nav>
+<div class="mt-auto px-6">
+<span class="font-label-md text-label-md text-on-surface-variant opacity-50">v2.4.0</span>
+</div>
+</aside>
+</div>
+<!-- Main Content Canvas -->
+<main class="pt-24 pb-12 px-margin-mobile flex-grow">
+<header class="mb-8">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-2">Technical Insights</h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-sm">Deep dives into systems architecture, performance engineering, and distributed protocols.</p>
+</header>
+<!-- Newsletter Signup Section -->
+<section class="mb-10 p-6 rounded-xl bg-primary-container text-on-primary-container relative overflow-hidden">
+<div class="relative z-10">
+<h2 class="font-title-lg text-title-lg mb-2">The Architect's Log</h2>
+<p class="font-body-md text-body-md mb-6 opacity-90">Fortnightly technical deep-dives delivered straight to your inbox.</p>
+<div class="flex flex-col gap-3">
+<input class="bg-surface-container-lowest/20 border border-white/20 rounded-lg px-4 py-3 text-white placeholder:text-white/60 focus:outline-none focus:ring-2 focus:ring-white/40" placeholder="email@example.com" type="email"/>
+<button class="bg-white text-primary font-label-md text-label-md py-3 rounded-lg font-bold shadow-sm active:scale-95 transition-transform">Subscribe Now</button>
+</div>
+</div>
+<!-- Atmospheric micro-interaction element -->
+<div class="absolute -right-12 -top-12 w-40 h-40 bg-white/10 rounded-full blur-3xl"></div>
+</section>
+<!-- Articles Feed -->
+<div class="space-y-gutter">
+<!-- Article 1 -->
+<article class="tonal-card p-xl rounded-xl">
+<div class="flex items-center gap-2 mb-3">
+<span class="bg-secondary-container text-on-secondary-container font-label-md text-label-md px-2 py-1 rounded">Distributred Systems</span>
+<span class="text-on-surface-variant opacity-60 font-label-md text-label-md">• 12 min read</span>
+</div>
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-4">Implementing Consensus: Beyond Paxos</h3>
+<div class="w-full h-48 rounded-lg mb-4 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A highly detailed 3D abstract visualization of nodes connecting in a complex web. The lighting is soft and cinematic, with a warm neutral light-mode aesthetic using cream and beige tones. Subtle purple and gold light trails represent data transfer between geometric shapes in a vast, organized digital landscape. Minimalist, professional, and sophisticated." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYmG_qpecjNgvjPDPmKkwemAuIuW9JnpeWGktwck6jw0jmp5HgJCSN9bZOCKo-NF3xtCn6D6FzQJBOGHt-J7_AbJhy5His4da3IzRW45ml_t2s0DZDyjk7WalVKIzyF0rUMs4v-yLpffOuv_MBqKt5p2zXGlvvpWc2QPZGBuAKVwQ1DF3_VBZ4WkA81gtIuL0gy-C9zvjXIedZi100wzpbuA-6KW90cdH8pdSWu7SPA_rutEuZRqsn4xHiut7emoSy5rPMp_RRCuUO"/>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">Exploring modern approaches to leader election and state machine replication in high-throughput environments...</p>
+<a class="flex items-center gap-2 text-primary font-label-md text-label-md font-bold uppercase tracking-wider" href="#">
+                    Read Article
+                    <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</article>
+<!-- Article 2 -->
+<article class="tonal-card p-xl rounded-xl">
+<div class="flex items-center gap-2 mb-3">
+<span class="bg-secondary-container text-on-secondary-container font-label-md text-label-md px-2 py-1 rounded">Performance</span>
+<span class="text-on-surface-variant opacity-60 font-label-md text-label-md">• 8 min read</span>
+</div>
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-4">The P99 Problem: Solving Tail Latency</h3>
+<div class="w-full h-48 rounded-lg mb-4 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A macro photograph of a high-tech circuit board with light pulsing through translucent traces. The color palette is composed of warm whites, soft grays, and elegant deep purples. The mood is precise and technical, reflecting a calm but advanced research laboratory setting. Shallow depth of field focuses on the intricate geometric patterns of the silicon." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKqWPfcAHtxUDVrNfTIJOncQeskoaGxiclMIZkx4VfMgVe4iYNmbApkbXwjCy1FSgVG1hIQmKDAwzFGZbMR9-wpsS9xgnwSj7DswlLA6f2SKF49fpS2qLxzEa5I-OJE4Sao2Ze4xJk0FHBb_gZp4zpOZSpvQ41qR4Y2TY-zcTEm5lzqvzaBKNapyAcb4hrGnOq6n02uwgaaV1sM35NfoYmi0kGs-cligJwa2KZ5o2sWGRhrjSNo8OhLCUrrlvKSh4q6GZe6qZcTntn"/>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">Why averages lie and how to hunt down the microscopic delays that degrade user experience at scale.</p>
+<a class="flex items-center gap-2 text-primary font-label-md text-label-md font-bold uppercase tracking-wider" href="#">
+                    Read Article
+                    <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</article>
+<!-- Article 3 -->
+<article class="tonal-card p-xl rounded-xl">
+<div class="flex items-center gap-2 mb-3">
+<span class="bg-secondary-container text-on-secondary-container font-label-md text-label-md px-2 py-1 rounded">Kubernetes</span>
+<span class="text-on-surface-variant opacity-60 font-label-md text-label-md">• 15 min read</span>
+</div>
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-4">Zero-Trust Service Mesh Architecture</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">An engineering guide to securing internal communications without sacrificing operational speed or developer experience.</p>
+<a class="flex items-center gap-2 text-primary font-label-md text-label-md font-bold uppercase tracking-wider" href="#">
+                    Read Article
+                    <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</article>
+</div>
+<div class="mt-12 flex justify-center">
+<button class="border border-outline-variant text-primary font-label-md text-label-md px-8 py-3 rounded-full hover:bg-surface-container-high active:scale-95 transition-all">
+                Load More Articles
+            </button>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full mt-auto flex flex-col items-center justify-center gap-4 py-8 px-margin-mobile border-t border-outline-variant/30 bg-surface-container dark:bg-surface-container">
+<div class="text-on-surface font-bold font-title-lg">ENGINEER.OS</div>
+<div class="flex gap-6">
+<a class="text-on-secondary-container dark:text-on-secondary-fixed-variant font-label-md text-label-md hover:text-primary dark:hover:text-primary-fixed underline transition-all" href="#">GitHub</a>
+<a class="text-on-secondary-container dark:text-on-secondary-fixed-variant font-label-md text-label-md hover:text-primary dark:hover:text-primary-fixed underline transition-all" href="#">LinkedIn</a>
+<a class="text-on-secondary-container dark:text-on-secondary-fixed-variant font-label-md text-label-md hover:text-primary dark:hover:text-primary-fixed underline transition-all" href="#">Documentation</a>
+</div>
+<p class="font-label-md text-label-md text-secondary dark:text-secondary-fixed-dim text-center opacity-80">
+            © 2024 Engineer.OS • Built with Precision
+        </p>
+</footer>
+<script>
+        const menuBtn = document.getElementById('menu-trigger');
+        const drawer = document.getElementById('nav-drawer');
+        const drawerContent = document.getElementById('drawer-content');
+        const backdrop = document.getElementById('drawer-backdrop');
+
+        function openDrawer() {
+            drawer.classList.remove('hidden');
+            setTimeout(() => {
+                drawerContent.classList.remove('-translate-x-full');
+            }, 10);
+        }
+
+        function closeDrawer() {
+            drawerContent.classList.add('-translate-x-full');
+            setTimeout(() => {
+                drawer.classList.add('hidden');
+            }, 300);
+        }
+
+        menuBtn.addEventListener('click', openDrawer);
+        backdrop.addEventListener('click', closeDrawer);
+
+        // Simple scroll reveal for cards
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                    entry.target.classList.remove('opacity-0', 'translate-y-4');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('article').forEach(article => {
+            article.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-4');
+            observer.observe(article);
+        });
+    </script>
+</body></html>

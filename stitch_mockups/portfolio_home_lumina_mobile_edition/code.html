@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Engineer.OS | Systems Architect</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Using the provided Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-container": "#9c5d00",
+                    "surface-tint": "#5d4ac4",
+                    "secondary-container": "#d1e6f2",
+                    "surface-bright": "#fbf9f4",
+                    "tertiary-fixed-dim": "#ffb86c",
+                    "on-primary-container": "#f1ecff",
+                    "outline": "#787585",
+                    "on-tertiary": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "surface-dim": "#dbdad5",
+                    "surface": "#fbf9f4",
+                    "on-secondary-fixed": "#0a1e26",
+                    "on-secondary": "#ffffff",
+                    "surface-variant": "#e4e2dd",
+                    "secondary-fixed-dim": "#b5cad5",
+                    "surface-container-low": "#f5f3ee",
+                    "inverse-on-surface": "#f2f1ec",
+                    "on-primary-fixed-variant": "#452fab",
+                    "error": "#ba1a1a",
+                    "on-tertiary-fixed-variant": "#683c00",
+                    "on-tertiary-container": "#ffebda",
+                    "primary-fixed": "#e5deff",
+                    "outline-variant": "#c9c4d5",
+                    "primary": "#523fb9",
+                    "error-container": "#ffdad6",
+                    "on-background": "#1b1c19",
+                    "on-surface": "#1b1c19",
+                    "on-tertiary-fixed": "#2c1600",
+                    "surface-container": "#f0eee9",
+                    "secondary-fixed": "#d1e6f2",
+                    "background": "#fbf9f4",
+                    "tertiary": "#7a4800",
+                    "surface-container-highest": "#e4e2dd",
+                    "on-secondary-container": "#546771",
+                    "primary-container": "#6b59d3",
+                    "on-secondary-fixed-variant": "#374953",
+                    "inverse-primary": "#c8bfff",
+                    "on-error": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-fixed": "#190064",
+                    "secondary": "#4e616b",
+                    "primary-fixed-dim": "#c8bfff",
+                    "surface-container-high": "#eae8e3",
+                    "inverse-surface": "#30312e",
+                    "on-error-container": "#93000a",
+                    "tertiary-fixed": "#ffdcbc",
+                    "on-surface-variant": "#484553"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "sm": "12px",
+                    "margin-desktop": "64px",
+                    "md": "16px",
+                    "base": "8px",
+                    "gutter": "24px",
+                    "xs": "4px",
+                    "lg": "24px",
+                    "margin-mobile": "16px",
+                    "xl": "32px"
+            },
+            "fontFamily": {
+                    "title-lg": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "body-md": ["Inter"],
+                    "display-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "title-lg": ["22px", {"lineHeight": "28px", "letterSpacing": "0", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "letterSpacing": "0.01em", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "400"}],
+                    "display-lg": ["57px", {"lineHeight": "64px", "letterSpacing": "-0.02em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fbf9f4; /* background from config */
+            color: #1b1c19; /* on-background from config */
+            -webkit-font-smoothing: antialiased;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .status-pulse {
+            animation: pulse-animation 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse-animation {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        /* Custom scrollbar for subtle feel */
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #e4e2dd; border-radius: 10px; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="flex flex-col min-h-screen">
+<!-- TopAppBar from JSON -->
+<header class="fixed top-0 w-full z-50 bg-surface dark:bg-surface-dim flex items-center justify-between px-margin-mobile h-16 w-full shadow-none transition-all duration-300 border-none" id="main-header">
+<div class="flex items-center gap-4">
+<button class="cursor-pointer active:opacity-70 transition-opacity hover:bg-surface-container dark:hover:bg-surface-container-high p-2 rounded-full" onclick="toggleDrawer()">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed" data-icon="menu">menu</span>
+</button>
+<h1 class="font-title-lg text-title-lg font-bold tracking-tighter text-primary dark:text-primary-fixed">ENGINEER.OS</h1>
+</div>
+<div class="cursor-pointer active:opacity-70 transition-opacity flex items-center">
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a technical systems architect in a minimalist studio. The lighting is warm and soft, creating a high-trust, human-centric aesthetic. The background is a clean, neutral cream color that matches the Lumina design system palette. The individual has a composed, intelligent expression, wearing modern business-casual attire in charcoal and soft purple tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-mhVNksDGX9tVO5QmYJ1yhJNiGF1L6lWc8eA6mmCVNZ1bxg8uJiyirIt3_GHx5m-zFTG-7gqpGYoHWj__Pd_seQLujvbGCEYm4phNwLyDiJc7eP9u_YT-ROUnsSm_s5BjvHVg5pQrfjB_B9hlIwJ9ToxgXWbf8-1_BFgwzLEj02o8YV9_zvkt67blQ4-mAuoQOn1Ha6eTvkJcO7DPN3W4Gr_7zpc-343JAG-gb1JLcZzoS782qLWNYEwdRNhMcC9kc7Ba7wwKq8wv"/>
+</div>
+</div>
+</header>
+<!-- Navigation Drawer (Hidden by default) -->
+<div class="fixed inset-0 bg-black/20 z-[55] hidden transition-opacity duration-300 opacity-0" id="drawer-overlay" onclick="toggleDrawer()"></div>
+<aside class="fixed inset-y-0 left-0 z-[60] flex flex-col py-6 bg-surface-container-low dark:bg-surface-container-low h-full w-80 rounded-r-xl shadow-md dark:shadow-none -translate-x-full transition-transform duration-300 ease-in-out" id="navigation-drawer">
+<div class="px-6 mb-8">
+<div class="flex items-center gap-4 mb-4">
+<div class="w-12 h-12 rounded-xl bg-primary-fixed flex items-center justify-center text-primary font-bold text-xl">AR</div>
+<div>
+<h3 class="font-title-lg text-title-lg text-primary font-bold">Alex Rivers</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Systems Architect</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<!-- Active: Portfolio -->
+<a class="flex items-center gap-4 bg-secondary-container dark:bg-tertiary-container text-on-secondary-container dark:text-on-tertiary-container rounded-full px-4 py-3 mx-2 transition-all hover:bg-surface-container-high dark:hover:bg-surface-container-highest" href="#">
+<span class="material-symbols-outlined" data-icon="folder_open">folder_open</span>
+<span class="font-body-md text-body-md">Portfolio</span>
+</a>
+<a class="flex items-center gap-4 text-on-surface-variant dark:text-on-surface-variant px-4 py-3 mx-2 transition-all hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-full" href="#">
+<span class="material-symbols-outlined" data-icon="work_history">work_history</span>
+<span class="font-body-md text-body-md">Experience</span>
+</a>
+<a class="flex items-center gap-4 text-on-surface-variant dark:text-on-surface-variant px-4 py-3 mx-2 transition-all hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-full" href="#">
+<span class="material-symbols-outlined" data-icon="article">article</span>
+<span class="font-body-md text-body-md">Blog</span>
+</a>
+<a class="flex items-center gap-4 text-on-surface-variant dark:text-on-surface-variant px-4 py-3 mx-2 transition-all hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-full" href="#">
+<span class="material-symbols-outlined" data-icon="alternate_email">alternate_email</span>
+<span class="font-body-md text-body-md">Contact</span>
+</a>
+</nav>
+<div class="px-6 mt-auto">
+<span class="font-label-md text-label-md text-on-surface-variant opacity-60">v2.4.0</span>
+</div>
+</aside>
+<main class="flex-grow pt-16">
+<!-- Hero Section -->
+<section class="relative px-margin-mobile py-12 overflow-hidden bg-surface-bright">
+<div class="relative z-10">
+<div class="inline-flex items-center gap-2 px-3 py-1 bg-primary-fixed/30 rounded-full mb-6">
+<span class="w-2 h-2 rounded-full bg-primary status-pulse"></span>
+<span class="font-label-md text-label-md text-on-primary-fixed-variant uppercase tracking-wider">Operational Integrity</span>
+</div>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-4 leading-tight">
+                    Architecting Reliability at <span class="text-primary italic">Global Scale</span>
+</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-8 max-w-sm">
+                    Engineering fault-tolerant distributed systems and automated infrastructure for high-growth enterprises.
+                </p>
+<div class="flex gap-4">
+<button class="bg-primary text-on-primary px-6 py-3 rounded-lg font-label-md text-label-md shadow-md active:scale-95 transition-transform">
+                        VIEW PROJECTS
+                    </button>
+<button class="bg-surface-container text-primary border border-outline-variant px-6 py-3 rounded-lg font-label-md text-label-md active:scale-95 transition-transform">
+                        GET IN TOUCH
+                    </button>
+</div>
+</div>
+<!-- Atmospheric Shader Element -->
+<div class="absolute top-0 right-0 w-1/2 h-full opacity-40 pointer-events-none">
+<!-- Using a conceptual placeholder for high-end feel -->
+<div class="w-full h-full bg-gradient-to-br from-primary/20 via-transparent to-secondary/10"></div>
+</div>
+</section>
+<!-- System Status Card -->
+<section class="px-margin-mobile -mt-6 relative z-20">
+<div class="bg-surface-container-lowest rounded-xl p-6 shadow-md border border-surface-container">
+<div class="flex justify-between items-start mb-6">
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant mb-1">Global System Capacity</p>
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface font-bold">2,480+ Active Nodes</h3>
+</div>
+<div class="w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined" data-icon="hub">hub</span>
+</div>
+</div>
+<div class="space-y-4">
+<div class="flex justify-between items-center text-sm">
+<span class="font-body-md text-body-md text-on-surface-variant">Uptime Performance</span>
+<span class="font-label-md text-label-md text-primary font-bold">99.999%</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 99.999%"></div>
+</div>
+<div class="grid grid-cols-2 gap-4 pt-2">
+<div class="bg-surface-container-low p-3 rounded-lg">
+<p class="font-label-md text-label-md text-on-surface-variant">Latency</p>
+<p class="font-title-lg text-title-lg text-on-surface">14ms</p>
+</div>
+<div class="bg-surface-container-low p-3 rounded-lg">
+<p class="font-label-md text-label-md text-on-surface-variant">Throughput</p>
+<p class="font-title-lg text-title-lg text-on-surface">1.2TB/s</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Project List Section -->
+<section class="px-margin-mobile py-10">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-title-lg text-title-lg text-on-surface font-bold">Featured Projects</h3>
+<a class="font-label-md text-label-md text-primary flex items-center gap-1" href="#">
+                    ALL PROJECTS
+                    <span class="material-symbols-outlined text-[16px]" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+<div class="space-y-6">
+<!-- Project 1 -->
+<div class="group cursor-pointer">
+<div class="relative w-full h-48 rounded-xl overflow-hidden mb-4 shadow-sm border border-surface-variant transition-transform active:scale-[0.98]">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A clean, cinematic photograph of a futuristic server room with rows of sleek, white hardware cabinets glowing with soft purple LED indicator lights. The perspective is low, looking down a narrow aisle with reflective flooring, creating a sense of vast infrastructure scale. The atmosphere is professional, cold-lit but with warm highlights, embodying high-end global infrastructure migration." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCaBDAnpSJjyPFOTL3TodHRXIUZQGlR0dbLCSLJ2hqz3mdCVMsAqLcwmaPwIXnCDcb-dnjHvI-zVPnz-f1zFTDv2lvPqxd5zfGSz-hFGAD0Dh-jTTcRdpqnJ4bXy7uR6MTDmcr851uJb8nMkQQ-njc3kBZ_-Od3XIQBjN2yL0RFBylE--4KDSBaIq4XN9TBDa3WI7Ivc8Z2Fj_GFoUOFvAFBV7BziAa4lvtOJJ3DciZ3QOG9Z54gdGy2om0DZyqxeDoUn6_6jyN7gws"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+<div class="absolute bottom-4 left-4 right-4">
+<div class="flex items-center gap-2 mb-1">
+<span class="px-2 py-0.5 bg-primary-container text-on-primary-container rounded text-[10px] font-bold uppercase tracking-widest">CLOUD</span>
+</div>
+</div>
+</div>
+<h4 class="font-body-lg text-body-lg text-on-surface font-bold group-hover:text-primary transition-colors">Global Infrastructure Migration</h4>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">Transitioned 14 legacy data centers to a unified multi-cloud architecture with zero downtime.</p>
+</div>
+<!-- Project 2 -->
+<div class="group cursor-pointer">
+<div class="relative w-full h-48 rounded-xl overflow-hidden mb-4 shadow-sm border border-surface-variant transition-transform active:scale-[0.98]">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A macro digital visualization of a high-speed data processing network. Luminous purple and blue light filaments flow like data through a dark, abstract grid. The style is minimalist and precise, representing real-time analytics. Sharp focus on foreground data nodes with a soft bokeh background, suggesting speed, reliability, and modern technological sophistication." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDB1ggmCdWR2RKhau8Dj24WvCdce5Edhvy1kfhMe4KqrJTXfjh7102JtONMu9P-wsx1P2xIttJEWjgLnNgmoBoR_jKtlj7SxYi7eJqWfs47Uex3j68jNc8tXY_2AohHCYDQCRciLC5AaKDh4GSffhVCDRiTFUNDmcHVgsVTl1-fj3ft7ubeCRSgkWelpCthP1233_Zr7ttj9OS0j69G_A5IgSqGtFdtmN_BukJjPkQI38ju5XMkhq0K49KuRl07s0x2hjWVtaXKPbGU"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+<div class="absolute bottom-4 left-4 right-4">
+<div class="flex items-center gap-2 mb-1">
+<span class="px-2 py-0.5 bg-primary-container text-on-primary-container rounded text-[10px] font-bold uppercase tracking-widest">REAL-TIME</span>
+</div>
+</div>
+</div>
+<h4 class="font-body-lg text-body-lg text-on-surface font-bold group-hover:text-primary transition-colors">Real-time Analytics Engine</h4>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">Built a low-latency event processing system handling 450k events per second for finance.</p>
+</div>
+<!-- Project 3 -->
+<div class="group cursor-pointer">
+<div class="relative w-full h-48 rounded-xl overflow-hidden mb-4 shadow-sm border border-surface-variant transition-transform active:scale-[0.98]">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A minimalist architectural photograph of a modern high-tech research facility. Concrete textures, glass partitions, and clean geometric lines define the space. Large windows show a clear blue sky, while inside, subtle purple ambient lighting reflects off polished surfaces. The design evokes a feeling of structured precision and sophisticated systems engineering." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzURuloPD1cA0yeGKeCmgaIygftegUnybRP2QEaX0UrfMsFhLYTBJt9YkvHtrp3og6jG19qHWPJDfYlmf6kje9UaArRI5ZYiVnF-3k5dAuy7r0Qtb2Cn4be2vq7oC3fv-Oxf4iGUCb9WCOJZwQ6gQy1u5-JEUh4O5A0oUwOvjCRvztABh02w0qGuvcz2rZ8kyaa5fYNmNR-4bccgJn-5ZlVo7KQeh5081Hh3qPpH50CftwPvASTFbUzYI1XFzibvF2WIZds2tEByzT"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+<div class="absolute bottom-4 left-4 right-4">
+<div class="flex items-center gap-2 mb-1">
+<span class="px-2 py-0.5 bg-primary-container text-on-primary-container rounded text-[10px] font-bold uppercase tracking-widest">SYSTEMS</span>
+</div>
+</div>
+</div>
+<h4 class="font-body-lg text-body-lg text-on-surface font-bold group-hover:text-primary transition-colors">Enterprise Security Mesh</h4>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">Implementation of a zero-trust networking architecture across 5 global regions.</p>
+</div>
+</div>
+</section>
+<!-- Experience Callout -->
+<section class="px-margin-mobile py-8 bg-surface-container-low mb-12">
+<div class="bg-white rounded-2xl p-8 border border-outline-variant/20 shadow-sm text-center">
+<span class="material-symbols-outlined text-4xl text-primary mb-4" data-icon="terminal">terminal</span>
+<h4 class="font-title-lg text-title-lg text-on-surface font-bold mb-2">Systems Mastery</h4>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">Expertise across K8s, Terraform, Distributed DBs, and Low-level System Optimization.</p>
+<div class="flex flex-wrap justify-center gap-2">
+<span class="px-3 py-1 bg-surface-container rounded-full font-label-md text-label-md text-secondary">Kubernetes</span>
+<span class="px-3 py-1 bg-surface-container rounded-full font-label-md text-label-md text-secondary">Rust</span>
+<span class="px-3 py-1 bg-surface-container rounded-full font-label-md text-label-md text-secondary">Go</span>
+<span class="px-3 py-1 bg-surface-container rounded-full font-label-md text-label-md text-secondary">AWS/GCP</span>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer from JSON -->
+<footer class="w-full mt-auto bg-surface-container dark:bg-surface-container flex flex-col items-center justify-center gap-4 py-8 px-margin-mobile border-t border-outline-variant/30">
+<div class="text-on-surface font-bold font-title-lg tracking-tighter">ENGINEER.OS</div>
+<p class="text-secondary dark:text-secondary-fixed-dim font-label-md text-label-md text-center">
+            © 2024 Engineer.OS • Built with Precision
+        </p>
+<div class="flex gap-6 mt-2">
+<a class="text-on-secondary-container dark:text-on-secondary-fixed-variant font-label-md text-label-md hover:text-primary dark:hover:text-primary-fixed underline transition-all" href="#">GitHub</a>
+<a class="text-on-secondary-container dark:text-on-secondary-fixed-variant font-label-md text-label-md hover:text-primary dark:hover:text-primary-fixed underline transition-all" href="#">LinkedIn</a>
+<a class="text-on-secondary-container dark:text-on-secondary-fixed-variant font-label-md text-label-md hover:text-primary dark:hover:text-primary-fixed underline transition-all" href="#">Documentation</a>
+</div>
+</footer>
+<!-- FAB (Suppressed on Home according to instructions, but logic added if needed) -->
+<!-- Home screen contextually could have one but prompt doesn't specify one. Defaulting to exclusion. -->
+<script>
+        function toggleDrawer() {
+            const drawer = document.getElementById('navigation-drawer');
+            const overlay = document.getElementById('drawer-overlay');
+            const isHidden = drawer.classList.contains('-translate-x-full');
+            
+            if (isHidden) {
+                drawer.classList.remove('-translate-x-full');
+                overlay.classList.remove('hidden');
+                setTimeout(() => overlay.classList.add('opacity-100'), 10);
+                document.body.style.overflow = 'hidden';
+            } else {
+                drawer.classList.add('-translate-x-full');
+                overlay.classList.remove('opacity-100');
+                setTimeout(()</script></body></html>
