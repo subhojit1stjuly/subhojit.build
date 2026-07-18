@@ -1,33 +1,141 @@
 ﻿import 'package:jaspr/dom.dart';
+import 'package:jaspr_content/theme.dart';
 
-const bgColor = Color('#fbf9f4');
-const surfaceColor = Color('#fbf9f4');
-const surfaceContainerLowest = Color('#ffffff');
-const surfaceContainerLow = Color('#f5f3ee');
-const surfaceContainer = Color('#f0eee9');
-const surfaceContainerHigh = Color('#eae8e3');
-const surfaceContainerHighest = Color('#e4e2dd');
-const surfaceVariant = Color('#e4e2dd');
-const primaryColor = Color('#523fb9');
-const primaryContainer = Color('#6b59d3');
-const onPrimary = Color('#ffffff');
-const primaryFixed = Color('#e5deff');
-const onPrimaryFixedVariant = Color('#452fab');
-const inversePrimary = Color('#c8bfff');
-const onSurface = Color('#1b1c19');
-const onSurfaceVariant = Color('#484553');
-const inverseSurface = Color('#30312e');
-const inverseOnSurface = Color('#f2f1ec');
-const secondaryContainer = Color('#d1e6f2');
-const onSecondaryContainer = Color('#546771');
-const outlineColor = Color('#787585');
-const outlineVariant = Color('#c9c4d5');
-const accentColor = primaryColor;
-const accentHoverColor = onPrimaryFixedVariant;
-const textPrimary = onSurface;
-const textSecondary = onSurfaceVariant;
-const borderColor = outlineVariant;
-const tagBgColor = primaryFixed;
+// ============================================================
+// Theme Configuration — Lumina Design System
+// ============================================================
+
+// Backgrounds & Surfaces (dark base + subtle elevation)
+final bgColor = ColorToken('bg',
+  Color('#fbf9f4'),  // light: warm off-white
+  dark: Color('#0b0d0e'));  // dark: very dark gray-blue
+
+final surfaceColor = ColorToken('surface',
+  Color('#fbf9f4'),
+  dark: Color('#1a1c1e'));  // +8% brightness from bg
+
+final surfaceContainerLowest = ColorToken('surface-container-lowest',
+  Color('#ffffff'),  // pure white
+  dark: Color('#0f1113'));  // darker than bg (modal overlays)
+
+final surfaceContainerLow = ColorToken('surface-container-low',
+  Color('#f5f3ee'),
+  dark: Color('#1f2225'));  // +5% from surface
+
+final surfaceContainer = ColorToken('surface-container',
+  Color('#f0eee9'),
+  dark: Color('#22252a'));  // +3% from low
+
+final surfaceContainerHigh = ColorToken('surface-container-high',
+  Color('#eae8e3'),
+  dark: Color('#2c2f35'));  // elevated cards
+
+final surfaceContainerHighest = ColorToken('surface-container-highest',
+  Color('#e4e2dd'),
+  dark: Color('#36393f'));  // top-level elevation
+
+final surfaceVariant = ColorToken('surface-variant',
+  Color('#e4e2dd'),
+  dark: Color('#36393f'));  // matches highest
+
+// Primary Brand Colors (desaturate in dark)
+final primaryColor = ColorToken('primary',
+  Color('#523fb9'),  // saturated purple
+  dark: Color('#c8bfff'));  // pastel purple (40% lighter, -20% saturation)
+
+final primaryContainer = ColorToken('primary-container',
+  Color('#6b59d3'),
+  dark: Color('#452fab'));  // darker variant for dark mode containers
+
+final onPrimary = ColorToken('on-primary',
+  Color('#ffffff'),
+  dark: Color('#1a1c1e'));  // dark text on light primary button in dark mode
+
+final primaryFixed = ColorToken('primary-fixed',
+  Color('#e5deff'),  // tag backgrounds
+  dark: Color('#2e2548'));  // dark mode tags: dark purple-gray
+
+final onPrimaryFixedVariant = ColorToken('on-primary-fixed-variant',
+  Color('#452fab'),  // hover states
+  dark: Color('#b5a7ff'));  // lighter hover in dark mode
+
+final inversePrimary = ColorToken('inverse-primary',
+  Color('#c8bfff'),
+  dark: Color('#523fb9'));  // swap for dark mode
+
+// Text & Content
+final onSurface = ColorToken('on-surface',
+  Color('#1b1c19'),  // near-black text
+  dark: Color('#e4e2dd'));  // light gray text (not pure white)
+
+final onSurfaceVariant = ColorToken('on-surface-variant',
+  Color('#484553'),  // secondary text
+  dark: Color('#c9c4d5'));  // lighter secondary text
+
+final inverseSurface = ColorToken('inverse-surface',
+  Color('#30312e'),
+  dark: Color('#e4e2dd'));
+
+final inverseOnSurface = ColorToken('inverse-on-surface',
+  Color('#f2f1ec'),
+  dark: Color('#1b1c19'));
+
+// Borders & Dividers
+final outline = ColorToken('outline',
+  Color('#787585'),
+  dark: Color('#8e8c99'));  // subtle increase for visibility
+
+final outlineVariant = ColorToken('outline-variant',
+  Color('#c9c4d5'),  // soft borders
+  dark: Color('#484553'));  // reduced contrast in dark
+
+// Accent & Secondary
+final secondaryContainer = ColorToken('secondary-container',
+  Color('#d1e6f2'),  // light blue backgrounds
+  dark: Color('#1f3a47'));  // dark teal-gray
+
+final onSecondaryContainer = ColorToken('on-secondary-container',
+  Color('#546771'),
+  dark: Color('#b3d4e5'));  // light text on dark secondary
+
+// ============================================================
+// ContentTheme — Register all tokens with jaspr_content
+// ============================================================
+final appTheme = ContentTheme(
+  colors: [
+    bgColor,
+    surfaceColor,
+    surfaceContainerLowest,
+    surfaceContainerLow,
+    surfaceContainer,
+    surfaceContainerHigh,
+    surfaceContainerHighest,
+    surfaceVariant,
+    primaryColor,
+    primaryContainer,
+    onPrimary,
+    primaryFixed,
+    onPrimaryFixedVariant,
+    inversePrimary,
+    onSurface,
+    onSurfaceVariant,
+    inverseSurface,
+    inverseOnSurface,
+    outline,
+    outlineVariant,
+    secondaryContainer,
+    onSecondaryContainer,
+  ],
+  font: FontFamily('Inter'),
+);
+
+// Aliases (for backward compatibility with existing components)
+final accentColor = primaryColor;
+final accentHoverColor = onPrimaryFixedVariant;
+final textPrimary = onSurface;
+final textSecondary = onSurfaceVariant;
+final borderColor = outlineVariant;
+final tagBgColor = primaryFixed;
 
 // ============================================================
 // Global styles — Lumina System
@@ -118,4 +226,9 @@ List<StyleRule> get styles => [
     css('.t-display').styles(fontSize: 36.px),
     css('.t-headline').styles(fontSize: 28.px),
   ]),
+
+  // Reduced motion accessibility ────────────────────────────
+  // Note: Jaspr doesn't support @media (prefers-reduced-motion) in css.media() yet.
+  // This will be added when jaspr_content's ThemeToggle component is integrated,
+  // which handles reduced motion through its own CSS transitions.
 ];

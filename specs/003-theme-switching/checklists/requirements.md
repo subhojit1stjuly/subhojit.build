@@ -33,51 +33,55 @@
 
 ✅ **ALL CHECKS PASSED** - Specification is complete and ready for planning phase
 
-### Detailed Review:
+### Detailed Review (Updated 2026-07-18 after clarification):
 
 **Content Quality**: ✅ PASS
 - User-centric language describing theme preference and reading experience
-- Focuses on "what" (theme toggle, preference persistence, accessibility) without "how" (Riverpod implementation)
+- Focuses on "what" (theme toggle, preference persistence, accessibility) without "how" (ContentTheme implementation)
 - Developer story included for architecture quality but remains outcome-focused
+- **Updated**: Now uses jaspr_content's built-in theming instead of custom Riverpod state management
 
 **Requirements**: ✅ PASS
-- 20 functional requirements (FR-001 through FR-020) are specific and testable
-- Clear scope: light/dark themes, state management, persistence, accessibility
-- No clarification markers - all requirements well-defined
-- Introduces jaspr_riverpod as per constitution (Principle III)
+- 15 functional requirements (FR-001 through FR-015) are specific and testable
+- Clear scope: light/dark themes using jaspr_content ContentTheme, built-in ThemeToggle, persistence, accessibility
+- No clarification markers - all requirements clarified through Q&A session
+- **Updated**: Uses jaspr_content's built-in theming (no custom jaspr_riverpod implementation needed)
 
 **Success Criteria**: ✅ PASS
 - 7 measurable outcomes (SC-001 through SC-007)
-- Performance metrics (<100ms response, <15KB size increase)
+- Performance metrics (<100ms response, <5KB size increase with no additional packages)
 - Accessibility standards (WCAG AA)
 - Quantifiable goals (100% browsers, zero hardcoded colors, 19 components refactored)
+- **Updated**: Bundle size reduced to <5KB (no jaspr_riverpod needed)
 
 **Edge Cases**: ✅ PASS
-- localStorage disabled/blocked scenarios
-- Browser compatibility (old browsers, no prefers-color-scheme)
+- localStorage disabled/blocked scenarios (handled by jaspr_content)
+- Browser compatibility (jaspr_content handles prefers-color-scheme detection)
 - Rapid toggle debouncing
 - Theme-specific assets (images, logos)
-- CSS-in-Dart reactivity challenges
-- Mobile vs desktop toggle appearance
-- SSR/SSG default theme handling
+- CSS-in-Dart reactivity via CSS custom properties
+- Mobile vs desktop toggle appearance (handled by ThemeToggle component)
+- SSR/SSG default theme handling (jaspr_content defaults to light)
 
 **Scope Boundaries**: ✅ PASS
-- Clear what's included: light/dark themes, Riverpod state, localStorage persistence, toggle UI, theme token refactoring
-- Clear what's excluded: additional themes beyond light/dark (extensible for future), theme customization per-user beyond light/dark choice
-- Constitution alignment: Introduces state management as per Principle III
+- Clear what's included: light/dark themes via ContentTheme, built-in ThemeToggle, localStorage persistence, complete 19-component refactor
+- Clear what's excluded: custom theme state management (using built-in), Tailwind CSS migration, additional themes beyond light/dark
+- **Updated**: No jaspr_riverpod needed - jaspr_content handles theme state internally
 
 **Constitution Compliance**: ✅ PASS
-- **Principle I**: Component-based architecture preserved (ThemeToggle component)
-- **Principle II**: No content externalization needed (theme tokens in code)
-- **Principle III**: State management with jaspr_riverpod ✅ **INTRODUCED** (theme state)
-- **Principle IV**: Static site generation maintained (client-side hydration applies theme)
-- **Principle V**: Testing required for state transitions and accessibility
-- **Principle VI**: Type safety maintained (ThemeData model, ThemeMode enum)
+- **Principle I**: Component-based architecture preserved (ThemeToggle component from jaspr_content)
+- **Principle II**: Content-first approach maintained (theme defined in constants/theme.dart)
+- **Principle III**: State management deferred - jaspr_content handles theme state internally (no jaspr_riverpod needed yet)
+- **Principle IV**: Static site generation maintained (jaspr_content hydration applies theme)
+- **Principle V**: Testing required for theme transitions and accessibility
+- **Principle VI**: Type safety maintained (ContentTheme, ThemeColor, ColorToken types)
 
 ## Notes
 
-- **This feature introduces jaspr_riverpod** as planned in constitution evolution roadmap (Phase 3)
-- First interactive feature requiring client-side state management
-- Generalizes hardcoded theme values into scalable system
+- **Clarification completed**: 5 questions answered, approach refined to use jaspr_content's built-in theming
+- **jaspr_riverpod NOT needed**: jaspr_content's ContentTheme and ThemeToggle handle all state management
+- Complete refactor approach: All 19 components migrated to CSS custom properties in one pass
+- Custom dark palette: Desaturated colors with adjusted brightness for readability (not pure inversion)
+- Architecture: ContentTheme defined in constants/theme.dart, imported in main.server.dart
 - Ready for `/speckit.plan` command
-- After implementation, constitution Principle III status changes from "NOT implemented" to "IN USE"
+- After implementation, constitution remains Phase 2 (jaspr_riverpod not yet needed for simple theme toggle)
