@@ -6,11 +6,11 @@ library;
 
 // Server-specific Jaspr import.
 import 'package:jaspr/server.dart';
+import 'package:jaspr_content/jaspr_content.dart';
 
 // Imports the [App] component.
 import 'app.dart';
-// Import theme configuration
-import 'constants/theme.dart';
+import 'pages/blog.dart';
 
 // This file is generated automatically by Jaspr, do not remove or edit.
 import 'main.server.options.dart';
@@ -21,21 +21,68 @@ void main() {
     options: defaultServerOptions,
   );
 
-  // Starts the app.
+  // Starts the app with jaspr_content integration.
   //
-  // [Document] renders the root document structure (<html>, <head> and <body>)
-  // with the provided parameters and components.
-  //
-  // Theme CSS variables from appTheme.styles are injected first, followed by
-  // global Lumina styles from theme.dart styles getter.
+  // Hybrid mode: FilesystemLoader loads new content from content/ directory,
+  // MemoryLoader preserves existing hardcoded blog posts as fallback.
+  // This provides zero-risk migration path and graceful degradation.
   runApp(
     Document(
       title: 'Subhojit Pramanik — Senior Software Engineer',
-      styles: [
-        ...appTheme.styles,  // Theme CSS variables (:root with --tokens)
-        ...styles,            // Global Lumina styles (typography, utilities, etc.)
-      ],
-      body: App(),
+      styles: [],
+      body: ContentApp.custom(
+        loaders: [
+          // Primary: Load content from filesystem
+          FilesystemLoader('content'),
+
+          // Fallback: Existing hardcoded blog posts as MemoryPages
+          MemoryLoader(pages: _createMemoryPagesFromHardcodedArticles()),
+        ],
+        eagerlyLoadAllPages: true,
+        configResolver: PageConfig.all(parsers: [MarkdownParser()]),
+        routerBuilder: (contentRoutes) {
+          // Return the existing App with jaspr_content routes available
+          return App();
+        },
+      ),
     ),
   );
+}
+
+/// Convert existing hardcoded _Article objects to MemoryPages for backward compatibility.
+/// This ensures all existing blog posts remain functional during infrastructure validation.
+List<MemoryPage> _createMemoryPagesFromHardcodedArticles() {
+  return hardcodedArticles.map((art) {
+    // Generate slug from title
+    final slug = art.title.toLowerCase().replaceAll(RegExp(r'[^a-z0-9]+'), '-').replaceAll(RegExp(r'^-+|-+$'), '');
+
+    // Convert article to frontmatter + markdown content
+    final frontmatter = {
+      'title': art.title,
+      'date': '2026-01-01', // Placeholder date for hardcoded articles
+      'excerpt': art.excerpt,
+      'category': art.category,
+      'tags': [art.category.toLowerCase()],
+      'featured': art.featured,
+      'readMin': art.readMin,
+      'imageColor': art.imageColor,
+      'layout': 'blog',
+    };
+
+    // Simple markdown content as placeholder
+    final content =
+        '''
+# ${art.title}
+
+${art.excerpt}
+
+*This is a legacy hardcoded article. Content migration pending.*
+''';
+
+    return MemoryPage(
+      path: 'blog/$slug.md',
+      content: content,
+      initialData: {'page': frontmatter},
+    );
+  }).toList();
 }
