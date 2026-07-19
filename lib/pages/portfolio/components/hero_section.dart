@@ -1,7 +1,6 @@
 import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
-
-import '../constants/theme.dart';
+import 'package:subhojit_build/core/theme/colors.dart';
 
 /// Hero section — the first thing a visitor sees.
 ///

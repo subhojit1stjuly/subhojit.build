@@ -1,7 +1,6 @@
 import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
-
-import '../constants/theme.dart';
+import 'package:subhojit_build/core/theme/colors.dart';
 
 /// Philosophy section — a quote, brief statement, and contact CTA.
 class PhilosophySection extends StatelessComponent {
@@ -36,13 +35,19 @@ class PhilosophySection extends StatelessComponent {
             div(classes: 'philosophy-cta', [
               p(classes: 'cta-label t-title', [.text("Let\'s Build Something.")]),
               p(classes: 'cta-sub t-body', [
-                .text("Open to senior/lead mobile roles and freelance projects. "
-                    "Drop me a message and I\'ll reply within 24 hours."),
+                .text(
+                  "Open to senior/lead mobile roles and freelance projects. "
+                  "Drop me a message and I\'ll reply within 24 hours.",
+                ),
               ]),
               div(classes: 'cta-actions', [
                 a(href: 'mailto:hello@subhojitpramanik.dev', classes: 'cta-btn-primary', [.text('Get in Touch')]),
-                a(href: 'https://github.com/subhojit', classes: 'cta-btn-ghost',
-                    attributes: {'target': '_blank', 'rel': 'noopener'}, [.text('View GitHub')]),
+                a(
+                  href: 'https://github.com/subhojit',
+                  classes: 'cta-btn-ghost',
+                  attributes: {'target': '_blank', 'rel': 'noopener'},
+                  [.text('View GitHub')],
+                ),
               ]),
             ]),
           ]),

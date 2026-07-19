@@ -1,7 +1,6 @@
 import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
-
-import '../constants/theme.dart';
+import 'package:subhojit_build/core/theme/colors.dart';
 
 class Credential {
   const Credential({required this.type, required this.name, required this.icon, required this.meta});
@@ -47,15 +46,14 @@ class AboutSection extends StatelessComponent {
               div(classes: 'skills-section', [
                 p(classes: 'skills-label t-label', [.text('Core Stack')]),
                 div(classes: 'skills-wrap', [
-                    for (final skill in skills)
-                    span(classes: 'skill-chip', [.text(skill)]),
+                  for (final skill in skills) span(classes: 'skill-chip', [.text(skill)]),
                 ]),
               ]),
             ]),
             div(classes: 'about-credentials', [
               p(classes: 'cred-header t-label', [.text('Validations')]),
               div(classes: 'cred-grid', [
-                  for (final c in credentials) _CredentialCard(cred: c),
+                for (final c in credentials) _CredentialCard(cred: c),
               ]),
             ]),
           ]),
@@ -127,11 +125,14 @@ class AboutSection extends StatelessComponent {
       color: primaryColor,
       raw: {'margin-bottom': '0.25rem'},
     ),
-    css('.cred-type').styles(fontSize: 10.px, fontWeight: .w500,
-        textTransform: TextTransform.upperCase, color: primaryColor,
-        raw: {'letter-spacing': '0.06em'}),
-    css('.cred-name').styles(fontSize: 13.px, fontWeight: .w600, color: onSurface,
-        raw: {'line-height': '1.4'}),
+    css('.cred-type').styles(
+      fontSize: 10.px,
+      fontWeight: .w500,
+      textTransform: TextTransform.upperCase,
+      color: primaryColor,
+      raw: {'letter-spacing': '0.06em'},
+    ),
+    css('.cred-name').styles(fontSize: 13.px, fontWeight: .w600, color: onSurface, raw: {'line-height': '1.4'}),
     css('.cred-meta').styles(fontSize: 11.px, color: onSurfaceVariant),
     css.media(MediaQuery.screen(maxWidth: 768.px), [
       css('.about-section').styles(padding: .symmetric(vertical: 3.5.rem)),

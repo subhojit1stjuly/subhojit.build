@@ -1,7 +1,6 @@
 import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
-
-import '../constants/theme.dart';
+import 'package:subhojit_build/core/theme/colors.dart';
 
 /// Core Expertise bento-grid section on the home page.
 ///
@@ -58,8 +57,10 @@ class CoreExpertiseSection extends StatelessComponent {
             ]),
             h3(classes: 'card-title t-title', [.text('60fps Performance')]),
             p(classes: 'card-desc t-body', [
-              .text('Frame-level profiling and optimization. Custom render '
-                  'objects, shader pre-compilation, and image pipeline tuning.'),
+              .text(
+                'Frame-level profiling and optimization. Custom render '
+                'objects, shader pre-compilation, and image pipeline tuning.',
+              ),
             ]),
             ul(classes: 'card-bullet-list', [
               li([.text('Jank-free animations')]),
@@ -138,10 +139,13 @@ class CoreExpertiseSection extends StatelessComponent {
     ),
     // Wide card — row 2, both columns
     css('.expertise-card--wide').styles(
-      raw: {'grid-column': '1 / 3', 'grid-row': '2 / 3',
-            'display': 'grid',
-            'grid-template-columns': '1fr 1fr',
-            'gap': '2rem'},
+      raw: {
+        'grid-column': '1 / 3',
+        'grid-row': '2 / 3',
+        'display': 'grid',
+        'grid-template-columns': '1fr 1fr',
+        'gap': '2rem',
+      },
     ),
 
     // ── Card base ──────────────────────────────────────────────────────────
@@ -177,7 +181,8 @@ class CoreExpertiseSection extends StatelessComponent {
       display: .inlineFlex,
       alignItems: .center,
       justifyContent: .center,
-      width: 44.px, height: 44.px,
+      width: 44.px,
+      height: 44.px,
       radius: BorderRadius.circular(12.px),
       backgroundColor: primaryFixed,
       raw: {'margin-bottom': '1rem'},
@@ -190,11 +195,15 @@ class CoreExpertiseSection extends StatelessComponent {
 
     // Tags
     css('.card-tags').styles(
-      display: .flex, flexWrap: .wrap, gap: Gap.all(0.5.rem),
+      display: .flex,
+      flexWrap: .wrap,
+      gap: Gap.all(0.5.rem),
       raw: {'margin-top': '1rem'},
     ),
     css('.card-tag').styles(
-      fontSize: 12.px, fontWeight: .w500, color: onSurfaceVariant,
+      fontSize: 12.px,
+      fontWeight: .w500,
+      color: onSurfaceVariant,
       backgroundColor: surfaceContainerHigh,
       padding: .symmetric(horizontal: 0.625.rem, vertical: 0.25.rem),
       radius: BorderRadius.circular(4.px),
@@ -202,7 +211,8 @@ class CoreExpertiseSection extends StatelessComponent {
 
     // Bullet list
     css('.card-bullet-list').styles(
-      color: onSurfaceVariant, fontSize: 13.px,
+      color: onSurfaceVariant,
+      fontSize: 13.px,
       raw: {'margin-top': '0.875rem', 'padding-left': '1.25rem', 'line-height': '1.8'},
     ),
 
@@ -213,7 +223,8 @@ class CoreExpertiseSection extends StatelessComponent {
       padding: .all(1.25.rem),
     ),
     css('.sub-card-label').styles(
-      color: primaryColor, raw: {'margin-bottom': '0.5rem'},
+      color: primaryColor,
+      raw: {'margin-bottom': '0.5rem'},
     ),
     css('.sub-card-body').styles(color: onSurfaceVariant, lineHeight: 1.55.em),
 
@@ -231,8 +242,7 @@ class CoreExpertiseSection extends StatelessComponent {
         raw: {'grid-column': '1', 'grid-row': 'auto'},
       ),
       css('.expertise-card--wide').styles(
-        raw: {'grid-column': '1', 'grid-row': 'auto',
-              'grid-template-columns': '1fr', 'gap': '1rem'},
+        raw: {'grid-column': '1', 'grid-row': 'auto', 'grid-template-columns': '1fr', 'gap': '1rem'},
       ),
       css('.expertise-section').styles(padding: .symmetric(vertical: 3.5.rem)),
     ]),

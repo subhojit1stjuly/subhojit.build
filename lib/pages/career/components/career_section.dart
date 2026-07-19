@@ -1,7 +1,8 @@
 import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
+import 'package:subhojit_build/core/theme/colors.dart';
 
-import '../constants/theme.dart';
+import '../../../core/theme/theme.dart';
 import '../models/job_experience.dart';
 
 /// Career timeline section.
@@ -31,8 +32,7 @@ class CareerSection extends StatelessComponent {
 
         // Desktop: zigzag
         div(classes: 'career-timeline career-timeline--desktop', [
-          for (int i = 0; i < jobs.length; i++)
-            _DesktopEntry(job: jobs[i], isReversed: i.isOdd),
+          for (int i = 0; i < jobs.length; i++) _DesktopEntry(job: jobs[i], isReversed: i.isOdd),
         ]),
       ]),
     ]);
@@ -47,53 +47,72 @@ class CareerSection extends StatelessComponent {
 
     // Mobile timeline — shown on all screens < 768px
     css('.career-timeline--mobile').styles(
-      display: .flex, flexDirection: .column, raw: {'gap': '0'},
+      display: .flex,
+      flexDirection: .column,
+      raw: {'gap': '0'},
     ),
     css('.career-timeline--desktop').styles(display: .none),
 
     // ── Mobile entry ────────────────────────────────────────────────────────
     css('.mobile-entry').styles(
-      display: .flex, gap: Gap.all(1.5.rem),
+      display: .flex,
+      gap: Gap.all(1.5.rem),
       raw: {'padding-bottom': '2.5rem', 'position': 'relative'},
     ),
     css('.mobile-dot-col').styles(
-      display: .flex, flexDirection: .column, alignItems: .center,
+      display: .flex,
+      flexDirection: .column,
+      alignItems: .center,
       raw: {'flex-shrink': '0', 'padding-top': '4px'},
     ),
     css('.mobile-dot').styles(
-      width: 40.px, height: 40.px,
+      width: 40.px,
+      height: 40.px,
       radius: BorderRadius.circular(99.px),
       backgroundColor: primaryFixed,
-      display: .flex, alignItems: .center, justifyContent: .center,
+      display: .flex,
+      alignItems: .center,
+      justifyContent: .center,
       color: primaryColor,
       raw: {'flex-shrink': '0', 'z-index': '1'},
     ),
     css('.mobile-spine').styles(
-      width: 1.px, backgroundColor: outlineVariant,
+      width: 1.px,
+      backgroundColor: outlineVariant,
       flex: Flex(grow: 1),
       raw: {'margin-top': '8px'},
     ),
     css('.mobile-entry:last-child .mobile-spine').styles(display: .none),
     css('.mobile-content').styles(flex: Flex(grow: 1), raw: {'padding-top': '4px'}),
     css('.entry-date').styles(
-      fontSize: 12.px, fontWeight: .w600, color: primaryColor,
+      fontSize: 12.px,
+      fontWeight: .w600,
+      color: primaryColor,
       raw: {'margin-bottom': '0.25rem', 'letter-spacing': '0.02em'},
     ),
     css('.entry-role').styles(
-      fontSize: 20.px, fontWeight: .w700, color: onSurface,
+      fontSize: 20.px,
+      fontWeight: .w700,
+      color: onSurface,
       raw: {'margin-bottom': '0.125rem'},
     ),
     css('.entry-company').styles(
-      fontSize: 14.px, color: primaryColor, fontWeight: .w500,
+      fontSize: 14.px,
+      color: primaryColor,
+      fontWeight: .w500,
       raw: {'margin-bottom': '0.75rem'},
     ),
     css('.entry-desc').styles(
-      fontSize: 14.px, color: onSurfaceVariant, lineHeight: 1.6.em,
+      fontSize: 14.px,
+      color: onSurfaceVariant,
+      lineHeight: 1.6.em,
       raw: {'margin-bottom': '0.875rem'},
     ),
     css('.entry-tags').styles(display: .flex, flexWrap: .wrap, gap: Gap.all(0.375.rem)),
     css('.entry-tag').styles(
-      fontSize: 11.px, fontWeight: .w500, color: onSurfaceVariant,
+      fontSize: 11.px,
+      fontWeight: .w500,
+      color: onSurfaceVariant,
       backgroundColor: surfaceContainerHigh,
       padding: .symmetric(horizontal: 0.625.rem, vertical: 0.25.rem),
       radius: BorderRadius.circular(4.px),
@@ -103,7 +122,8 @@ class CareerSection extends StatelessComponent {
     css.media(MediaQuery.screen(minWidth: 768.px), [
       css('.career-timeline--mobile').styles(display: .none),
       css('.career-timeline--desktop').styles(
-        display: .flex, flexDirection: .column,
+        display: .flex,
+        flexDirection: .column,
         raw: {'gap': '0', 'position': 'relative'},
       ),
 
@@ -117,7 +137,8 @@ class CareerSection extends StatelessComponent {
           'bottom': '0',
           'width': '1px',
           'transform': 'translateX(-50%)',
-          'background': 'repeating-linear-gradient(to bottom, ${outlineVariant.value} 0, ${outlineVariant.value} 8px, transparent 8px, transparent 16px)',
+          'background':
+              'repeating-linear-gradient(to bottom, ${outlineVariant.value} 0, ${outlineVariant.value} 8px, transparent 8px, transparent 16px)',
         },
       ),
 
@@ -137,15 +158,20 @@ class CareerSection extends StatelessComponent {
 
       // Node column (always centre)
       css('.desktop-node').styles(
-        display: .flex, alignItems: .center, justifyContent: .center,
+        display: .flex,
+        alignItems: .center,
+        justifyContent: .center,
         raw: {'z-index': '1'},
       ),
       css('.desktop-node-circle').styles(
-        width: 56.px, height: 56.px,
+        width: 56.px,
+        height: 56.px,
         radius: BorderRadius.circular(99.px),
         backgroundColor: surfaceContainerLowest,
         border: Border.all(color: primaryColor, style: BorderStyle.solid, width: 2.px),
-        display: .flex, alignItems: .center, justifyContent: .center,
+        display: .flex,
+        alignItems: .center,
+        justifyContent: .center,
         color: primaryColor,
         raw: {'box-shadow': '0 0 0 6px ${primaryFixed.value}'},
       ),
@@ -168,15 +194,21 @@ class CareerSection extends StatelessComponent {
       ),
 
       css('.desktop-date').styles(
-        fontSize: 12.px, fontWeight: .w700, color: primaryColor,
+        fontSize: 12.px,
+        fontWeight: .w700,
+        color: primaryColor,
         raw: {'letter-spacing': '0.04em', 'margin-bottom': '0.375rem'},
       ),
       css('.desktop-role').styles(
-        fontSize: 22.px, fontWeight: .w700, color: onSurface,
+        fontSize: 22.px,
+        fontWeight: .w700,
+        color: onSurface,
         raw: {'margin-bottom': '0.25rem'},
       ),
       css('.desktop-company').styles(
-        fontSize: 14.px, color: primaryColor, fontWeight: .w500,
+        fontSize: 14.px,
+        color: primaryColor,
+        fontWeight: .w500,
       ),
 
       // Achievement card

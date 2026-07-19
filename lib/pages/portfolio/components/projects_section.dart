@@ -1,7 +1,7 @@
 import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
+import 'package:subhojit_build/core/theme/colors.dart';
 
-import '../constants/theme.dart';
 import '../models/project.dart';
 
 class ProjectsSection extends StatelessComponent {
@@ -22,10 +22,14 @@ class ProjectsSection extends StatelessComponent {
               p(classes: 'projects-eyebrow t-label', [.text('Featured Projects')]),
               h2(classes: 'projects-title t-headline', [.text('What I\'ve Built')]),
             ]),
-            a(href: 'https://github.com/subhojit', classes: 'projects-all-link',
-                attributes: {'target': '_blank', 'rel': 'noopener'}, [
-              .text('All Projects \u2192'),
-            ]),
+            a(
+              href: 'https://github.com/subhojit',
+              classes: 'projects-all-link',
+              attributes: {'target': '_blank', 'rel': 'noopener'},
+              [
+                .text('All Projects \u2192'),
+              ],
+            ),
           ]),
 
           // Project list
@@ -114,7 +118,9 @@ class ProjectsSection extends StatelessComponent {
       lineHeight: 1.6.em,
       raw: {'margin-bottom': '1rem'},
     ),
-    css('.project-tags').styles(display: .flex, flexWrap: .wrap, gap: Gap.all(0.375.rem), raw: {'margin-bottom': '1rem'}),
+    css(
+      '.project-tags',
+    ).styles(display: .flex, flexWrap: .wrap, gap: Gap.all(0.375.rem), raw: {'margin-bottom': '1rem'}),
     css('.project-tag').styles(
       fontSize: 11.px,
       fontWeight: .w500,
@@ -156,7 +162,9 @@ class _ProjectCard extends StatelessComponent {
     return div(classes: 'project-card', [
       // Tonal image placeholder with category chip
       div(classes: 'project-image', styles: Styles(backgroundColor: secondaryContainer), [
-        span(classes: 'material-symbols-outlined', styles: Styles(fontSize: 36.px, color: primaryColor), [.text('code')]),
+        span(classes: 'material-symbols-outlined', styles: Styles(fontSize: 36.px, color: primaryColor), [
+          .text('code'),
+        ]),
         div(classes: 'project-category-chip', [.text('Project')]),
       ]),
       div(classes: 'project-body', [
@@ -166,11 +174,15 @@ class _ProjectCard extends StatelessComponent {
           for (final tag in project.technologies) span(classes: 'project-tag', [.text(tag)]),
         ]),
         if (project.externalLink != null)
-          a(href: project.externalLink!, classes: 'project-link',
-              attributes: {'target': '_blank', 'rel': 'noopener'}, [
-            .text('View Source'),
-            span(classes: 'material-symbols-outlined', [.text('open_in_new')]),
-          ]),
+          a(
+            href: project.externalLink!,
+            classes: 'project-link',
+            attributes: {'target': '_blank', 'rel': 'noopener'},
+            [
+              .text('View Source'),
+              span(classes: 'material-symbols-outlined', [.text('open_in_new')]),
+            ],
+          ),
       ]),
     ]);
   }

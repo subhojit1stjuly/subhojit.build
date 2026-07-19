@@ -1,10 +1,11 @@
 import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
+import 'package:subhojit_build/core/theme/colors.dart';
 
-import '../components/career_section.dart';
-import '../components/philosophy_section.dart';
-import '../constants/theme.dart';
-import '../models/job_experience.dart';
+import 'components/career_section.dart';
+import 'components/philosophy_section.dart';
+import '../../core/theme/theme.dart';
+import 'models/job_experience.dart';
 
 /// Career & Experience page (/career).
 class CareerPage extends StatelessComponent {
@@ -66,14 +67,18 @@ class CareerPage extends StatelessComponent {
       },
     ),
     css('.chero-inner').styles(
-      display: .flex, flexDirection: .column,
-      alignItems: .center, gap: Gap.all(1.5.rem),
+      display: .flex,
+      flexDirection: .column,
+      alignItems: .center,
+      gap: Gap.all(1.5.rem),
     ),
     css('.chero-pill').styles(
-      display: .inlineFlex, alignItems: .center, gap: Gap.all(0.5.rem),
+      display: .inlineFlex,
       padding: .symmetric(horizontal: 1.rem, vertical: 0.375.rem),
-      backgroundColor: surfaceContainerHigh,
       radius: BorderRadius.circular(99.px),
+      alignItems: .center,
+      gap: Gap.all(0.5.rem),
+      backgroundColor: surfaceContainerHigh,
     ),
     css('.chero-pill-icon').styles(fontSize: 16.px, color: primaryColor),
     css('.chero-headline').styles(color: onSurface, raw: {'white-space': 'pre-line'}),
@@ -85,11 +90,15 @@ class CareerPage extends StatelessComponent {
       backgroundColor: surfaceContainerLow,
     ),
     css('.academic-heading').styles(
-      display: .flex, alignItems: .center, gap: Gap.all(0.875.rem),
+      display: .flex,
+      alignItems: .center,
+      gap: Gap.all(0.875.rem),
       raw: {'margin-bottom': '2rem'},
     ),
     css('.heading-bar').styles(
-      width: 4.px, height: 32.px, backgroundColor: primaryColor,
+      width: 4.px,
+      height: 32.px,
+      backgroundColor: primaryColor,
       radius: BorderRadius.circular(2.px),
     ),
     css('.academic-title').styles(color: onSurface),
@@ -108,32 +117,46 @@ class CareerPage extends StatelessComponent {
       backgroundColor: surfaceContainerLowest,
       radius: BorderRadius.circular(16.px),
       padding: .all(1.5.rem),
-      display: .flex, flexDirection: .column,
+      display: .flex,
+      flexDirection: .column,
       raw: {'box-shadow': '0px 2px 8px rgba(26,28,30,0.04)'},
     ),
     css('.cert-icon-wrap').styles(
-      display: .inlineFlex, alignItems: .center, justifyContent: .center,
-      width: 48.px, height: 48.px,
+      display: .inlineFlex,
+      alignItems: .center,
+      justifyContent: .center,
+      width: 48.px,
+      height: 48.px,
       radius: BorderRadius.circular(12.px),
-      backgroundColor: primaryFixed, color: primaryColor,
+      backgroundColor: primaryFixed,
+      color: primaryColor,
       raw: {'margin-bottom': '1rem'},
     ),
     css('.cert-type').styles(
-      fontSize: 11.px, fontWeight: .w500, color: primaryColor,
+      fontSize: 11.px,
+      fontWeight: .w500,
+      color: primaryColor,
       textTransform: TextTransform.upperCase,
       raw: {'letter-spacing': '0.06em', 'margin-bottom': '0.375rem'},
     ),
     css('.cert-name').styles(
-      fontSize: 15.px, fontWeight: .w700, color: onSurface,
+      fontSize: 15.px,
+      fontWeight: .w700,
+      color: onSurface,
       raw: {'line-height': '1.4', 'margin-bottom': '0.375rem'},
     ),
     css('.cert-meta').styles(
-      fontSize: 12.px, color: onSurfaceVariant,
+      fontSize: 12.px,
+      color: onSurfaceVariant,
       raw: {'margin-top': 'auto', 'padding-top': '0.75rem', 'margin-bottom': '0.75rem'},
     ),
     css('.cert-link').styles(
-      display: .inlineFlex, alignItems: .center, gap: Gap.all(0.25.rem),
-      fontSize: 12.px, fontWeight: .w600, color: primaryColor,
+      display: .inlineFlex,
+      alignItems: .center,
+      gap: Gap.all(0.25.rem),
+      fontSize: 12.px,
+      fontWeight: .w600,
+      color: primaryColor,
       transition: Transition('color', duration: Duration(milliseconds: 150)),
     ),
     css('.cert-link:hover').styles(color: onPrimaryFixedVariant),
@@ -155,29 +178,38 @@ class CareerPage extends StatelessComponent {
     css('.comp-block').styles(
       radius: BorderRadius.circular(20.px),
       padding: .all(2.rem),
-      display: .flex, flexDirection: .column, justifyContent: .center,
+      display: .flex,
+      flexDirection: .column,
+      justifyContent: .center,
     ),
     css('.comp-block--dark').styles(backgroundColor: inverseSurface),
     css('.comp-block--dark .comp-block-label').styles(
-      color: inverseOnSurface, raw: {'margin-bottom': '1.25rem'},
+      color: inverseOnSurface,
+      raw: {'margin-bottom': '1.25rem'},
     ),
     css('.comp-tags').styles(display: .flex, flexWrap: .wrap, gap: Gap.all(0.5.rem)),
     css('.comp-tag').styles(
-      fontSize: 12.px, fontWeight: .w500, color: inverseOnSurface,
+      fontSize: 12.px,
+      fontWeight: .w500,
+      color: inverseOnSurface,
       backgroundColor: const Color.variable('--surface-container'),
       padding: .symmetric(horizontal: 0.75.rem, vertical: 0.375.rem),
       radius: BorderRadius.circular(99.px),
     ),
     css('.comp-block--purple').styles(
-      backgroundColor: primaryContainer, textAlign: TextAlign.center,
+      backgroundColor: primaryContainer,
+      textAlign: TextAlign.center,
     ),
     css('.comp-stat-num').styles(
-      fontSize: 56.px, fontWeight: .w700, color: onPrimary,
+      fontSize: 56.px,
+      fontWeight: .w700,
+      color: onPrimary,
       raw: {'line-height': '1', 'margin-bottom': '0.5rem'},
     ),
     css('.comp-stat-label').styles(color: onPrimary),
     css('.comp-block--lavender').styles(
-      backgroundColor: primaryFixed, textAlign: TextAlign.center,
+      backgroundColor: primaryFixed,
+      textAlign: TextAlign.center,
     ),
     css('.comp-stat-num--dark').styles(color: primaryColor),
     css('.comp-stat-label--dark').styles(color: onPrimaryFixedVariant),
@@ -239,18 +271,20 @@ class _CareerHero extends StatelessComponent {
 // ── Certification data ────────────────────────────────────────────────────────
 
 class _Cert {
-  const _Cert({required this.icon, required this.type, required this.name,
-               required this.meta, required this.link});
+  const _Cert({required this.icon, required this.type, required this.name, required this.meta, required this.link});
   final String icon, type, name, meta, link;
 }
 
 const _certs = [
-  _Cert(icon: 'cloud', type: 'Certification',
-        name: 'AWS Cloud Practitioner', meta: 'Credential #CLP-2023', link: '#'),
-  _Cert(icon: 'school', type: 'Education',
-        name: 'B.Tech Computer Science', meta: 'Class of 2019', link: '#'),
-  _Cert(icon: 'verified_user', type: 'Certification',
-        name: 'Google Associate Android Dev', meta: 'Active since 2022', link: '#'),
+  _Cert(icon: 'cloud', type: 'Certification', name: 'AWS Cloud Practitioner', meta: 'Credential #CLP-2023', link: '#'),
+  _Cert(icon: 'school', type: 'Education', name: 'B.Tech Computer Science', meta: 'Class of 2019', link: '#'),
+  _Cert(
+    icon: 'verified_user',
+    type: 'Certification',
+    name: 'Google Associate Android Dev',
+    meta: 'Active since 2022',
+    link: '#',
+  ),
 ];
 
 class _AcademicSection extends StatelessComponent {
@@ -297,8 +331,13 @@ class _CertCard extends StatelessComponent {
 // ── Competencies section ──────────────────────────────────────────────────────
 
 const _compSkills = [
-  'Flutter', 'Dart', 'State Management', 'Firebase',
-  'Mobile Architecture', 'CI/CD', 'Performance Tuning',
+  'Flutter',
+  'Dart',
+  'State Management',
+  'Firebase',
+  'Mobile Architecture',
+  'CI/CD',
+  'Performance Tuning',
 ];
 
 class _CompetenciesSection extends StatelessComponent {
