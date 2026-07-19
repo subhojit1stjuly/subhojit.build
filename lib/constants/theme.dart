@@ -203,6 +203,13 @@ List<StyleRule> get styles => [
     raw: {'margin': '0 auto'},
   ),
 
+  // Theme transitions ───────────────────────────────────────
+  css('*, *::before, *::after').styles(
+    raw: {
+      'transition': 'background-color 200ms ease, color 200ms ease, border-color 200ms ease, fill 200ms ease, stroke 200ms ease',
+    }
+  ),
+
   // Tonal card base (no hard borders — tonal layering only) ─
   css('.tonal-card').styles(
     radius: BorderRadius.circular(12.px),
@@ -228,7 +235,9 @@ List<StyleRule> get styles => [
   ]),
 
   // Reduced motion accessibility ────────────────────────────
-  // Note: Jaspr doesn't support @media (prefers-reduced-motion) in css.media() yet.
-  // This will be added when jaspr_content's ThemeToggle component is integrated,
-  // which handles reduced motion through its own CSS transitions.
+  css('@media (prefers-reduced-motion: reduce)', [
+    css('*, *::before, *::after').styles(
+      raw: {'transition': 'none !important', 'animation': 'none !important'}
+    ),
+  ]),
 ];

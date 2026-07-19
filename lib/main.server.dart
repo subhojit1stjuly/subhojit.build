@@ -7,6 +7,7 @@ library;
 // Server-specific Jaspr import.
 import 'package:jaspr/server.dart';
 import 'package:jaspr_content/jaspr_content.dart';
+import 'package:subhojit_build/constants/theme.dart';
 
 // Imports the [App] component.
 import 'app.dart';
@@ -39,7 +40,7 @@ void main() {
           MemoryLoader(pages: _createMemoryPagesFromHardcodedArticles()),
         ],
         eagerlyLoadAllPages: true,
-        configResolver: PageConfig.all(parsers: [MarkdownParser()]),
+        configResolver: PageConfig.all(parsers: [MarkdownParser()], theme: appTheme),
         routerBuilder: (contentRoutes) {
           // Return the existing App with jaspr_content routes available
           return App();
@@ -65,7 +66,7 @@ List<MemoryPage> _createMemoryPagesFromHardcodedArticles() {
       'tags': [art.category.toLowerCase()],
       'featured': art.featured,
       'readMin': art.readMin,
-      'imageColor': art.imageColor,
+      'imageColor': art.imageColor.value,
       'layout': 'blog',
     };
 

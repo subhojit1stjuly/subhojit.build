@@ -164,7 +164,7 @@ class CareerPage extends StatelessComponent {
     css('.comp-tags').styles(display: .flex, flexWrap: .wrap, gap: Gap.all(0.5.rem)),
     css('.comp-tag').styles(
       fontSize: 12.px, fontWeight: .w500, color: inverseOnSurface,
-      backgroundColor: Color('#ffffff20'),
+      backgroundColor: const Color.variable('--surface-container'),
       padding: .symmetric(horizontal: 0.75.rem, vertical: 0.375.rem),
       radius: BorderRadius.circular(99.px),
     ),

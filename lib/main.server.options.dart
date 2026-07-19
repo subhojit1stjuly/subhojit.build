@@ -5,6 +5,7 @@
 // Generated with jaspr_builder
 
 import 'package:jaspr/server.dart';
+import 'package:jaspr_content/components/theme_toggle.dart' as _theme_toggle;
 import 'package:subhojit_build/components/career_section.dart'
     as _career_section;
 import 'package:subhojit_build/components/core_expertise_section.dart'
@@ -39,8 +40,14 @@ import 'package:subhojit_build/app.dart' as _app;
 /// ```
 ServerOptions get defaultServerOptions => ServerOptions(
   clientId: 'main.client.dart.js',
+  clients: {
+    _theme_toggle.ThemeToggle: ClientTarget<_theme_toggle.ThemeToggle>(
+      'jaspr_content:theme_toggle',
+    ),
+  },
   styles: () => [
     ..._theme.styles,
+    ..._theme_toggle.ThemeToggleState.styles,
     ..._app.PageShell.styles,
     ..._career_section.CareerSection.styles,
     ..._core_expertise_section.CoreExpertiseSection.styles,

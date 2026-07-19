@@ -10,14 +10,15 @@ import '../constants/theme.dart';
 class BlogArticle {
   const BlogArticle({required this.category, required this.readMin, required this.title,
                    required this.excerpt, required this.href, this.featured = false,
-                   this.imageColor = '#e5deff'});
-  final String category, readMin, title, excerpt, href, imageColor;
+                   required this.imageColor});
+  final String category, readMin, title, excerpt, href;
+  final Color imageColor;
   final bool featured;
 }
 
 /// Exported for jaspr_content MemoryLoader in main.server.dart.
 /// These hardcoded articles serve as fallback during infrastructure validation.
-const hardcodedArticles = [
+final hardcodedArticles = [
   BlogArticle(
     category: 'Architecture',
     readMin: '12 min read',
@@ -26,7 +27,7 @@ const hardcodedArticles = [
              'your codebase stays maintainable as the team and feature-set grow.',
     href: '#',
     featured: true,
-    imageColor: '#d1e6f2',
+    imageColor: secondaryContainer,
   ),
   BlogArticle(
     category: 'Performance',
@@ -35,7 +36,7 @@ const hardcodedArticles = [
     excerpt: 'Why averages lie and how to hunt down the microscopic jank that '
              'degrades perceived smoothness — even when 95% of frames hit 60fps.',
     href: '#',
-    imageColor: '#e5deff',
+    imageColor: primaryFixed,
   ),
   BlogArticle(
     category: 'State Management',
@@ -44,7 +45,7 @@ const hardcodedArticles = [
     excerpt: 'A pragmatic comparison of the two dominant state management '
              'solutions in Flutter, with real-world trade-off examples.',
     href: '#',
-    imageColor: '#f0eee9',
+    imageColor: surfaceContainer,
   ),
   BlogArticle(
     category: 'DevOps',
@@ -53,7 +54,7 @@ const hardcodedArticles = [
     excerpt: 'End-to-end CI/CD pipeline: build, test, sign, and ship to '
              'both Play Store and App Store in a single workflow file.',
     href: '#',
-    imageColor: '#d1e6f2',
+    imageColor: secondaryContainer,
   ),
   BlogArticle(
     category: 'Architecture',
@@ -62,7 +63,7 @@ const hardcodedArticles = [
     excerpt: 'Implementing conflict-free replicated data types to give your '
              'app seamless offline sync that just works, even with multiple devices.',
     href: '#',
-    imageColor: '#e5deff',
+    imageColor: primaryFixed,
   ),
 ];
 
@@ -316,7 +317,7 @@ class BlogPage extends StatelessComponent {
     css('.newsletter-title').styles(fontSize: 17.px, fontWeight: .w700, color: onPrimary),
     css('.newsletter-sub').styles(fontSize: 13.px, color: onPrimary, raw: {'opacity': '0.88', 'line-height': '1.5'}),
     css('.newsletter-input').styles(
-      backgroundColor: Color('#ffffff25'),
+      backgroundColor: const Color.variable('--surface-container'),
       radius: BorderRadius.circular(8.px),
       padding: .symmetric(horizontal: 1.rem, vertical: 0.75.rem),
       fontSize: 14.px, color: onPrimary,
@@ -402,7 +403,7 @@ class _FeaturedArticleCard extends StatelessComponent {
   Component build(BuildContext context) {
     return div(classes: 'featured-card', [
       div(classes: 'featured-image',
-          styles: Styles(backgroundColor: Color(article.imageColor)), [
+          styles: Styles(backgroundColor: article.imageColor), [
         span(classes: 'material-symbols-outlined',
             styles: Styles(fontSize: 48.px, color: primaryColor), [.text('article')]),
       ]),
@@ -431,7 +432,7 @@ class _ArticleCard extends StatelessComponent {
   Component build(BuildContext context) {
     return div(classes: 'article-card', [
       div(classes: 'article-card-image',
-          styles: Styles(backgroundColor: Color(article.imageColor)), [
+          styles: Styles(backgroundColor: article.imageColor), [
         span(classes: 'material-symbols-outlined',
             styles: Styles(fontSize: 32.px, color: primaryColor), [.text('article')]),
       ]),
