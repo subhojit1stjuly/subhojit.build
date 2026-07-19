@@ -1,12 +1,14 @@
 import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 import 'package:jaspr_router/jaspr_router.dart';
+import 'package:subhojit_build/core/constants/route_constants.dart';
+import 'package:subhojit_build/core/constants/string_constants.dart';
 
-import 'components/footer.dart';
-import 'components/navbar.dart';
-import 'pages/blog.dart';
-import 'pages/career.dart';
-import 'pages/home.dart';
+import 'shared_components/footer.dart';
+import 'shared_components/navbar.dart';
+import 'pages/blog/blog.dart';
+import 'pages/career/career.dart';
+import 'pages/portfolio/home.dart';
 
 /// Root application component.
 ///
@@ -28,18 +30,18 @@ class App extends StatelessComponent {
           builder: (context, state, child) => PageShell(child: child),
           routes: [
             Route(
-              path: '/',
-              title: 'Subhojit Pramanik — Senior Software Engineer',
+              path: RouteConstants.portfolio,
+              title: StringConstants.portfolioTitle,
               builder: (context, state) => const Home(),
             ),
             Route(
-              path: '/career',
-              title: 'Career — Subhojit Pramanik',
+              path: RouteConstants.career,
+              title: StringConstants.careerTitle,
               builder: (context, state) => const CareerPage(),
             ),
             Route(
-              path: '/blog',
-              title: 'Technical Insights — Subhojit Pramanik',
+              path: RouteConstants.blogs,
+              title: StringConstants.blogTitle,
               builder: (context, state) => const BlogPage(),
             ),
           ],
@@ -56,16 +58,16 @@ class PageShell extends StatelessComponent {
   final Component child;
 
   static const _navItems = [
-    (label: 'Portfolio', to: '/'),
-    (label: 'Career',    to: '/career'),
-    (label: 'Blog',      to: '/blog'),
-    (label: 'Contact',   to: '/#contact'),
+    (label: 'Portfolio', to: RouteConstants.portfolio),
+    (label: 'Career', to: RouteConstants.career),
+    (label: 'Blog', to: RouteConstants.blogs),
+    (label: 'Projects', to: RouteConstants.projects),
   ];
 
   static const _footerLinks = [
-    (label: 'GitHub',   href: 'https://github.com/subhojit'),
+    (label: 'GitHub', href: 'https://github.com/subhojit'),
     (label: 'LinkedIn', href: 'https://linkedin.com/in/subhojit'),
-    (label: 'Email',    href: 'mailto:hello@subhojitpramanik.dev'),
+    (label: 'Email', href: 'mailto:hello@subhojitpramanik.dev'),
   ];
 
   @override
@@ -81,8 +83,8 @@ class PageShell extends StatelessComponent {
   static List<StyleRule> get styles => [
     css('.page').styles(
       display: .flex,
-      flexDirection: .column,
       minHeight: 100.vh,
+      flexDirection: .column,
     ),
   ];
 }

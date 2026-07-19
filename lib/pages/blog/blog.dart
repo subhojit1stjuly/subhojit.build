@@ -1,16 +1,21 @@
 import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
-
-import '../constants/theme.dart';
+import 'package:subhojit_build/core/theme/colors.dart';
 
 // ── Article data ──────────────────────────────────────────────────────────────
 
 /// Article data class for blog post metadata.
 /// Used by both hardcoded articles and jaspr_content MemoryLoader integration.
 class BlogArticle {
-  const BlogArticle({required this.category, required this.readMin, required this.title,
-                   required this.excerpt, required this.href, this.featured = false,
-                   required this.imageColor});
+  const BlogArticle({
+    required this.category,
+    required this.readMin,
+    required this.title,
+    required this.excerpt,
+    required this.href,
+    this.featured = false,
+    required this.imageColor,
+  });
   final String category, readMin, title, excerpt, href;
   final Color imageColor;
   final bool featured;
@@ -23,8 +28,9 @@ final hardcodedArticles = [
     category: 'Architecture',
     readMin: '12 min read',
     title: 'Clean Architecture in Flutter: A Production Guide',
-    excerpt: 'How to structure large Flutter apps with Clean Architecture so '
-             'your codebase stays maintainable as the team and feature-set grow.',
+    excerpt:
+        'How to structure large Flutter apps with Clean Architecture so '
+        'your codebase stays maintainable as the team and feature-set grow.',
     href: '#',
     featured: true,
     imageColor: secondaryContainer,
@@ -33,8 +39,9 @@ final hardcodedArticles = [
     category: 'Performance',
     readMin: '8 min read',
     title: 'The P99 Problem: Solving Tail Latency in Flutter',
-    excerpt: 'Why averages lie and how to hunt down the microscopic jank that '
-             'degrades perceived smoothness — even when 95% of frames hit 60fps.',
+    excerpt:
+        'Why averages lie and how to hunt down the microscopic jank that '
+        'degrades perceived smoothness — even when 95% of frames hit 60fps.',
     href: '#',
     imageColor: primaryFixed,
   ),
@@ -42,8 +49,9 @@ final hardcodedArticles = [
     category: 'State Management',
     readMin: '10 min read',
     title: 'Riverpod 3 vs Bloc: When to Use Which',
-    excerpt: 'A pragmatic comparison of the two dominant state management '
-             'solutions in Flutter, with real-world trade-off examples.',
+    excerpt:
+        'A pragmatic comparison of the two dominant state management '
+        'solutions in Flutter, with real-world trade-off examples.',
     href: '#',
     imageColor: surfaceContainer,
   ),
@@ -51,8 +59,9 @@ final hardcodedArticles = [
     category: 'DevOps',
     readMin: '15 min read',
     title: 'Automating Flutter Releases with GitHub Actions',
-    excerpt: 'End-to-end CI/CD pipeline: build, test, sign, and ship to '
-             'both Play Store and App Store in a single workflow file.',
+    excerpt:
+        'End-to-end CI/CD pipeline: build, test, sign, and ship to '
+        'both Play Store and App Store in a single workflow file.',
     href: '#',
     imageColor: secondaryContainer,
   ),
@@ -60,19 +69,20 @@ final hardcodedArticles = [
     category: 'Architecture',
     readMin: '9 min read',
     title: 'Offline-First Flutter with CRDTs',
-    excerpt: 'Implementing conflict-free replicated data types to give your '
-             'app seamless offline sync that just works, even with multiple devices.',
+    excerpt:
+        'Implementing conflict-free replicated data types to give your '
+        'app seamless offline sync that just works, even with multiple devices.',
     href: '#',
     imageColor: primaryFixed,
   ),
 ];
 
 const _taxonomy = [
-  (label: 'Architecture',     count: '8'),
-  (label: 'Performance',      count: '5'),
+  (label: 'Architecture', count: '8'),
+  (label: 'Performance', count: '5'),
   (label: 'State Management', count: '6'),
-  (label: 'DevOps / CI/CD',   count: '4'),
-  (label: 'UI & Animations',  count: '7'),
+  (label: 'DevOps / CI/CD', count: '4'),
+  (label: 'UI & Animations', count: '7'),
 ];
 
 // ── Blog page ─────────────────────────────────────────────────────────────────
@@ -175,7 +185,9 @@ class BlogPage extends StatelessComponent {
       raw: {'align-items': 'start'},
     ),
     css('.blog-main').styles(
-      display: .flex, flexDirection: .column, gap: Gap.all(2.rem),
+      display: .flex,
+      flexDirection: .column,
+      gap: Gap.all(2.rem),
     ),
 
     // ── Featured article ──────────────────────────────────────────────────
@@ -197,14 +209,20 @@ class BlogPage extends StatelessComponent {
     ),
     css('.featured-content').styles(
       padding: .all(1.75.rem),
-      display: .flex, flexDirection: .column, justifyContent: .center,
+      display: .flex,
+      flexDirection: .column,
+      justifyContent: .center,
       gap: Gap.all(0.75.rem),
     ),
     css('.article-meta').styles(
-      display: .flex, alignItems: .center, gap: Gap.all(0.75.rem),
+      display: .flex,
+      alignItems: .center,
+      gap: Gap.all(0.75.rem),
     ),
     css('.article-category').styles(
-      fontSize: 11.px, fontWeight: .w600, color: primaryColor,
+      fontSize: 11.px,
+      fontWeight: .w600,
+      color: primaryColor,
       backgroundColor: primaryFixed,
       padding: .symmetric(horizontal: 0.625.rem, vertical: 0.25.rem),
       radius: BorderRadius.circular(4.px),
@@ -213,15 +231,23 @@ class BlogPage extends StatelessComponent {
     ),
     css('.article-readtime').styles(fontSize: 12.px, color: onSurfaceVariant),
     css('.article-title').styles(
-      fontSize: 22.px, fontWeight: .w700, color: onSurface,
+      fontSize: 22.px,
+      fontWeight: .w700,
+      color: onSurface,
       raw: {'line-height': '1.35'},
     ),
     css('.article-excerpt').styles(
-      fontSize: 14.px, color: onSurfaceVariant, lineHeight: 1.6.em,
+      fontSize: 14.px,
+      color: onSurfaceVariant,
+      lineHeight: 1.6.em,
     ),
     css('.article-read-link').styles(
-      display: .inlineFlex, alignItems: .center, gap: Gap.all(0.25.rem),
-      fontSize: 13.px, fontWeight: .w700, color: primaryColor,
+      display: .inlineFlex,
+      alignItems: .center,
+      gap: Gap.all(0.25.rem),
+      fontSize: 13.px,
+      fontWeight: .w700,
+      color: primaryColor,
       textTransform: TextTransform.upperCase,
       raw: {'letter-spacing': '0.05em'},
       transition: Transition('color', duration: Duration(milliseconds: 150)),
@@ -240,7 +266,8 @@ class BlogPage extends StatelessComponent {
       backgroundColor: surfaceContainerLowest,
       radius: BorderRadius.circular(12.px),
       overflow: .clip,
-      display: .flex, flexDirection: .column,
+      display: .flex,
+      flexDirection: .column,
       raw: {'box-shadow': '0px 2px 8px rgba(26,28,30,0.04)'},
       transition: Transition.combine([
         Transition('transform', duration: Duration(milliseconds: 200)),
@@ -248,48 +275,65 @@ class BlogPage extends StatelessComponent {
       ]),
     ),
     css('.article-card:hover').styles(
-      raw: {'transform': 'translateY(-2px)',
-            'box-shadow': '0px 8px 24px rgba(26,28,30,0.10)'},
+      raw: {'transform': 'translateY(-2px)', 'box-shadow': '0px 8px 24px rgba(26,28,30,0.10)'},
     ),
-    css('.article-card-image').styles(height: 160.px, display: .flex,
-        alignItems: .center, justifyContent: .center),
+    css('.article-card-image').styles(height: 160.px, display: .flex, alignItems: .center, justifyContent: .center),
     css('.article-card-body').styles(
       padding: .all(1.25.rem),
-      display: .flex, flexDirection: .column,
-      gap: Gap.all(0.5.rem), flex: Flex(grow: 1),
+      display: .flex,
+      flexDirection: .column,
+      gap: Gap.all(0.5.rem),
+      flex: Flex(grow: 1),
     ),
     css('.article-card-title').styles(
-      fontSize: 16.px, fontWeight: .w700, color: onSurface,
+      fontSize: 16.px,
+      fontWeight: .w700,
+      color: onSurface,
       raw: {'line-height': '1.4'},
     ),
     css('.article-card-excerpt').styles(
-      fontSize: 13.px, color: onSurfaceVariant, lineHeight: 1.55.em,
+      fontSize: 13.px,
+      color: onSurfaceVariant,
+      lineHeight: 1.55.em,
       flex: Flex(grow: 1),
     ),
     css('.article-card-footer').styles(
-      display: .flex, justifyContent: .spaceBetween, alignItems: .center,
+      display: .flex,
+      justifyContent: .spaceBetween,
+      alignItems: .center,
       raw: {'margin-top': '0.5rem'},
     ),
     css('.article-card-read').styles(
-      fontSize: 12.px, color: onSurfaceVariant,
+      fontSize: 12.px,
+      color: onSurfaceVariant,
     ),
     css('.article-read-btn').styles(
-      fontSize: 11.px, fontWeight: .w700, color: primaryColor,
+      fontSize: 11.px,
+      fontWeight: .w700,
+      color: primaryColor,
       textTransform: TextTransform.upperCase,
       raw: {'letter-spacing': '0.05em'},
-      display: .inlineFlex, alignItems: .center, gap: Gap.all(0.125.rem),
+      display: .inlineFlex,
+      alignItems: .center,
+      gap: Gap.all(0.125.rem),
     ),
 
     // ── Pagination ────────────────────────────────────────────────────────
     css('.blog-pagination').styles(
-      display: .flex, justifyContent: .center, alignItems: .center,
+      display: .flex,
+      justifyContent: .center,
+      alignItems: .center,
       gap: Gap.all(0.375.rem),
     ),
     css('.page-btn').styles(
-      display: .flex, alignItems: .center, justifyContent: .center,
-      width: 36.px, height: 36.px,
+      display: .flex,
+      alignItems: .center,
+      justifyContent: .center,
+      width: 36.px,
+      height: 36.px,
       radius: BorderRadius.circular(99.px),
-      fontSize: 14.px, fontWeight: .w500,
+      fontSize: 14.px,
+      fontWeight: .w500,
       color: onSurfaceVariant,
       backgroundColor: surfaceContainerHigh,
       cursor: Cursor.pointer,
@@ -303,7 +347,9 @@ class BlogPage extends StatelessComponent {
 
     // ── Sidebar ───────────────────────────────────────────────────────────
     css('.blog-sidebar').styles(
-      display: .flex, flexDirection: .column, gap: Gap.all(1.25.rem),
+      display: .flex,
+      flexDirection: .column,
+      gap: Gap.all(1.25.rem),
       raw: {'position': 'sticky', 'top': '5rem'},
     ),
 
@@ -312,7 +358,9 @@ class BlogPage extends StatelessComponent {
       backgroundColor: primaryContainer,
       radius: BorderRadius.circular(16.px),
       padding: .all(1.5.rem),
-      display: .flex, flexDirection: .column, gap: Gap.all(0.75.rem),
+      display: .flex,
+      flexDirection: .column,
+      gap: Gap.all(0.75.rem),
     ),
     css('.newsletter-title').styles(fontSize: 17.px, fontWeight: .w700, color: onPrimary),
     css('.newsletter-sub').styles(fontSize: 13.px, color: onPrimary, raw: {'opacity': '0.88', 'line-height': '1.5'}),
@@ -320,15 +368,21 @@ class BlogPage extends StatelessComponent {
       backgroundColor: const Color.variable('--surface-container'),
       radius: BorderRadius.circular(8.px),
       padding: .symmetric(horizontal: 1.rem, vertical: 0.75.rem),
-      fontSize: 14.px, color: onPrimary,
-      raw: {'border': '1px solid rgba(255,255,255,0.3)', 'outline': 'none',
-            'width': '100%', 'box-sizing': 'border-box',
-            '::placeholder': 'color: rgba(255,255,255,0.6)'},
+      fontSize: 14.px,
+      color: onPrimary,
+      raw: {
+        'border': '1px solid rgba(255,255,255,0.3)',
+        'outline': 'none',
+        'width': '100%',
+        'box-sizing': 'border-box',
+        '::placeholder': 'color: rgba(255,255,255,0.6)',
+      },
     ),
     css('.newsletter-btn').styles(
       backgroundColor: surfaceContainerLowest,
       color: primaryColor,
-      fontSize: 13.px, fontWeight: .w700,
+      fontSize: 13.px,
+      fontWeight: .w700,
       padding: .symmetric(horizontal: 1.rem, vertical: 0.75.rem),
       radius: BorderRadius.circular(8.px),
       textAlign: TextAlign.center,
@@ -340,7 +394,9 @@ class BlogPage extends StatelessComponent {
     css('.taxonomy-card').styles(padding: .all(1.25.rem)),
     css('.taxonomy-title').styles(color: onSurfaceVariant, raw: {'margin-bottom': '0.875rem'}),
     css('.taxonomy-row').styles(
-      display: .flex, justifyContent: .spaceBetween, alignItems: .center,
+      display: .flex,
+      justifyContent: .spaceBetween,
+      alignItems: .center,
       padding: .symmetric(vertical: 0.5.rem),
       raw: {'border-bottom': '1px solid ${outlineVariant.value}'},
     ),
@@ -356,14 +412,21 @@ class BlogPage extends StatelessComponent {
     // Author card
     css('.author-card').styles(
       padding: .all(1.25.rem),
-      display: .flex, alignItems: .center, gap: Gap.all(0.75.rem),
+      display: .flex,
+      alignItems: .center,
+      gap: Gap.all(0.75.rem),
     ),
     css('.author-avatar').styles(
-      width: 44.px, height: 44.px,
+      width: 44.px,
+      height: 44.px,
       radius: BorderRadius.circular(99.px),
-      backgroundColor: primaryContainer, color: onPrimary,
-      display: .flex, alignItems: .center, justifyContent: .center,
-      fontSize: 14.px, fontWeight: .w700,
+      backgroundColor: primaryContainer,
+      color: onPrimary,
+      display: .flex,
+      alignItems: .center,
+      justifyContent: .center,
+      fontSize: 14.px,
+      fontWeight: .w700,
       raw: {'flex-shrink': '0'},
     ),
     css('.author-name').styles(fontSize: 14.px, fontWeight: .w700, color: onSurface),
@@ -402,10 +465,10 @@ class _FeaturedArticleCard extends StatelessComponent {
   @override
   Component build(BuildContext context) {
     return div(classes: 'featured-card', [
-      div(classes: 'featured-image',
-          styles: Styles(backgroundColor: article.imageColor), [
-        span(classes: 'material-symbols-outlined',
-            styles: Styles(fontSize: 48.px, color: primaryColor), [.text('article')]),
+      div(classes: 'featured-image', styles: Styles(backgroundColor: article.imageColor), [
+        span(classes: 'material-symbols-outlined', styles: Styles(fontSize: 48.px, color: primaryColor), [
+          .text('article'),
+        ]),
       ]),
       div(classes: 'featured-content', [
         div(classes: 'article-meta', [
@@ -431,10 +494,10 @@ class _ArticleCard extends StatelessComponent {
   @override
   Component build(BuildContext context) {
     return div(classes: 'article-card', [
-      div(classes: 'article-card-image',
-          styles: Styles(backgroundColor: article.imageColor), [
-        span(classes: 'material-symbols-outlined',
-            styles: Styles(fontSize: 32.px, color: primaryColor), [.text('article')]),
+      div(classes: 'article-card-image', styles: Styles(backgroundColor: article.imageColor), [
+        span(classes: 'material-symbols-outlined', styles: Styles(fontSize: 32.px, color: primaryColor), [
+          .text('article'),
+        ]),
       ]),
       div(classes: 'article-card-body', [
         div(classes: 'article-meta', [
@@ -463,8 +526,10 @@ class _NewsletterCard extends StatelessComponent {
     return div(classes: 'newsletter-card', [
       p(classes: 'newsletter-title', [.text("The Flutter Engineer's Log")]),
       p(classes: 'newsletter-sub', [
-        .text('Bi-weekly deep dives into Flutter architecture and mobile performance. '
-              'No fluff — just code and patterns.'),
+        .text(
+          'Bi-weekly deep dives into Flutter architecture and mobile performance. '
+          'No fluff — just code and patterns.',
+        ),
       ]),
       input(
         type: InputType.email,

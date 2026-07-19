@@ -1,10 +1,8 @@
 import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 import 'package:jaspr_router/jaspr_router.dart';
-import 'package:jaspr_content/jaspr_content.dart';
 import 'package:jaspr_content/components/theme_toggle.dart';
-
-import '../constants/theme.dart';
+import 'package:subhojit_build/core/theme/colors.dart';
 
 /// Shared top navigation bar — rendered once by the [ShellRoute].
 ///
@@ -45,9 +43,7 @@ class Navbar extends StatelessComponent {
           for (final item in navItems)
             Link(
               to: item.to,
-              classes: item.to == activeTo
-                  ? 'topbar-link topbar-link--active'
-                  : 'topbar-link',
+              classes: item.to == activeTo ? 'topbar-link topbar-link--active' : 'topbar-link',
               child: .text(item.label),
             ),
         ]),
@@ -76,9 +72,7 @@ class Navbar extends StatelessComponent {
           for (final item in navItems)
             Link(
               to: item.to,
-              classes: item.to == activeTo
-                  ? 'drawer-link drawer-link--active'
-                  : 'drawer-link',
+              classes: item.to == activeTo ? 'drawer-link drawer-link--active' : 'drawer-link',
               children: [
                 span(classes: 'material-symbols-outlined', [
                   .text(_iconFor(item.to)),
@@ -103,10 +97,10 @@ class Navbar extends StatelessComponent {
   }
 
   static String _iconFor(String to) => switch (to) {
-    '/career'  => 'work_history',
-    '/blog'    => 'article',
+    '/career' => 'work_history',
+    '/blog' => 'article',
     '/#contact' => 'alternate_email',
-    _           => 'folder_open',
+    _ => 'folder_open',
   };
 
   @css
@@ -116,74 +110,98 @@ class Navbar extends StatelessComponent {
 
     // ── Top app bar ───────────────────────────────────────────────────────
     css('.topbar').styles(
+      display: .flex,
       position: .fixed(top: 0.px, left: 0.px, right: 0.px),
       zIndex: ZIndex(50),
-      display: .flex,
-      alignItems: .center,
-      justifyContent: .spaceBetween,
-      backgroundColor: surfaceColor,
       height: 64.px,
       padding: .symmetric(horizontal: 1.rem),
+      justifyContent: .spaceBetween,
+      alignItems: .center,
+      backgroundColor: surfaceColor,
       raw: {'border-bottom': '1px solid ${outlineVariant.value}'},
     ),
 
     css('.topbar-left').styles(
-      display: .flex, alignItems: .center, gap: Gap.all(0.75.rem),
+      display: .flex,
+      alignItems: .center,
+      gap: Gap.all(0.75.rem),
     ),
 
     // Hamburger — mobile only, hidden on desktop.
     css('.hamburger').styles(
-      display: .flex, alignItems: .center, justifyContent: .center,
-      width: 40.px, height: 40.px,
+      display: .flex,
+      width: 40.px,
+      height: 40.px,
       radius: BorderRadius.circular(99.px),
-      color: primaryColor, cursor: Cursor.pointer,
+      cursor: Cursor.pointer,
       transition: Transition('background-color', duration: Duration(milliseconds: 150)),
+      justifyContent: .center,
+      alignItems: .center,
+      color: primaryColor,
     ),
     css('.hamburger:hover').styles(backgroundColor: surfaceContainerHigh),
 
     css('.topbar-logo').styles(
-      fontSize: 18.px, fontWeight: .w700, color: primaryColor,
+      color: primaryColor,
+      fontSize: 18.px,
+      fontWeight: .w700,
       raw: {'letter-spacing': '-0.02em'},
     ),
     css('.topbar-logo:hover').styles(color: onPrimaryFixedVariant),
 
     // Desktop nav — hidden on mobile, shown via media query.
     css('.topbar-nav').styles(
-      display: .none, alignItems: .center, gap: Gap.all(0.25.rem),
+      display: .none,
+      alignItems: .center,
+      gap: Gap.all(0.25.rem),
     ),
     css('.topbar-link').styles(
-      fontSize: 14.px, fontWeight: .w500, color: onSurfaceVariant,
       padding: .symmetric(horizontal: 0.75.rem, vertical: 0.5.rem),
       radius: BorderRadius.circular(6.px),
       transition: Transition.combine([
         Transition('color', duration: Duration(milliseconds: 150)),
         Transition('background-color', duration: Duration(milliseconds: 150)),
       ]),
+      color: onSurfaceVariant,
+      fontSize: 14.px,
+      fontWeight: .w500,
     ),
     css('.topbar-link:hover').styles(color: primaryColor, backgroundColor: surfaceContainerHigh),
     // Active link — subtle underline + primary colour.
     css('.topbar-link--active').styles(
-      color: primaryColor, fontWeight: .w600,
+      color: primaryColor,
+      fontWeight: .w600,
       raw: {'border-bottom': '2px solid ${primaryColor.value}', 'border-radius': '0'},
     ),
 
     css('.topbar-right').styles(
-      display: .flex, alignItems: .center, gap: Gap.all(0.75.rem),
+      display: .flex,
+      alignItems: .center,
+      gap: Gap.all(0.75.rem),
     ),
     css('.topbar-avatar').styles(
-      display: .flex, alignItems: .center, justifyContent: .center,
-      width: 32.px, height: 32.px,
+      display: .flex,
+      width: 32.px,
+      height: 32.px,
       radius: BorderRadius.circular(99.px),
-      backgroundColor: primaryContainer, color: onPrimary,
-      fontSize: 11.px, fontWeight: .w700, cursor: Cursor.pointer,
+      cursor: Cursor.pointer,
+      justifyContent: .center,
+      alignItems: .center,
+      color: onPrimary,
+      fontSize: 11.px,
+      fontWeight: .w700,
+      backgroundColor: primaryContainer,
     ),
     css('.resume-btn').styles(
-      display: .none, alignItems: .center,
-      backgroundColor: primaryColor, color: onPrimary,
-      fontSize: 13.px, fontWeight: .w600,
+      display: .none,
       padding: .symmetric(horizontal: 1.rem, vertical: 0.5.rem),
       radius: BorderRadius.circular(8.px),
       transition: Transition('background-color', duration: Duration(milliseconds: 150)),
+      alignItems: .center,
+      color: onPrimary,
+      fontSize: 13.px,
+      fontWeight: .w600,
+      backgroundColor: primaryColor,
     ),
     css('.resume-btn:hover').styles(backgroundColor: onPrimaryFixedVariant),
 
@@ -202,12 +220,13 @@ class Navbar extends StatelessComponent {
 
     // ── Navigation drawer ─────────────────────────────────────────────────
     css('.nav-drawer').styles(
+      display: .flex,
       position: .fixed(top: 0.px, left: 0.px, bottom: 0.px),
       zIndex: ZIndex(60),
       width: 300.px,
-      backgroundColor: surfaceContainerLow,
       padding: .symmetric(vertical: 1.5.rem),
-      display: .flex, flexDirection: .column,
+      flexDirection: .column,
+      backgroundColor: surfaceContainerLow,
       raw: {
         'border-radius': '0 16px 16px 0',
         'box-shadow': '4px 0 24px rgba(26,28,30,0.12)',
@@ -217,41 +236,54 @@ class Navbar extends StatelessComponent {
     ),
 
     // CSS :has() — open states when checkbox is checked.
-    css('body:has(.drawer-toggle:checked) .nav-drawer').styles(
-        raw: {'transform': 'translateX(0)'}),
-    css('body:has(.drawer-toggle:checked) .drawer-overlay').styles(
-        opacity: 1, raw: {'pointer-events': 'all'}),
+    css('body:has(.drawer-toggle:checked) .nav-drawer').styles(raw: {'transform': 'translateX(0)'}),
+    css('body:has(.drawer-toggle:checked) .drawer-overlay').styles(opacity: 1, raw: {'pointer-events': 'all'}),
 
     css('.drawer-user').styles(
-      display: .flex, alignItems: .center, gap: Gap.all(0.75.rem),
+      display: .flex,
       padding: .symmetric(horizontal: 1.5.rem),
+      alignItems: .center,
+      gap: Gap.all(0.75.rem),
       raw: {'margin-bottom': '1.5rem'},
     ),
     css('.drawer-avatar').styles(
-      display: .flex, alignItems: .center, justifyContent: .center,
-      width: 48.px, height: 48.px,
+      display: .flex,
+      width: 48.px,
+      height: 48.px,
       radius: BorderRadius.circular(12.px),
-      backgroundColor: primaryFixed, color: primaryColor,
-      fontSize: 16.px, fontWeight: .w700, raw: {'flex-shrink': '0'},
+      justifyContent: .center,
+      alignItems: .center,
+      color: primaryColor,
+      fontSize: 16.px,
+      fontWeight: .w700,
+      backgroundColor: primaryFixed,
+      raw: {'flex-shrink': '0'},
     ),
-    css('.drawer-name').styles(fontSize: 15.px, fontWeight: .w700, color: primaryColor),
-    css('.drawer-role').styles(fontSize: 13.px, color: onSurfaceVariant),
+    css('.drawer-name').styles(color: primaryColor, fontSize: 15.px, fontWeight: .w700),
+    css('.drawer-role').styles(color: onSurfaceVariant, fontSize: 13.px),
 
     css('.drawer-nav').styles(
-      display: .flex, flexDirection: .column, gap: Gap.all(0.25.rem),
+      display: .flex,
       padding: .symmetric(horizontal: 0.5.rem),
+      flexDirection: .column,
+      gap: Gap.all(0.25.rem),
       flex: Flex(grow: 1),
     ),
     css('.drawer-link').styles(
-      display: .flex, alignItems: .center, gap: Gap.all(0.75.rem),
+      display: .flex,
       padding: .symmetric(horizontal: 1.rem, vertical: 0.75.rem),
       radius: BorderRadius.circular(99.px),
-      color: onSurfaceVariant, fontSize: 14.px, fontWeight: .w500,
       transition: Transition('background-color', duration: Duration(milliseconds: 150)),
+      alignItems: .center,
+      gap: Gap.all(0.75.rem),
+      color: onSurfaceVariant,
+      fontSize: 14.px,
+      fontWeight: .w500,
     ),
     css('.drawer-link:hover').styles(backgroundColor: surfaceContainerHigh),
     css('.drawer-link--active').styles(
-      backgroundColor: secondaryContainer, color: onSecondaryContainer,
+      color: onSecondaryContainer,
+      backgroundColor: secondaryContainer,
     ),
 
     css('.drawer-footer').styles(
@@ -268,8 +300,8 @@ class Navbar extends StatelessComponent {
     ]),
 
     // ── Theme toggle focus ────────────────────────────────────────────────
-    css('.theme-toggle:focus-visible').styles(
-      raw: {'outline': '2px solid ${primaryColor.value}', 'outline-offset': '2px'}
-    ),
+    css(
+      '.theme-toggle:focus-visible',
+    ).styles(raw: {'outline': '2px solid ${primaryColor.value}', 'outline-offset': '2px'}),
   ];
 }

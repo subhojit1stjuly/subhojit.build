@@ -7,11 +7,11 @@ library;
 // Server-specific Jaspr import.
 import 'package:jaspr/server.dart';
 import 'package:jaspr_content/jaspr_content.dart';
-import 'package:subhojit_build/constants/theme.dart';
+import 'package:subhojit_build/core/theme/theme.dart';
 
 // Imports the [App] component.
 import 'app.dart';
-import 'pages/blog.dart';
+import 'pages/blog/blog.dart';
 
 // This file is generated automatically by Jaspr, do not remove or edit.
 import 'main.server.options.dart';
@@ -28,24 +28,20 @@ void main() {
   // MemoryLoader preserves existing hardcoded blog posts as fallback.
   // This provides zero-risk migration path and graceful degradation.
   runApp(
-    Document(
-      title: 'Subhojit Pramanik — Senior Software Engineer',
-      styles: [],
-      body: ContentApp.custom(
-        loaders: [
-          // Primary: Load content from filesystem
-          FilesystemLoader('content'),
+    ContentApp.custom(
+      loaders: [
+        // Primary: Load content from filesystem
+        FilesystemLoader('content'),
 
-          // Fallback: Existing hardcoded blog posts as MemoryPages
-          MemoryLoader(pages: _createMemoryPagesFromHardcodedArticles()),
-        ],
-        eagerlyLoadAllPages: true,
-        configResolver: PageConfig.all(parsers: [MarkdownParser()], theme: appTheme),
-        routerBuilder: (contentRoutes) {
-          // Return the existing App with jaspr_content routes available
-          return App();
-        },
-      ),
+        // Fallback: Existing hardcoded blog posts as MemoryPages
+        MemoryLoader(pages: _createMemoryPagesFromHardcodedArticles()),
+      ],
+      eagerlyLoadAllPages: true,
+      configResolver: PageConfig.all(parsers: [MarkdownParser()], theme: appTheme),
+      routerBuilder: (contentRoutes) {
+        // Return the existing App with jaspr_content routes available
+        return App();
+      },
     ),
   );
 }

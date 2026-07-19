@@ -1,7 +1,6 @@
 import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
-
-import '../constants/theme.dart';
+import 'package:subhojit_build/core/theme/colors.dart';
 
 class Footer extends StatelessComponent {
   final List<({String label, String href})> links;
@@ -33,8 +32,8 @@ class Footer extends StatelessComponent {
   @css
   static List<StyleRule> get styles => [
     css('.site-footer').styles(
-      backgroundColor: surfaceColor,
       padding: .symmetric(vertical: 2.5.rem),
+      backgroundColor: surfaceColor,
     ),
     css('.footer-rule').styles(
       height: 1.px,
@@ -43,33 +42,33 @@ class Footer extends StatelessComponent {
     ),
     css('.footer-inner').styles(
       display: .flex,
+      flexWrap: .wrap,
       justifyContent: .spaceBetween,
       alignItems: .center,
-      flexWrap: .wrap,
       gap: Gap.all(1.rem),
     ),
     css('.footer-brand').styles(
+      color: primaryColor,
       fontSize: 15.px,
       fontWeight: .w700,
-      color: primaryColor,
       raw: {'letter-spacing': '-0.01em'},
     ),
     css('.footer-links').styles(
       display: .flex,
-      gap: Gap.all(1.5.rem),
       alignItems: .center,
+      gap: Gap.all(1.5.rem),
     ),
     css('.footer-link').styles(
-      color: onSurfaceVariant,
       transition: Transition('color', duration: Duration(milliseconds: 150)),
+      color: onSurfaceVariant,
     ),
     css('.footer-link:hover').styles(color: primaryColor),
     css('.footer-copy').styles(color: onSurfaceVariant, fontSize: 13.px),
     css.media(MediaQuery.screen(maxWidth: 600.px), [
       css('.footer-inner').styles(
         flexDirection: .column,
-        textAlign: TextAlign.center,
         gap: Gap.all(0.75.rem),
+        textAlign: TextAlign.center,
       ),
       css('.footer-links').styles(justifyContent: .center),
     ]),
