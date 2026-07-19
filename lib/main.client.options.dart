@@ -6,6 +6,9 @@
 
 import 'package:jaspr/client.dart';
 
+import 'package:jaspr_content/components/theme_toggle.dart'
+    deferred as _theme_toggle;
+
 /// Default [ClientOptions] for use with your Jaspr project.
 ///
 /// Use this to initialize Jaspr **before** calling [runApp].
@@ -22,4 +25,11 @@ import 'package:jaspr/client.dart';
 ///   runApp(...);
 /// }
 /// ```
-ClientOptions get defaultClientOptions => ClientOptions();
+ClientOptions get defaultClientOptions => ClientOptions(
+  clients: {
+    'jaspr_content:theme_toggle': ClientLoader(
+      (p) => _theme_toggle.ThemeToggle(),
+      loader: _theme_toggle.loadLibrary,
+    ),
+  },
+);

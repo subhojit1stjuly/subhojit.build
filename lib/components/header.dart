@@ -46,12 +46,12 @@ class Header extends StatelessComponent {
             height: 100.percent,
             padding: .symmetric(horizontal: 2.em),
             alignItems: .center,
-            color: Colors.white,
+            color: onPrimary,
             fontWeight: .w700,
             textDecoration: TextDecoration(line: .none),
           ),
           css('&:hover').styles(
-            backgroundColor: const Color('#0005'),
+            backgroundColor: surfaceContainer,
           ),
         ]),
         css('div.active', [
@@ -62,7 +62,7 @@ class Header extends StatelessComponent {
             position: .absolute(bottom: 0.5.em, left: 20.px, right: 20.px),
             height: 2.px,
             radius: .circular(1.px),
-            backgroundColor: Colors.white,
+            backgroundColor: onPrimary,
           ),
         ])
       ]),

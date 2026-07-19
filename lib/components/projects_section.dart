@@ -155,7 +155,7 @@ class _ProjectCard extends StatelessComponent {
   Component build(BuildContext context) {
     return div(classes: 'project-card', [
       // Tonal image placeholder with category chip
-      div(classes: 'project-image', styles: Styles(backgroundColor: Color('#d1e6f2')), [
+      div(classes: 'project-image', styles: Styles(backgroundColor: secondaryContainer), [
         span(classes: 'material-symbols-outlined', styles: Styles(fontSize: 36.px, color: primaryColor), [.text('code')]),
         div(classes: 'project-category-chip', [.text('Project')]),
       ]),

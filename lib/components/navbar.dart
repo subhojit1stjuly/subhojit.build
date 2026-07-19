@@ -1,6 +1,8 @@
 import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 import 'package:jaspr_router/jaspr_router.dart';
+import 'package:jaspr_content/jaspr_content.dart';
+import 'package:jaspr_content/components/theme_toggle.dart';
 
 import '../constants/theme.dart';
 
@@ -51,6 +53,7 @@ class Navbar extends StatelessComponent {
         ]),
 
         div(classes: 'topbar-right', [
+          ThemeToggle(),
           div(classes: 'topbar-avatar', [.text('SP')]),
           Link(to: '/#contact', classes: 'resume-btn', child: .text('Resume')),
         ]),
@@ -263,5 +266,10 @@ class Navbar extends StatelessComponent {
       css('.resume-btn').styles(display: .inlineFlex),
       css('.topbar').styles(padding: .symmetric(horizontal: 2.rem)),
     ]),
+
+    // ── Theme toggle focus ────────────────────────────────────────────────
+    css('.theme-toggle:focus-visible').styles(
+      raw: {'outline': '2px solid ${primaryColor.value}', 'outline-offset': '2px'}
+    ),
   ];
 }

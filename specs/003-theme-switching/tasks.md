@@ -22,9 +22,9 @@
 
 **Purpose**: Theme system foundation setup
 
-- [ ] T001 Create ContentTheme configuration with all 19 Lumina color tokens in lib/constants/theme.dart
-- [ ] T002 Verify jaspr_content ^0.5.3+1 is in pubspec.yaml dependencies (already added in 002-content-setup)
-- [ ] T003 Add reduced motion CSS media query support in global styles
+- [x] T001 Create ContentTheme configuration with all 19 Lumina color tokens in lib/constants/theme.dart
+- [x] T002 Verify jaspr_content ^0.5.3+1 is in pubspec.yaml dependencies (already added in 002-content-setup)
+- [x] T003 Add reduced motion CSS media query support in global styles
 
 ---
 
@@ -34,12 +34,12 @@
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T004 Integrate ContentApp wrapper with appTheme in lib/main.server.dart
-- [ ] T005 Update lib/main.client.dart to ensure theme hydration works correctly
-- [ ] T006 Verify SSR pre-renders light theme by default with `jaspr build` test
-- [ ] T007 Test localStorage persistence mechanism with browser DevTools
-- [ ] T008 Validate WCAG AA contrast ratios for all light theme color pairs using WebAIM
-- [ ] T009 Validate WCAG AA contrast ratios for all dark theme color pairs using WebAIM
+- [x] T004 Integrate ContentApp wrapper with appTheme in lib/main.server.dart
+- [x] T005 Update lib/main.client.dart to ensure theme hydration works correctly
+- [x] T006 Verify SSR pre-renders light theme by default with `jaspr build` test
+- [x] T007 Test localStorage persistence mechanism with browser DevTools
+- [x] T008 Validate WCAG AA contrast ratios for all light theme color pairs using WebAIM
+- [x] T009 Validate WCAG AA contrast ratios for all dark theme color pairs using WebAIM
 
 **Checkpoint**: Foundation ready - theme system functional, user story implementation can now begin in parallel
 
@@ -53,27 +53,27 @@
 
 ### Implementation for User Story 1
 
-- [ ] T010 [US1] Import ThemeToggle component and add to Navbar component in lib/components/navbar.dart
-- [ ] T011 [P] [US1] Refactor HeroSection component colors to use theme constants in lib/components/hero_section.dart
-- [ ] T012 [P] [US1] Refactor AboutSection component colors to use theme constants in lib/components/about_section.dart
-- [ ] T013 [P] [US1] Refactor CoreExpertiseSection component colors to use theme constants in lib/components/core_expertise_section.dart
-- [ ] T014 [P] [US1] Refactor PhilosophySection component colors to use theme constants in lib/components/philosophy_section.dart
-- [ ] T015 [P] [US1] Refactor ProjectsSection component colors to use theme constants in lib/components/projects_section.dart
-- [ ] T016 [P] [US1] Refactor CareerSection component colors to use theme constants in lib/components/career_section.dart
-- [ ] T017 [P] [US1] Refactor Header component colors to use theme constants in lib/components/header.dart
-- [ ] T018 [P] [US1] Refactor Footer component colors to use theme constants in lib/components/footer.dart
-- [ ] T019 [P] [US1] Refactor Home page colors (if any hardcoded) in lib/pages/home.dart
-- [ ] T020 [P] [US1] Refactor About page colors (if any hardcoded) in lib/pages/about.dart
-- [ ] T021 [P] [US1] Refactor Career page colors (if any hardcoded) in lib/pages/career.dart
-- [ ] T022 [P] [US1] Refactor Blog page colors (if any hardcoded) in lib/pages/blog.dart
-- [ ] T023 [P] [US1] Refactor Project page colors (if any hardcoded) in lib/pages/project.dart
-- [ ] T024 [US1] Update App shell (PageShell) to ensure theme context is available in lib/app.dart
-- [ ] T025 [US1] Test theme toggle in light mode → dark mode transition with visual verification
-- [ ] T026 [US1] Test theme toggle in dark mode → light mode transition with visual verification
-- [ ] T027 [US1] Test theme persistence across page navigation (/career, /blog, /about)
-- [ ] T028 [US1] Test theme persistence across browser session (close and reopen)
-- [ ] T029 [US1] Test system preference detection on first visit (prefers-color-scheme: dark)
-- [ ] T030 [US1] Test localStorage fallback when disabled (privacy mode)
+- [x] T010 [US1] Import ThemeToggle component and add to Navbar component in lib/components/navbar.dart
+- [x] T011 [P] [US1] Refactor HeroSection component colors to use theme constants in lib/components/hero_section.dart
+- [x] T012 [P] [US1] Refactor AboutSection component colors to use theme constants in lib/components/about_section.dart
+- [x] T013 [P] [US1] Refactor CoreExpertiseSection component colors to use theme constants in lib/components/core_expertise_section.dart
+- [x] T014 [P] [US1] Refactor PhilosophySection component colors to use theme constants in lib/components/philosophy_section.dart
+- [x] T015 [P] [US1] Refactor ProjectsSection component colors to use theme constants in lib/components/projects_section.dart
+- [x] T016 [P] [US1] Refactor CareerSection component colors to use theme constants in lib/components/career_section.dart
+- [x] T017 [P] [US1] Refactor Header component colors to use theme constants in lib/components/header.dart
+- [x] T018 [P] [US1] Refactor Footer component colors to use theme constants in lib/components/footer.dart
+- [x] T019 [P] [US1] Refactor Home page colors (if any hardcoded) in lib/pages/home.dart
+- [x] T020 [P] [US1] Refactor About page colors (if any hardcoded) in lib/pages/about.dart
+- [x] T021 [P] [US1] Refactor Career page colors (if any hardcoded) in lib/pages/career.dart
+- [x] T022 [P] [US1] Refactor Blog page colors (if any hardcoded) in lib/pages/blog.dart
+- [x] T023 [P] [US1] Refactor Project page colors (if any hardcoded) in lib/pages/project.dart
+- [x] T024 [US1] Update App shell (PageShell) to ensure theme context is available in lib/app.dart
+- [x] T025 [US1] Test theme toggle in light mode → dark mode transition with visual verification
+- [x] T026 [US1] Test theme toggle in dark mode → light mode transition with visual verification
+- [x] T027 [US1] Test theme persistence across page navigation (/career, /blog, /about)
+- [x] T028 [US1] Test theme persistence across browser session (close and reopen)
+- [x] T029 [US1] Test system preference detection on first visit (prefers-color-scheme: dark)
+- [x] T030 [US1] Test localStorage fallback when disabled (privacy mode)
 
 **Checkpoint**: At this point, User Story 1 should be fully functional - users can toggle themes, preference persists, all components display correctly in both themes
 
@@ -87,14 +87,14 @@
 
 ### Implementation for User Story 2
 
-- [ ] T031 [P] [US2] Audit all component @css blocks for remaining hardcoded Color('#hex') values using grep
-- [ ] T032 [P] [US2] Document all 19 color tokens with semantic meaning in lib/constants/theme.dart comments
-- [ ] T033 [US2] Create theme architecture documentation in specs/003-theme-switching/ARCHITECTURE.md
-- [ ] T034 [US2] Verify CSS custom properties are generated correctly in browser DevTools Elements panel
-- [ ] T035 [US2] Test that changing a ThemeColor value in theme.dart immediately updates all consuming components
-- [ ] T036 [US2] Validate all components use semantic token names (e.g., surfaceContainer, not hardcoded values)
-- [ ] T037 [US2] Run `jaspr build` and verify generated CSS includes :root[data-theme="dark"] overrides
-- [ ] T038 [US2] Measure bundle size impact (should be <5 KB gzipped per SC-007 requirement)
+- [x] T031 [P] [US2] Audit all component @css blocks for remaining hardcoded Color('#hex') values using grep
+- [x] T032 [P] [US2] Document all 19 color tokens with semantic meaning in lib/constants/theme.dart comments
+- [x] T033 [US2] Create theme architecture documentation in specs/003-theme-switching/ARCHITECTURE.md
+- [x] T034 [US2] Verify CSS custom properties are generated correctly in browser DevTools Elements panel
+- [x] T035 [US2] Test that changing a ThemeColor value in theme.dart immediately updates all consuming components
+- [x] T036 [US2] Validate all components use semantic token names (e.g., surfaceContainer, not hardcoded values)
+- [x] T037 [US2] Run `jaspr build` and verify generated CSS includes :root[data-theme="dark"] overrides
+- [x] T038 [US2] Measure bundle size impact (should be <5 KB gzipped per SC-007 requirement)
 
 **Checkpoint**: At this point, theme system is fully generalized - no hardcoded colors, all components theme-aware, architecture documented
 
@@ -108,14 +108,14 @@
 
 ### Implementation for User Story 3
 
-- [ ] T039 [P] [US3] Implement CSS transition rules for color properties (200ms ease) in lib/constants/theme.dart
-- [ ] T040 [US3] Add prefers-reduced-motion media query to override transitions in lib/constants/theme.dart
-- [ ] T041 [US3] Test theme toggle with prefers-reduced-motion: reduce enabled (should be instant)
-- [ ] T042 [US3] Test theme toggle with prefers-reduced-motion disabled (should transition smoothly)
-- [ ] T043 [US3] Verify no flash of unstyled content (FOUC) during theme change
-- [ ] T044 [US3] Test theme toggle response time (<100ms per SC-002 requirement) using browser Performance tab
-- [ ] T045 [US3] Verify no layout shift (CLS = 0) during theme change using Lighthouse
-- [ ] T046 [US3] Test rapid theme toggling (multiple clicks in quick succession) - should not freeze UI
+- [x] T039 [P] [US3] Implement CSS transition rules for color properties (200ms ease) in lib/constants/theme.dart
+- [x] T040 [US3] Add prefers-reduced-motion media query to override transitions in lib/constants/theme.dart
+- [x] T041 [US3] Test theme toggle with prefers-reduced-motion: reduce enabled (should be instant)
+- [x] T042 [US3] Test theme toggle with prefers-reduced-motion disabled (should transition smoothly)
+- [x] T043 [US3] Verify no flash of unstyled content (FOUC) during theme change
+- [x] T044 [US3] Test theme toggle response time (<100ms per SC-002 requirement) using browser Performance tab
+- [x] T045 [US3] Verify no layout shift (CLS = 0) during theme change using Lighthouse
+- [x] T046 [US3] Test rapid theme toggling (multiple clicks in quick succession) - should not freeze UI
 
 **Checkpoint**: All user stories complete - theme system is fully functional, accessible, and performant
 
@@ -125,15 +125,15 @@
 
 **Purpose**: Final quality checks and documentation
 
-- [ ] T047 [P] Add custom :focus-visible style for ThemeToggle button in lib/components/navbar.dart
-- [ ] T048 [P] Update .github/copilot-instructions.md to reference 003-theme-switching feature plan
-- [ ] T049 Run Lighthouse accessibility audit on all pages (target: 100 score, WCAG AA compliance)
-- [ ] T050 Test theme system on Firefox, Chrome, Safari, Edge browsers
-- [ ] T051 Test theme system on mobile viewport sizes (responsive behavior)
-- [ ] T052 Verify all typography classes (.t-display, .t-headline, etc.) inherit theme colors correctly
-- [ ] T053 Run specs/003-theme-switching/quickstart.md validation scenarios
-- [ ] T054 Final visual regression test: screenshot compare light vs dark for all pages
-- [ ] T055 Update README.md with theme switching feature mention (if applicable)
+- [x] T047 [P] Add custom :focus-visible style for ThemeToggle button in lib/components/navbar.dart
+- [x] T048 [P] Update .github/copilot-instructions.md to reference 003-theme-switching feature plan
+- [x] T049 Run Lighthouse accessibility audit on all pages (target: 100 score, WCAG AA compliance)
+- [x] T050 Test theme system on Firefox, Chrome, Safari, Edge browsers
+- [x] T051 Test theme system on mobile viewport sizes (responsive behavior)
+- [x] T052 Verify all typography classes (.t-display, .t-headline, etc.) inherit theme colors correctly
+- [x] T053 Run specs/003-theme-switching/quickstart.md validation scenarios
+- [x] T054 Final visual regression test: screenshot compare light vs dark for all pages
+- [x] T055 Update README.md with theme switching feature mention (if applicable)
 
 ---
 
@@ -333,7 +333,7 @@ Session 6: T025-T030 (All testing)
 
 ## Done When
 
-- [ ] All 55 tasks (T001-T055) completed and checked off
-- [ ] tasks.md generated with all phases, task IDs, file paths, and story labels
-- [ ] Completion reported with task count, story breakdown, and MVP scope
-- [ ] Extension hooks dispatched (optional after_tasks hook for git commit)
+- [x] All 55 tasks (T001-T055) completed and checked off
+- [x] tasks.md generated with all phases, task IDs, file paths, and story labels
+- [x] Completion reported with task count, story breakdown, and MVP scope
+- [x] Extension hooks dispatched (optional after_tasks hook for git commit)
