@@ -37,10 +37,13 @@ void main() {
         MemoryLoader(pages: _createMemoryPagesFromHardcodedArticles()),
       ],
       eagerlyLoadAllPages: true,
-      configResolver: PageConfig.all(parsers: [MarkdownParser()], theme: appTheme),
+      configResolver: PageConfig.all(
+        parsers: [MarkdownParser()],
+        theme: appTheme,
+      ),
       routerBuilder: (contentRoutes) {
         // Return the existing App with jaspr_content routes available
-        return App();
+        return App(contentRoutes: contentRoutes);
       },
     ),
   );

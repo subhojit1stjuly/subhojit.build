@@ -1,25 +1,8 @@
 import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
+import 'package:subhojit_build/core/constants/constants.dart';
 import 'package:subhojit_build/core/theme/colors.dart';
-
-// ── Article data ──────────────────────────────────────────────────────────────
-
-/// Article data class for blog post metadata.
-/// Used by both hardcoded articles and jaspr_content MemoryLoader integration.
-class BlogArticle {
-  const BlogArticle({
-    required this.category,
-    required this.readMin,
-    required this.title,
-    required this.excerpt,
-    required this.href,
-    this.featured = false,
-    required this.imageColor,
-  });
-  final String category, readMin, title, excerpt, href;
-  final Color imageColor;
-  final bool featured;
-}
+import 'package:subhojit_build/pages/blog/model/blog_article.dart';
 
 /// Exported for jaspr_content MemoryLoader in main.server.dart.
 /// These hardcoded articles serve as fallback during infrastructure validation.
@@ -75,14 +58,6 @@ final hardcodedArticles = [
     href: '#',
     imageColor: primaryFixed,
   ),
-];
-
-const _taxonomy = [
-  (label: 'Architecture', count: '8'),
-  (label: 'Performance', count: '5'),
-  (label: 'State Management', count: '6'),
-  (label: 'DevOps / CI/CD', count: '4'),
-  (label: 'UI & Animations', count: '7'),
 ];
 
 // ── Blog page ─────────────────────────────────────────────────────────────────
@@ -144,7 +119,7 @@ class BlogPage extends StatelessComponent {
             // Taxonomy
             div(classes: 'taxonomy-card tonal-card', [
               p(classes: 'taxonomy-title t-label', [.text('Taxonomy')]),
-              for (final t in _taxonomy)
+              for (final t in Constants.taxonomy)
                 div(classes: 'taxonomy-row', [
                   span(classes: 'taxonomy-label t-body', [.text(t.label)]),
                   span(classes: 'taxonomy-count t-label', [.text(t.count)]),
@@ -192,24 +167,24 @@ class BlogPage extends StatelessComponent {
 
     // ── Featured article ──────────────────────────────────────────────────
     css('.featured-card').styles(
-      backgroundColor: surfaceContainerLowest,
+      display: .grid,
       radius: BorderRadius.circular(16.px),
       overflow: .clip,
-      display: .grid,
       gridTemplate: GridTemplate(
         columns: GridTracks([GridTrack(TrackSize.fr(1)), GridTrack(TrackSize.fr(1))]),
       ),
+      backgroundColor: surfaceContainerLowest,
       raw: {'box-shadow': '0px 4px 16px rgba(26,28,30,0.06)'},
     ),
     css('.featured-image').styles(
-      height: 280.px,
       display: .flex,
-      alignItems: .center,
+      height: 280.px,
       justifyContent: .center,
+      alignItems: .center,
     ),
     css('.featured-content').styles(
-      padding: .all(1.75.rem),
       display: .flex,
+      padding: .all(1.75.rem),
       flexDirection: .column,
       justifyContent: .center,
       gap: Gap.all(0.75.rem),
@@ -220,37 +195,37 @@ class BlogPage extends StatelessComponent {
       gap: Gap.all(0.75.rem),
     ),
     css('.article-category').styles(
-      fontSize: 11.px,
-      fontWeight: .w600,
-      color: primaryColor,
-      backgroundColor: primaryFixed,
       padding: .symmetric(horizontal: 0.625.rem, vertical: 0.25.rem),
       radius: BorderRadius.circular(4.px),
+      color: primaryColor,
+      fontSize: 11.px,
+      fontWeight: .w600,
       textTransform: TextTransform.upperCase,
+      backgroundColor: primaryFixed,
       raw: {'letter-spacing': '0.06em'},
     ),
     css('.article-readtime').styles(fontSize: 12.px, color: onSurfaceVariant),
     css('.article-title').styles(
+      color: onSurface,
       fontSize: 22.px,
       fontWeight: .w700,
-      color: onSurface,
       raw: {'line-height': '1.35'},
     ),
     css('.article-excerpt').styles(
-      fontSize: 14.px,
       color: onSurfaceVariant,
+      fontSize: 14.px,
       lineHeight: 1.6.em,
     ),
     css('.article-read-link').styles(
       display: .inlineFlex,
+      transition: Transition('color', duration: Duration(milliseconds: 150)),
       alignItems: .center,
       gap: Gap.all(0.25.rem),
+      color: primaryColor,
       fontSize: 13.px,
       fontWeight: .w700,
-      color: primaryColor,
       textTransform: TextTransform.upperCase,
       raw: {'letter-spacing': '0.05em'},
-      transition: Transition('color', duration: Duration(milliseconds: 150)),
     ),
     css('.article-read-link:hover').styles(color: onPrimaryFixedVariant),
 
@@ -263,39 +238,39 @@ class BlogPage extends StatelessComponent {
       gap: Gap.all(1.25.rem),
     ),
     css('.article-card').styles(
-      backgroundColor: surfaceContainerLowest,
+      display: .flex,
       radius: BorderRadius.circular(12.px),
       overflow: .clip,
-      display: .flex,
-      flexDirection: .column,
-      raw: {'box-shadow': '0px 2px 8px rgba(26,28,30,0.04)'},
       transition: Transition.combine([
         Transition('transform', duration: Duration(milliseconds: 200)),
         Transition('box-shadow', duration: Duration(milliseconds: 200)),
       ]),
+      flexDirection: .column,
+      backgroundColor: surfaceContainerLowest,
+      raw: {'box-shadow': '0px 2px 8px rgba(26,28,30,0.04)'},
     ),
     css('.article-card:hover').styles(
       raw: {'transform': 'translateY(-2px)', 'box-shadow': '0px 8px 24px rgba(26,28,30,0.10)'},
     ),
     css('.article-card-image').styles(height: 160.px, display: .flex, alignItems: .center, justifyContent: .center),
     css('.article-card-body').styles(
-      padding: .all(1.25.rem),
       display: .flex,
+      padding: .all(1.25.rem),
       flexDirection: .column,
       gap: Gap.all(0.5.rem),
       flex: Flex(grow: 1),
     ),
     css('.article-card-title').styles(
+      color: onSurface,
       fontSize: 16.px,
       fontWeight: .w700,
-      color: onSurface,
       raw: {'line-height': '1.4'},
     ),
     css('.article-card-excerpt').styles(
-      fontSize: 13.px,
-      color: onSurfaceVariant,
-      lineHeight: 1.55.em,
       flex: Flex(grow: 1),
+      color: onSurfaceVariant,
+      fontSize: 13.px,
+      lineHeight: 1.55.em,
     ),
     css('.article-card-footer').styles(
       display: .flex,
@@ -304,18 +279,18 @@ class BlogPage extends StatelessComponent {
       raw: {'margin-top': '0.5rem'},
     ),
     css('.article-card-read').styles(
-      fontSize: 12.px,
       color: onSurfaceVariant,
+      fontSize: 12.px,
     ),
     css('.article-read-btn').styles(
-      fontSize: 11.px,
-      fontWeight: .w700,
-      color: primaryColor,
-      textTransform: TextTransform.upperCase,
-      raw: {'letter-spacing': '0.05em'},
       display: .inlineFlex,
       alignItems: .center,
       gap: Gap.all(0.125.rem),
+      color: primaryColor,
+      fontSize: 11.px,
+      fontWeight: .w700,
+      textTransform: TextTransform.upperCase,
+      raw: {'letter-spacing': '0.05em'},
     ),
 
     // ── Pagination ────────────────────────────────────────────────────────
@@ -327,20 +302,20 @@ class BlogPage extends StatelessComponent {
     ),
     css('.page-btn').styles(
       display: .flex,
-      alignItems: .center,
-      justifyContent: .center,
       width: 36.px,
       height: 36.px,
       radius: BorderRadius.circular(99.px),
-      fontSize: 14.px,
-      fontWeight: .w500,
-      color: onSurfaceVariant,
-      backgroundColor: surfaceContainerHigh,
       cursor: Cursor.pointer,
       transition: Transition.combine([
         Transition('color', duration: Duration(milliseconds: 150)),
         Transition('background-color', duration: Duration(milliseconds: 150)),
       ]),
+      justifyContent: .center,
+      alignItems: .center,
+      color: onSurfaceVariant,
+      fontSize: 14.px,
+      fontWeight: .w500,
+      backgroundColor: surfaceContainerHigh,
     ),
     css('.page-btn:hover').styles(backgroundColor: surfaceContainerHighest, color: onSurface),
     css('.page-btn--active').styles(backgroundColor: primaryColor, color: onPrimary),
@@ -355,21 +330,21 @@ class BlogPage extends StatelessComponent {
 
     // Newsletter card
     css('.newsletter-card').styles(
-      backgroundColor: primaryContainer,
-      radius: BorderRadius.circular(16.px),
-      padding: .all(1.5.rem),
       display: .flex,
+      padding: .all(1.5.rem),
+      radius: BorderRadius.circular(16.px),
       flexDirection: .column,
       gap: Gap.all(0.75.rem),
+      backgroundColor: primaryContainer,
     ),
     css('.newsletter-title').styles(fontSize: 17.px, fontWeight: .w700, color: onPrimary),
     css('.newsletter-sub').styles(fontSize: 13.px, color: onPrimary, raw: {'opacity': '0.88', 'line-height': '1.5'}),
     css('.newsletter-input').styles(
-      backgroundColor: const Color.variable('--surface-container'),
-      radius: BorderRadius.circular(8.px),
       padding: .symmetric(horizontal: 1.rem, vertical: 0.75.rem),
-      fontSize: 14.px,
+      radius: BorderRadius.circular(8.px),
       color: onPrimary,
+      fontSize: 14.px,
+      backgroundColor: const Color.variable('--surface-container'),
       raw: {
         'border': '1px solid rgba(255,255,255,0.3)',
         'outline': 'none',
@@ -379,14 +354,14 @@ class BlogPage extends StatelessComponent {
       },
     ),
     css('.newsletter-btn').styles(
-      backgroundColor: surfaceContainerLowest,
-      color: primaryColor,
-      fontSize: 13.px,
-      fontWeight: .w700,
       padding: .symmetric(horizontal: 1.rem, vertical: 0.75.rem),
       radius: BorderRadius.circular(8.px),
-      textAlign: TextAlign.center,
       cursor: Cursor.pointer,
+      color: primaryColor,
+      textAlign: TextAlign.center,
+      fontSize: 13.px,
+      fontWeight: .w700,
+      backgroundColor: surfaceContainerLowest,
     ),
     css('.newsletter-note').styles(fontSize: 11.px, color: onPrimary, raw: {'opacity': '0.7'}),
 
@@ -395,38 +370,38 @@ class BlogPage extends StatelessComponent {
     css('.taxonomy-title').styles(color: onSurfaceVariant, raw: {'margin-bottom': '0.875rem'}),
     css('.taxonomy-row').styles(
       display: .flex,
+      padding: .symmetric(vertical: 0.5.rem),
       justifyContent: .spaceBetween,
       alignItems: .center,
-      padding: .symmetric(vertical: 0.5.rem),
       raw: {'border-bottom': '1px solid ${outlineVariant.value}'},
     ),
     css('.taxonomy-row:last-child').styles(raw: {'border-bottom': 'none'}),
     css('.taxonomy-label').styles(color: onSurface),
     css('.taxonomy-count').styles(
-      color: primaryColor,
-      backgroundColor: primaryFixed,
       padding: .symmetric(horizontal: 0.5.rem, vertical: 0.125.rem),
       radius: BorderRadius.circular(4.px),
+      color: primaryColor,
+      backgroundColor: primaryFixed,
     ),
 
     // Author card
     css('.author-card').styles(
-      padding: .all(1.25.rem),
       display: .flex,
+      padding: .all(1.25.rem),
       alignItems: .center,
       gap: Gap.all(0.75.rem),
     ),
     css('.author-avatar').styles(
+      display: .flex,
       width: 44.px,
       height: 44.px,
       radius: BorderRadius.circular(99.px),
-      backgroundColor: primaryContainer,
-      color: onPrimary,
-      display: .flex,
-      alignItems: .center,
       justifyContent: .center,
+      alignItems: .center,
+      color: onPrimary,
       fontSize: 14.px,
       fontWeight: .w700,
+      backgroundColor: primaryContainer,
       raw: {'flex-shrink': '0'},
     ),
     css('.author-name').styles(fontSize: 14.px, fontWeight: .w700, color: onSurface),

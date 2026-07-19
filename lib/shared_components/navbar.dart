@@ -2,6 +2,7 @@ import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 import 'package:jaspr_router/jaspr_router.dart';
 import 'package:jaspr_content/components/theme_toggle.dart';
+import 'package:subhojit_build/core/constants/constants.dart';
 import 'package:subhojit_build/core/theme/colors.dart';
 
 /// Shared top navigation bar — rendered once by the [ShellRoute].
@@ -21,7 +22,7 @@ class Navbar extends StatelessComponent {
   Component build(BuildContext context) {
     // Current route location — used to mark the active nav link.
     final loc = RouteState.maybeOf(context)?.location ?? '/';
-    final activeTo = _activePath(loc);
+    final activeTo = Constants.activePath(loc);
 
     return Component.fragment([
       // Hidden checkbox — controls drawer open/close via CSS :has() selector.
@@ -75,7 +76,7 @@ class Navbar extends StatelessComponent {
               classes: item.to == activeTo ? 'drawer-link drawer-link--active' : 'drawer-link',
               children: [
                 span(classes: 'material-symbols-outlined', [
-                  .text(_iconFor(item.to)),
+                  .text(Constants.iconFor(item.to)),
                 ]),
                 span([.text(item.label)]),
               ],
@@ -88,20 +89,6 @@ class Navbar extends StatelessComponent {
       ]),
     ]);
   }
-
-  /// Returns the canonical path to match for active-link detection.
-  static String _activePath(String location) {
-    if (location.startsWith('/career')) return '/career';
-    if (location.startsWith('/blog')) return '/blog';
-    return '/';
-  }
-
-  static String _iconFor(String to) => switch (to) {
-    '/career' => 'work_history',
-    '/blog' => 'article',
-    '/#contact' => 'alternate_email',
-    _ => 'folder_open',
-  };
 
   @css
   static List<StyleRule> get styles => [

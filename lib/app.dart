@@ -1,8 +1,10 @@
 import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 import 'package:jaspr_router/jaspr_router.dart';
+import 'package:subhojit_build/core/constants/constants.dart';
 import 'package:subhojit_build/core/constants/route_constants.dart';
 import 'package:subhojit_build/core/constants/string_constants.dart';
+import 'package:subhojit_build/pages/project/project.dart';
 
 import 'shared_components/footer.dart';
 import 'shared_components/navbar.dart';
@@ -20,7 +22,8 @@ import 'pages/portfolio/home.dart';
 ///   /career/index.html   → Career & Experience
 ///   /blog/index.html     → Technical Insights / Blog
 class App extends StatelessComponent {
-  const App({super.key});
+  final List<List<RouteBase>> contentRoutes; // Injected from ContentApp.custom
+  const App({super.key, required this.contentRoutes});
 
   @override
   Component build(BuildContext context) {
@@ -44,6 +47,12 @@ class App extends StatelessComponent {
               title: StringConstants.blogTitle,
               builder: (context, state) => const BlogPage(),
             ),
+            Route(
+              path: RouteConstants.projects,
+              title: StringConstants.projectTitle,
+              builder: (context, state) => const ProjectPage(),
+            ),
+            ...contentRoutes.expand((e) => e), // Injected from ContentApp.custom
           ],
         ),
       ],
@@ -57,25 +66,12 @@ class PageShell extends StatelessComponent {
 
   final Component child;
 
-  static const _navItems = [
-    (label: 'Portfolio', to: RouteConstants.portfolio),
-    (label: 'Career', to: RouteConstants.career),
-    (label: 'Blog', to: RouteConstants.blogs),
-    (label: 'Projects', to: RouteConstants.projects),
-  ];
-
-  static const _footerLinks = [
-    (label: 'GitHub', href: 'https://github.com/subhojit'),
-    (label: 'LinkedIn', href: 'https://linkedin.com/in/subhojit'),
-    (label: 'Email', href: 'mailto:hello@subhojitpramanik.dev'),
-  ];
-
   @override
   Component build(BuildContext context) {
     return div(classes: 'page', [
-      const Navbar(navItems: _navItems),
+      const Navbar(navItems: Constants.navItems),
       child,
-      const Footer(links: _footerLinks),
+      const Footer(links: Constants.footerLinks),
     ]);
   }
 
