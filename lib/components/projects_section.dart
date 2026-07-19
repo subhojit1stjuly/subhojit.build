@@ -2,42 +2,12 @@ import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 
 import '../constants/theme.dart';
-
-class _Project {
-  const _Project({required this.title, required this.desc, required this.category, required this.tags, required this.url, required this.imageColor});
-  final String title, desc, category, url, imageColor;
-  final List<String> tags;
-}
-
-const _projects = [
-  _Project(
-    title: 'Flutter E-Commerce Platform',
-    desc: 'Production app with real-time inventory, smooth 60fps transitions, and a custom parallax product hero. Serves 200k+ monthly active users.',
-    category: 'Mobile',
-    tags: ['Flutter', 'Riverpod', 'Firebase'],
-    url: 'https://github.com/subhojit',
-    imageColor: '#d1e6f2',
-  ),
-  _Project(
-    title: 'Dart CLI Toolchain',
-    desc: 'Developer-productivity CLI automating code-generation, asset optimisation, and release tagging for Flutter mono-repos. Used internally by 3 product teams.',
-    category: 'Tooling',
-    tags: ['Dart', 'CLI', 'GitHub Actions'],
-    url: 'https://github.com/subhojit',
-    imageColor: '#e5deff',
-  ),
-  _Project(
-    title: 'State Management Reference',
-    desc: 'Opinionated reference implementation comparing Riverpod, Bloc, and Provider across identical feature slices. Onboarding resource for new engineers.',
-    category: 'Open Source',
-    tags: ['Flutter', 'Bloc', 'Riverpod'],
-    url: 'https://github.com/subhojit',
-    imageColor: '#f0eee9',
-  ),
-];
+import '../models/project.dart';
 
 class ProjectsSection extends StatelessComponent {
-  const ProjectsSection({super.key});
+  final List<Project> projects;
+
+  const ProjectsSection({super.key, required this.projects});
 
   @override
   Component build(BuildContext context) {
@@ -60,7 +30,7 @@ class ProjectsSection extends StatelessComponent {
 
           // Project list
           div(classes: 'projects-list', [
-            for (final p in _projects) _ProjectCard(project: p),
+            for (final p in projects) _ProjectCard(project: p),
           ]),
         ]),
       ],
@@ -179,27 +149,28 @@ class ProjectsSection extends StatelessComponent {
 
 class _ProjectCard extends StatelessComponent {
   const _ProjectCard({required this.project});
-  final _Project project;
+  final Project project;
 
   @override
   Component build(BuildContext context) {
     return div(classes: 'project-card', [
       // Tonal image placeholder with category chip
-      div(classes: 'project-image', styles: Styles(backgroundColor: Color(project.imageColor)), [
+      div(classes: 'project-image', styles: Styles(backgroundColor: Color('#d1e6f2')), [
         span(classes: 'material-symbols-outlined', styles: Styles(fontSize: 36.px, color: primaryColor), [.text('code')]),
-        div(classes: 'project-category-chip', [.text(project.category)]),
+        div(classes: 'project-category-chip', [.text('Project')]),
       ]),
       div(classes: 'project-body', [
-        p(classes: 'project-title', [.text(project.title)]),
-        p(classes: 'project-desc', [.text(project.desc)]),
+        p(classes: 'project-title', [.text(project.name)]),
+        p(classes: 'project-desc', [.text(project.description)]),
         div(classes: 'project-tags', [
-          for (final tag in project.tags) span(classes: 'project-tag', [.text(tag)]),
+          for (final tag in project.technologies) span(classes: 'project-tag', [.text(tag)]),
         ]),
-        a(href: project.url, classes: 'project-link',
-            attributes: {'target': '_blank', 'rel': 'noopener'}, [
-          .text('View Source'),
-          span(classes: 'material-symbols-outlined', [.text('open_in_new')]),
-        ]),
+        if (project.externalLink != null)
+          a(href: project.externalLink!, classes: 'project-link',
+              attributes: {'target': '_blank', 'rel': 'noopener'}, [
+            .text('View Source'),
+            span(classes: 'material-symbols-outlined', [.text('open_in_new')]),
+          ]),
       ]),
     ]);
   }

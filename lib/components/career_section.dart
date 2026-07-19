@@ -2,46 +2,7 @@ import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 
 import '../constants/theme.dart';
-
-class _Job {
-  const _Job({required this.date, required this.role, required this.company,
-               required this.desc, required this.tags, required this.icon});
-  final String date, role, company, desc, icon;
-  final List<String> tags;
-}
-
-const _jobs = [
-  _Job(
-    date: 'Jan 2022 — Present',
-    role: 'Senior Software Engineer',
-    company: 'Fintech Startup (Mobile Lead)',
-    desc: 'Led mobile architecture migration to Clean Architecture with Riverpod. '
-          'Reduced app startup time by 40% and achieved 99.9% crash-free sessions '
-          'for 500k+ active users across Android and iOS.',
-    tags: ['Flutter', 'Riverpod', 'Firebase', 'CI/CD'],
-    icon: 'person',
-  ),
-  _Job(
-    date: 'Mar 2020 — Dec 2021',
-    role: 'Flutter Developer',
-    company: 'Product Agency',
-    desc: 'Built 8 cross-platform apps from 0 to 1. Implemented complex custom '
-          'UI components and animations. Integrated native SDKs via platform '
-          'channels on both Android and iOS.',
-    tags: ['Flutter', 'Dart', 'Bloc', 'Platform Channels'],
-    icon: 'code',
-  ),
-  _Job(
-    date: 'Jun 2019 — Feb 2020',
-    role: 'Android Developer',
-    company: 'Mobile-First Startup',
-    desc: 'Developed native Android features in Kotlin. Migrated existing Java '
-          'codebase to Kotlin and introduced MVVM architecture for the core app '
-          'used by 100k+ users.',
-    tags: ['Android', 'Kotlin', 'MVVM', 'Jetpack'],
-    icon: 'android',
-  ),
-];
+import '../models/job_experience.dart';
 
 /// Career timeline section.
 ///
@@ -50,7 +11,9 @@ const _jobs = [
 ///           even entries (content left / title right) — separated by a dashed
 ///           central spine with circular icon nodes.
 class CareerSection extends StatelessComponent {
-  const CareerSection({super.key});
+  final List<JobExperience> jobs;
+
+  const CareerSection({super.key, required this.jobs});
 
   @override
   Component build(BuildContext context) {
@@ -63,13 +26,13 @@ class CareerSection extends StatelessComponent {
 
         // Mobile: dot-and-line timeline
         div(classes: 'career-timeline career-timeline--mobile', [
-          for (final job in _jobs) _MobileEntry(job: job),
+          for (final job in jobs) _MobileEntry(job: job),
         ]),
 
         // Desktop: zigzag
         div(classes: 'career-timeline career-timeline--desktop', [
-          for (int i = 0; i < _jobs.length; i++)
-            _DesktopEntry(job: _jobs[i], isReversed: i.isOdd),
+          for (int i = 0; i < jobs.length; i++)
+            _DesktopEntry(job: jobs[i], isReversed: i.isOdd),
         ]),
       ]),
     ]);
@@ -231,25 +194,22 @@ class CareerSection extends StatelessComponent {
 // ── Mobile entry ──────────────────────────────────────────────────────────────
 class _MobileEntry extends StatelessComponent {
   const _MobileEntry({required this.job});
-  final _Job job;
+  final JobExperience job;
 
   @override
   Component build(BuildContext context) {
     return div(classes: 'mobile-entry', [
       div(classes: 'mobile-dot-col', [
         div(classes: 'mobile-dot', [
-          span(classes: 'material-symbols-outlined', [.text(job.icon)]),
+          span(classes: 'material-symbols-outlined', [.text('work')]),
         ]),
         div(classes: 'mobile-spine', []),
       ]),
       div(classes: 'mobile-content', [
-        p(classes: 'entry-date', [.text(job.date)]),
+        p(classes: 'entry-date', [.text(job.duration)]),
         p(classes: 'entry-role', [.text(job.role)]),
         p(classes: 'entry-company', [.text(job.company)]),
-        p(classes: 'entry-desc', [.text(job.desc)]),
-        div(classes: 'entry-tags', [
-          for (final tag in job.tags) span(classes: 'entry-tag', [.text(tag)]),
-        ]),
+        p(classes: 'entry-desc', [.text(job.responsibilities.join(' • '))]),
       ]),
     ]);
   }
@@ -258,7 +218,7 @@ class _MobileEntry extends StatelessComponent {
 // ── Desktop zigzag entry ───────────────────────────────────────────────────────
 class _DesktopEntry extends StatelessComponent {
   const _DesktopEntry({required this.job, required this.isReversed});
-  final _Job job;
+  final JobExperience job;
   final bool isReversed;
 
   @override
@@ -267,23 +227,20 @@ class _DesktopEntry extends StatelessComponent {
     return div(classes: 'desktop-entry $modClass', [
       // Title column
       div(classes: 'desktop-title-col', [
-        p(classes: 'desktop-date', [.text(job.date)]),
+        p(classes: 'desktop-date', [.text(job.duration)]),
         p(classes: 'desktop-role', [.text(job.role)]),
         p(classes: 'desktop-company', [.text(job.company)]),
       ]),
       // Centre node
       div(classes: 'desktop-node', [
         div(classes: 'desktop-node-circle', [
-          span(classes: 'material-symbols-outlined', [.text(job.icon)]),
+          span(classes: 'material-symbols-outlined', [.text('work')]),
         ]),
       ]),
       // Content card
       div(classes: 'desktop-card-col', [
         div(classes: 'desktop-card', [
-          p(classes: 'entry-desc', [.text(job.desc)]),
-          div(classes: 'entry-tags', [
-            for (final tag in job.tags) span(classes: 'entry-tag', [.text(tag)]),
-          ]),
+          p(classes: 'entry-desc', [.text(job.responsibilities.join(' • '))]),
         ]),
       ]),
     ]);

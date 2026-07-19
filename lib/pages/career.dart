@@ -4,6 +4,7 @@ import 'package:jaspr/jaspr.dart';
 import '../components/career_section.dart';
 import '../components/philosophy_section.dart';
 import '../constants/theme.dart';
+import '../models/job_experience.dart';
 
 /// Career & Experience page (/career).
 class CareerPage extends StatelessComponent {
@@ -11,9 +12,40 @@ class CareerPage extends StatelessComponent {
 
   @override
   Component build(BuildContext context) {
+    // TODO: Fetch from jaspr_content
+    final jobs = [
+      JobExperience(
+        id: '1',
+        duration: 'Jan 2022 — Present',
+        role: 'Senior Software Engineer',
+        company: 'Fintech Startup (Mobile Lead)',
+        responsibilities: [
+          'Led mobile architecture migration to Clean Architecture with Riverpod. Reduced app startup time by 40% and achieved 99.9% crash-free sessions for 500k+ active users across Android and iOS.',
+        ],
+      ),
+      JobExperience(
+        id: '2',
+        duration: 'Mar 2020 — Dec 2021',
+        role: 'Flutter Developer',
+        company: 'Product Agency',
+        responsibilities: [
+          'Built 8 cross-platform apps from 0 to 1. Implemented complex custom UI components and animations. Integrated native SDKs via platform channels on both Android and iOS.',
+        ],
+      ),
+      JobExperience(
+        id: '3',
+        duration: 'Jun 2019 — Feb 2020',
+        role: 'Android Developer',
+        company: 'Mobile-First Startup',
+        responsibilities: [
+          'Developed native Android features in Kotlin. Migrated existing Java codebase to Kotlin and introduced MVVM architecture for the core app used by 100k+ users.',
+        ],
+      ),
+    ];
+
     return Component.fragment([
       const _CareerHero(),
-      const CareerSection(),
+      CareerSection(jobs: jobs),
       const _AcademicSection(),
       const _CompetenciesSection(),
       const PhilosophySection(),

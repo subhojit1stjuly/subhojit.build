@@ -20,8 +20,9 @@ void main() {
   //
   // [ClientApp] automatically loads and renders all components annotated with @client.
   //
-  // You can wrap this with additional [InheritedComponent]s to share state across multiple
-  // @client components if needed.
+  // Theme hydration happens automatically through jaspr_content's ThemeToggle component,
+  // which is a @client component. The ContentApp wrapper is only needed on the server
+  // side for SSR/SSG pre-rendering (see main.server.dart).
   runApp(
     const ClientApp(),
   );

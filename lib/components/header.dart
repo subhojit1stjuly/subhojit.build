@@ -5,7 +5,9 @@ import 'package:jaspr_router/jaspr_router.dart';
 import '../constants/theme.dart';
 
 class Header extends StatelessComponent {
-  const Header({super.key});
+  final List<({String label, String path})> routes;
+
+  const Header({super.key, required this.routes});
 
   @override
   Component build(BuildContext context) {
@@ -13,10 +15,7 @@ class Header extends StatelessComponent {
 
     return header([
       nav([
-        for (var route in [
-          (label: 'Home', path: '/'),
-          (label: 'About', path: '/about'),
-        ])
+        for (var route in routes)
           div(classes: activePath == route.path ? 'active' : null, [
             Link(to: route.path, child: .text(route.label)),
           ]),

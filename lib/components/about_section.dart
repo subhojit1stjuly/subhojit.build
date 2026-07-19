@@ -3,26 +3,16 @@ import 'package:jaspr/jaspr.dart';
 
 import '../constants/theme.dart';
 
-class _Credential {
-  const _Credential({required this.type, required this.name, required this.icon, required this.meta});
+class Credential {
+  const Credential({required this.type, required this.name, required this.icon, required this.meta});
   final String type, name, icon, meta;
 }
 
-const _credentials = [
-  _Credential(type: 'Certification', name: 'Google Associate Android Developer', icon: 'android', meta: 'Active since 2022'),
-  _Credential(type: 'Certification', name: 'AWS Cloud Practitioner', icon: 'cloud', meta: 'Active since 2023'),
-  _Credential(type: 'Specialisation', name: 'Flutter & Dart', icon: 'code', meta: '5+ years'),
-  _Credential(type: 'Education', name: 'B.Tech Computer Science', icon: 'school', meta: 'Class of 2019'),
-];
-
-const _skills = [
-  'Flutter', 'Dart', 'Riverpod', 'Bloc', 'Firebase',
-  'REST APIs', 'GraphQL', 'SQLite', 'CI/CD', 'GitHub Actions',
-  'Performance Tuning', 'Clean Architecture', 'MVVM', 'TDD', 'Android', 'iOS',
-];
-
 class AboutSection extends StatelessComponent {
-  const AboutSection({super.key});
+  final List<Credential> credentials;
+  final List<String> skills;
+
+  const AboutSection({super.key, required this.credentials, required this.skills});
 
   @override
   Component build(BuildContext context) {
@@ -57,7 +47,7 @@ class AboutSection extends StatelessComponent {
               div(classes: 'skills-section', [
                 p(classes: 'skills-label t-label', [.text('Core Stack')]),
                 div(classes: 'skills-wrap', [
-                  for (final skill in _skills)
+                    for (final skill in skills)
                     span(classes: 'skill-chip', [.text(skill)]),
                 ]),
               ]),
@@ -65,7 +55,7 @@ class AboutSection extends StatelessComponent {
             div(classes: 'about-credentials', [
               p(classes: 'cred-header t-label', [.text('Validations')]),
               div(classes: 'cred-grid', [
-                for (final c in _credentials) _CredentialCard(cred: c),
+                  for (final c in credentials) _CredentialCard(cred: c),
               ]),
             ]),
           ]),
@@ -153,7 +143,7 @@ class AboutSection extends StatelessComponent {
 
 class _CredentialCard extends StatelessComponent {
   const _CredentialCard({required this.cred});
-  final _Credential cred;
+  final Credential cred;
 
   @override
   Component build(BuildContext context) {

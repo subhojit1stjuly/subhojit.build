@@ -34,7 +34,7 @@ void main() {
         loaders: [
           // Primary: Load content from filesystem
           FilesystemLoader('content'),
-          
+
           // Fallback: Existing hardcoded blog posts as MemoryPages
           MemoryLoader(pages: _createMemoryPagesFromHardcodedArticles()),
         ],
@@ -54,11 +54,8 @@ void main() {
 List<MemoryPage> _createMemoryPagesFromHardcodedArticles() {
   return hardcodedArticles.map((art) {
     // Generate slug from title
-    final slug = art.title
-        .toLowerCase()
-        .replaceAll(RegExp(r'[^a-z0-9]+'), '-')
-        .replaceAll(RegExp(r'^-+|-+$'), '');
-    
+    final slug = art.title.toLowerCase().replaceAll(RegExp(r'[^a-z0-9]+'), '-').replaceAll(RegExp(r'^-+|-+$'), '');
+
     // Convert article to frontmatter + markdown content
     final frontmatter = {
       'title': art.title,
@@ -71,16 +68,17 @@ List<MemoryPage> _createMemoryPagesFromHardcodedArticles() {
       'imageColor': art.imageColor,
       'layout': 'blog',
     };
-    
+
     // Simple markdown content as placeholder
-    final content = '''
+    final content =
+        '''
 # ${art.title}
 
 ${art.excerpt}
 
 *This is a legacy hardcoded article. Content migration pending.*
 ''';
-    
+
     return MemoryPage(
       path: 'blog/$slug.md',
       content: content,
