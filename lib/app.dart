@@ -55,12 +55,25 @@ class PageShell extends StatelessComponent {
 
   final Component child;
 
+  static const _navItems = [
+    (label: 'Portfolio', to: '/'),
+    (label: 'Career',    to: '/career'),
+    (label: 'Blog',      to: '/blog'),
+    (label: 'Contact',   to: '/#contact'),
+  ];
+
+  static const _footerLinks = [
+    (label: 'GitHub',   href: 'https://github.com/subhojit'),
+    (label: 'LinkedIn', href: 'https://linkedin.com/in/subhojit'),
+    (label: 'Email',    href: 'mailto:hello@subhojitpramanik.dev'),
+  ];
+
   @override
   Component build(BuildContext context) {
     return div(classes: 'page', [
-      const Navbar(),
+      const Navbar(navItems: _navItems),
       child,
-      const Footer(),
+      const Footer(links: _footerLinks),
     ]);
   }
 

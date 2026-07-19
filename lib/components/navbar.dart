@@ -13,15 +13,9 @@ import '../constants/theme.dart';
 /// Active link is detected via [RouteState.of(context).location] so the
 /// correct nav item is highlighted on every page without any client-side state.
 class Navbar extends StatelessComponent {
-  const Navbar({super.key});
+  final List<({String label, String to})> navItems;
 
-  // Nav items shared between topbar and drawer.
-  static const _navItems = [
-    (label: 'Portfolio', to: '/'),
-    (label: 'Career',    to: '/career'),
-    (label: 'Blog',      to: '/blog'),
-    (label: 'Contact',   to: '/#contact'),
-  ];
+  const Navbar({super.key, required this.navItems});
 
   @override
   Component build(BuildContext context) {
@@ -46,7 +40,7 @@ class Navbar extends StatelessComponent {
 
         // Desktop inline nav links.
         nav(classes: 'topbar-nav', [
-          for (final item in _navItems)
+          for (final item in navItems)
             Link(
               to: item.to,
               classes: item.to == activeTo
@@ -76,7 +70,7 @@ class Navbar extends StatelessComponent {
         ]),
 
         nav(classes: 'drawer-nav', [
-          for (final item in _navItems)
+          for (final item in navItems)
             Link(
               to: item.to,
               classes: item.to == activeTo

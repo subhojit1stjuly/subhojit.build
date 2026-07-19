@@ -4,13 +4,9 @@ import 'package:jaspr/jaspr.dart';
 import '../constants/theme.dart';
 
 class Footer extends StatelessComponent {
-  const Footer({super.key});
+  final List<({String label, String href})> links;
 
-  static const _links = [
-    (label: 'GitHub',   href: 'https://github.com/subhojit'),
-    (label: 'LinkedIn', href: 'https://linkedin.com/in/subhojit'),
-    (label: 'Email',    href: 'mailto:hello@subhojitpramanik.dev'),
-  ];
+  const Footer({super.key, required this.links});
 
   @override
   Component build(BuildContext context) {
@@ -19,7 +15,7 @@ class Footer extends StatelessComponent {
       div(classes: 'footer-inner container', [
         p(classes: 'footer-brand', [.text('Subhojit.dev')]),
         nav(classes: 'footer-links', [
-          for (final link in _links)
+          for (final link in links)
             a(
               href: link.href,
               classes: 'footer-link t-body',

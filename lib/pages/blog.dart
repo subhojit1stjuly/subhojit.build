@@ -7,8 +7,8 @@ import '../constants/theme.dart';
 
 /// Article data class for blog post metadata.
 /// Used by both hardcoded articles and jaspr_content MemoryLoader integration.
-class Article {
-  const Article({required this.category, required this.readMin, required this.title,
+class BlogArticle {
+  const BlogArticle({required this.category, required this.readMin, required this.title,
                    required this.excerpt, required this.href, this.featured = false,
                    this.imageColor = '#e5deff'});
   final String category, readMin, title, excerpt, href, imageColor;
@@ -18,7 +18,7 @@ class Article {
 /// Exported for jaspr_content MemoryLoader in main.server.dart.
 /// These hardcoded articles serve as fallback during infrastructure validation.
 const hardcodedArticles = [
-  Article(
+  BlogArticle(
     category: 'Architecture',
     readMin: '12 min read',
     title: 'Clean Architecture in Flutter: A Production Guide',
@@ -28,7 +28,7 @@ const hardcodedArticles = [
     featured: true,
     imageColor: '#d1e6f2',
   ),
-  Article(
+  BlogArticle(
     category: 'Performance',
     readMin: '8 min read',
     title: 'The P99 Problem: Solving Tail Latency in Flutter',
@@ -37,7 +37,7 @@ const hardcodedArticles = [
     href: '#',
     imageColor: '#e5deff',
   ),
-  Article(
+  BlogArticle(
     category: 'State Management',
     readMin: '10 min read',
     title: 'Riverpod 3 vs Bloc: When to Use Which',
@@ -46,7 +46,7 @@ const hardcodedArticles = [
     href: '#',
     imageColor: '#f0eee9',
   ),
-  Article(
+  BlogArticle(
     category: 'DevOps',
     readMin: '15 min read',
     title: 'Automating Flutter Releases with GitHub Actions',
@@ -55,7 +55,7 @@ const hardcodedArticles = [
     href: '#',
     imageColor: '#d1e6f2',
   ),
-  Article(
+  BlogArticle(
     category: 'Architecture',
     readMin: '9 min read',
     title: 'Offline-First Flutter with CRDTs',
@@ -396,7 +396,7 @@ class BlogPage extends StatelessComponent {
 // ── Featured article card ─────────────────────────────────────────────────────
 class _FeaturedArticleCard extends StatelessComponent {
   const _FeaturedArticleCard({required this.article});
-  final Article article;
+  final BlogArticle article;
 
   @override
   Component build(BuildContext context) {
@@ -425,7 +425,7 @@ class _FeaturedArticleCard extends StatelessComponent {
 // ── Standard article card ─────────────────────────────────────────────────────
 class _ArticleCard extends StatelessComponent {
   const _ArticleCard({required this.article});
-  final Article article;
+  final BlogArticle article;
 
   @override
   Component build(BuildContext context) {
