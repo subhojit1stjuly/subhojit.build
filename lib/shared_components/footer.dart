@@ -1,11 +1,12 @@
 import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
+import 'package:subhojit_build/core/constants/constants.dart';
 import 'package:subhojit_build/core/theme/colors.dart';
 
 class Footer extends StatelessComponent {
-  final List<({String label, String href})> links;
-
-  const Footer({super.key, required this.links});
+  const Footer({
+    super.key,
+  });
 
   @override
   Component build(BuildContext context) {
@@ -14,7 +15,7 @@ class Footer extends StatelessComponent {
       div(classes: 'footer-inner container', [
         p(classes: 'footer-brand', [.text('Subhojit.dev')]),
         nav(classes: 'footer-links', [
-          for (final link in links)
+          for (final link in Constants.footerLinks)
             a(
               href: link.href,
               classes: 'footer-link t-body',

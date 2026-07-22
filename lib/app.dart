@@ -1,13 +1,12 @@
-import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 import 'package:jaspr_router/jaspr_router.dart';
-import 'package:subhojit_build/core/constants/constants.dart';
 import 'package:subhojit_build/core/constants/route_constants.dart';
 import 'package:subhojit_build/core/constants/string_constants.dart';
+import 'package:subhojit_build/pages/blog/model/blog_article.dart';
 import 'package:subhojit_build/pages/project/project.dart';
+import 'package:subhojit_build/shared_components/page_shell.dart';
 
 import 'shared_components/footer.dart';
-import 'shared_components/navbar.dart';
 import 'pages/blog/blog.dart';
 import 'pages/career/career.dart';
 import 'pages/portfolio/home.dart';
@@ -23,7 +22,12 @@ import 'pages/portfolio/home.dart';
 ///   /blog/index.html     → Technical Insights / Blog
 class App extends StatelessComponent {
   final List<List<RouteBase>> contentRoutes; // Injected from ContentApp.custom
-  const App({super.key, required this.contentRoutes});
+  final List<BlogArticle> blogList;
+  const App({
+    super.key,
+    required this.contentRoutes,
+    required this.blogList,
+  });
 
   @override
   Component build(BuildContext context) {
@@ -50,7 +54,7 @@ class App extends StatelessComponent {
             Route(
               path: RouteConstants.projects,
               title: StringConstants.projectTitle,
-              builder: (context, state) => const ProjectPage(),
+              builder: (context, state) => const BlogPage(),
             ),
             ...contentRoutes.expand((e) => e), // Injected from ContentApp.custom
           ],
@@ -58,29 +62,4 @@ class App extends StatelessComponent {
       ],
     );
   }
-}
-
-/// Shared shell rendered around every page: Navbar at top, Footer at bottom.
-class PageShell extends StatelessComponent {
-  const PageShell({required this.child});
-
-  final Component child;
-
-  @override
-  Component build(BuildContext context) {
-    return div(classes: 'page', [
-      const Navbar(navItems: Constants.navItems),
-      child,
-      const Footer(links: Constants.footerLinks),
-    ]);
-  }
-
-  @css
-  static List<StyleRule> get styles => [
-    css('.page').styles(
-      display: .flex,
-      minHeight: 100.vh,
-      flexDirection: .column,
-    ),
-  ];
 }

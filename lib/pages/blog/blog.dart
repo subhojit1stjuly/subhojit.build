@@ -1,5 +1,6 @@
 import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
+import 'package:jaspr_content/jaspr_content.dart';
 import 'package:subhojit_build/core/constants/constants.dart';
 import 'package:subhojit_build/core/theme/colors.dart';
 import 'package:subhojit_build/pages/blog/model/blog_article.dart';
@@ -71,6 +72,46 @@ class BlogPage extends StatelessComponent {
 
   @override
   Component build(BuildContext context) {
+    // Try to get pages from jaspr_content context
+    // This only works when rendered inside ContentApp-managed pages
+    // 1. Get the content instance;
+    List<BlogArticle> displayArticles = hardcodedArticles;
+
+    try {
+      final allPages = context.pages;
+
+      // Filter blog posts from content/blog directory
+      final blogPages = allPages.where((page) => page.path.startsWith('blog/')).toList();
+
+      if (blogPages.isNotEmpty) {
+        // Convert Pages to BlogArticle models
+        final articles = blogPages.map((page) {
+          final data = page.data;
+          return BlogArticle(
+            category: data['category'] as String? ?? 'Uncategorized',
+            readMin: data['readMin'] as String? ?? '5 min read',
+            title: data['title'] as String? ?? 'Untitled',
+            excerpt: data['excerpt'] as String? ?? '',
+            href: page.url,
+            featured: data['featured'] as bool? ?? false,
+            imageColor: _parseColor(data['imageColor'] as String?),
+          );
+        }).toList();
+
+        // Sort by featured first, then by date if available
+        articles.sort((a, b) {
+          if (a.featured && !b.featured) return -1;
+          if (!a.featured && b.featured) return 1;
+          return 0;
+        });
+
+        displayArticles = articles;
+      }
+    } catch (e) {
+      // context.pages not available - using hardcoded articles as fallback
+      // This is expected when BlogPage is rendered as a regular route
+    }
+
     return section(classes: 'blog-page', [
       div(classes: 'blog-page-inner container', [
         // Page header
@@ -88,12 +129,12 @@ class BlogPage extends StatelessComponent {
         div(classes: 'blog-body', [
           // ── Main content (left) ─────────────────────────────────
           div(classes: 'blog-main', [
-            // Featured article — large card
-            _FeaturedArticleCard(article: hardcodedArticles.first),
+            // Featured article — large card (first article, preferably featured)
+            if (displayArticles.isNotEmpty) _FeaturedArticleCard(article: displayArticles.first),
 
             // Article grid — 2 × N
             div(classes: 'blog-grid', [
-              for (final a in hardcodedArticles.skip(1)) _ArticleCard(article: a),
+              for (final a in displayArticles.skip(1)) _ArticleCard(article: a),
             ]),
 
             // Pagination
@@ -430,6 +471,21 @@ class BlogPage extends StatelessComponent {
       ),
     ]),
   ];
+}
+
+// ── Helper function to parse color from string ────────────────────────────────
+Color _parseColor(String? colorStr) {
+  if (colorStr == null || colorStr.isEmpty) return surfaceContainer;
+
+  // Remove # if present
+  final hex = colorStr.replaceAll('#', '');
+
+  // Parse hex color
+  if (hex.length == 6) {
+    return Color('#$hex');
+  }
+
+  return surfaceContainer;
 }
 
 // ── Featured article card ─────────────────────────────────────────────────────

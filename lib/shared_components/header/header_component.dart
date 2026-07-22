@@ -1,9 +1,9 @@
 import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 import 'package:jaspr_router/jaspr_router.dart';
-import 'package:jaspr_content/components/theme_toggle.dart';
-import 'package:subhojit_build/core/constants/constants.dart';
 import 'package:subhojit_build/core/theme/colors.dart';
+import 'package:subhojit_build/shared_components/header/mobile_navbar.dart';
+import 'package:subhojit_build/shared_components/header/top_appbar.dart';
 
 /// Shared top navigation bar — rendered once by the [ShellRoute].
 ///
@@ -13,80 +13,19 @@ import 'package:subhojit_build/core/theme/colors.dart';
 ///
 /// Active link is detected via [RouteState.of(context).location] so the
 /// correct nav item is highlighted on every page without any client-side state.
-class Navbar extends StatelessComponent {
-  final List<({String label, String to})> navItems;
-
-  const Navbar({super.key, required this.navItems});
+class HeaderComponent extends StatelessComponent {
+  const HeaderComponent({super.key});
 
   @override
   Component build(BuildContext context) {
-    // Current route location — used to mark the active nav link.
-    final loc = RouteState.maybeOf(context)?.location ?? '/';
-    final activeTo = Constants.activePath(loc);
-
     return Component.fragment([
       // Hidden checkbox — controls drawer open/close via CSS :has() selector.
       input(id: 'nav-toggle', type: InputType.checkbox, classes: 'drawer-toggle'),
-
-      // ── Top app bar ──────────────────────────────────────────────────────
-      header(classes: 'topbar', [
-        div(classes: 'topbar-left', [
-          // Hamburger (mobile only) — label toggles the hidden checkbox.
-          label(htmlFor: 'nav-toggle', classes: 'hamburger', [
-            span(classes: 'material-symbols-outlined', [.text('menu')]),
-          ]),
-          // Logo / brand — always navigates to home.
-          Link(to: '/', classes: 'topbar-logo', child: .text('Subhojit.dev')),
-        ]),
-
-        // Desktop inline nav links.
-        nav(classes: 'topbar-nav', [
-          for (final item in navItems)
-            Link(
-              to: item.to,
-              classes: item.to == activeTo ? 'topbar-link topbar-link--active' : 'topbar-link',
-              child: .text(item.label),
-            ),
-        ]),
-
-        div(classes: 'topbar-right', [
-          ThemeToggle(),
-          div(classes: 'topbar-avatar', [.text('SP')]),
-          Link(to: '/#contact', classes: 'resume-btn', child: .text('Resume')),
-        ]),
-      ]),
-
+      TopAppbar(),
       // ── Drawer overlay — click to close ──────────────────────────────────
       label(htmlFor: 'nav-toggle', classes: 'drawer-overlay', []),
-
-      // ── Navigation drawer ─────────────────────────────────────────────────
-      aside(classes: 'nav-drawer', [
-        div(classes: 'drawer-user', [
-          div(classes: 'drawer-avatar', [.text('SP')]),
-          div([
-            p(classes: 'drawer-name', [.text('Subhojit Pramanik')]),
-            p(classes: 'drawer-role', [.text('Senior Software Engineer')]),
-          ]),
-        ]),
-
-        nav(classes: 'drawer-nav', [
-          for (final item in navItems)
-            Link(
-              to: item.to,
-              classes: item.to == activeTo ? 'drawer-link drawer-link--active' : 'drawer-link',
-              children: [
-                span(classes: 'material-symbols-outlined', [
-                  .text(Constants.iconFor(item.to)),
-                ]),
-                span([.text(item.label)]),
-              ],
-            ),
-        ]),
-
-        div(classes: 'drawer-footer', [
-          span(classes: 't-label', [.text('v1.0.0')]),
-        ]),
-      ]),
+      // ── Mobile Navigation drawer ─────────────────────────────────────────
+      MobileNavbar(),
     ]);
   }
 

@@ -6,7 +6,15 @@ library;
 
 // Server-specific Jaspr import.
 import 'package:jaspr/server.dart';
+import 'package:jaspr_content/components/callout.dart';
+import 'package:jaspr_content/components/code_block.dart';
+import 'package:jaspr_content/components/drop_cap.dart';
+import 'package:jaspr_content/components/file_tree.dart';
+import 'package:jaspr_content/components/image.dart';
+import 'package:jaspr_content/components/post_break.dart';
+import 'package:jaspr_content/components/tabs.dart';
 import 'package:jaspr_content/jaspr_content.dart';
+import 'package:subhojit_build/core/services/content_service.dart';
 import 'package:subhojit_build/core/theme/theme.dart';
 
 // Imports the [App] component.
@@ -16,11 +24,14 @@ import 'pages/blog/blog.dart';
 // This file is generated automatically by Jaspr, do not remove or edit.
 import 'main.server.options.dart';
 
-void main() {
+void main() async {
   // Initializes the server environment with the generated default options.
   Jaspr.initializeApp(
     options: defaultServerOptions,
   );
+  // 2. Load your data BEFORE calling runApp
+  // This happens once when the server starts
+  final blogList = await ContentService.getBlogsAsync();
 
   // Starts the app with jaspr_content integration.
   //
@@ -39,11 +50,30 @@ void main() {
       eagerlyLoadAllPages: true,
       configResolver: PageConfig.all(
         parsers: [MarkdownParser()],
+        layouts: [
+          BlogLayout(),
+          DocsLayout(),
+        ],
+        components: [
+          DropCap(),
+          PostBreak(),
+          Callout(),
+          CodeBlock(),
+          Image(),
+          Tabs(),
+          FileTree(),
+        ],
+        extensions: [
+          TableOfContentsExtension(),
+          HeadingAnchorsExtension(),
+        ],
         theme: appTheme,
       ),
       routerBuilder: (contentRoutes) {
-        // Return the existing App with jaspr_content routes available
-        return App(contentRoutes: contentRoutes);
+        return App(
+          contentRoutes: contentRoutes,
+          blogList: blogList,
+        );
       },
     ),
   );
