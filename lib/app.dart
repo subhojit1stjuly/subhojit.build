@@ -49,12 +49,16 @@ class App extends StatelessComponent {
             Route(
               path: RouteConstants.blogs,
               title: StringConstants.blogTitle,
-              builder: (context, state) => const BlogPage(),
+              builder: (context, state) => BlogPage(
+                articles: blogList,
+              ),
             ),
             Route(
               path: RouteConstants.projects,
               title: StringConstants.projectTitle,
-              builder: (context, state) => const BlogPage(),
+              builder: (context, state) => BlogPage(
+                articles: blogList,
+              ),
             ),
             ...contentRoutes.expand((e) => e), // Injected from ContentApp.custom
           ],

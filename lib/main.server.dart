@@ -14,6 +14,7 @@ import 'package:jaspr_content/components/image.dart';
 import 'package:jaspr_content/components/post_break.dart';
 import 'package:jaspr_content/components/tabs.dart';
 import 'package:jaspr_content/jaspr_content.dart';
+import 'package:subhojit_build/core/constants/dummy_data.dart';
 import 'package:subhojit_build/core/services/content_service.dart';
 import 'package:subhojit_build/core/theme/theme.dart';
 
@@ -82,7 +83,7 @@ void main() async {
 /// Convert existing hardcoded _Article objects to MemoryPages for backward compatibility.
 /// This ensures all existing blog posts remain functional during infrastructure validation.
 List<MemoryPage> _createMemoryPagesFromHardcodedArticles() {
-  return hardcodedArticles.map((art) {
+  return DummyData.hardcodedArticles.map((art) {
     // Generate slug from title
     final slug = art.title.toLowerCase().replaceAll(RegExp(r'[^a-z0-9]+'), '-').replaceAll(RegExp(r'^-+|-+$'), '');
 

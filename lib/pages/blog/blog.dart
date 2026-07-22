@@ -2,64 +2,9 @@ import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 import 'package:jaspr_content/jaspr_content.dart';
 import 'package:subhojit_build/core/constants/constants.dart';
+import 'package:subhojit_build/core/constants/dummy_data.dart';
 import 'package:subhojit_build/core/theme/colors.dart';
 import 'package:subhojit_build/pages/blog/model/blog_article.dart';
-
-/// Exported for jaspr_content MemoryLoader in main.server.dart.
-/// These hardcoded articles serve as fallback during infrastructure validation.
-final hardcodedArticles = [
-  BlogArticle(
-    category: 'Architecture',
-    readMin: '12 min read',
-    title: 'Clean Architecture in Flutter: A Production Guide',
-    excerpt:
-        'How to structure large Flutter apps with Clean Architecture so '
-        'your codebase stays maintainable as the team and feature-set grow.',
-    href: '#',
-    featured: true,
-    imageColor: secondaryContainer,
-  ),
-  BlogArticle(
-    category: 'Performance',
-    readMin: '8 min read',
-    title: 'The P99 Problem: Solving Tail Latency in Flutter',
-    excerpt:
-        'Why averages lie and how to hunt down the microscopic jank that '
-        'degrades perceived smoothness — even when 95% of frames hit 60fps.',
-    href: '#',
-    imageColor: primaryFixed,
-  ),
-  BlogArticle(
-    category: 'State Management',
-    readMin: '10 min read',
-    title: 'Riverpod 3 vs Bloc: When to Use Which',
-    excerpt:
-        'A pragmatic comparison of the two dominant state management '
-        'solutions in Flutter, with real-world trade-off examples.',
-    href: '#',
-    imageColor: surfaceContainer,
-  ),
-  BlogArticle(
-    category: 'DevOps',
-    readMin: '15 min read',
-    title: 'Automating Flutter Releases with GitHub Actions',
-    excerpt:
-        'End-to-end CI/CD pipeline: build, test, sign, and ship to '
-        'both Play Store and App Store in a single workflow file.',
-    href: '#',
-    imageColor: secondaryContainer,
-  ),
-  BlogArticle(
-    category: 'Architecture',
-    readMin: '9 min read',
-    title: 'Offline-First Flutter with CRDTs',
-    excerpt:
-        'Implementing conflict-free replicated data types to give your '
-        'app seamless offline sync that just works, even with multiple devices.',
-    href: '#',
-    imageColor: primaryFixed,
-  ),
-];
 
 // ── Blog page ─────────────────────────────────────────────────────────────────
 
@@ -68,48 +13,32 @@ final hardcodedArticles = [
 /// Desktop: 2-column layout — main content (left) + sidebar (right).
 /// Mobile:  Single column — newsletter card first, then articles, then pagination.
 class BlogPage extends StatelessComponent {
-  const BlogPage({super.key});
+  final List<BlogArticle> articles;
+  const BlogPage({super.key, this.articles = const []});
 
   @override
   Component build(BuildContext context) {
     // Try to get pages from jaspr_content context
     // This only works when rendered inside ContentApp-managed pages
     // 1. Get the content instance;
-    List<BlogArticle> displayArticles = hardcodedArticles;
+    List<BlogArticle> displayArticles = DummyData.hardcodedArticles;
 
     try {
-      final allPages = context.pages;
+      // 1. Use passed articles if available, otherwise fall back to hardcoded articles
+      displayArticles = articles.isNotEmpty ? articles : DummyData.hardcodedArticles;
 
-      // Filter blog posts from content/blog directory
-      final blogPages = allPages.where((page) => page.path.startsWith('blog/')).toList();
-
-      if (blogPages.isNotEmpty) {
-        // Convert Pages to BlogArticle models
-        final articles = blogPages.map((page) {
-          final data = page.data;
-          return BlogArticle(
-            category: data['category'] as String? ?? 'Uncategorized',
-            readMin: data['readMin'] as String? ?? '5 min read',
-            title: data['title'] as String? ?? 'Untitled',
-            excerpt: data['excerpt'] as String? ?? '',
-            href: page.url,
-            featured: data['featured'] as bool? ?? false,
-            imageColor: _parseColor(data['imageColor'] as String?),
-          );
-        }).toList();
-
-        // Sort by featured first, then by date if available
-        articles.sort((a, b) {
+      // Sort by featured first, then default order
+      displayArticles = List.from(displayArticles)
+        ..sort((a, b) {
           if (a.featured && !b.featured) return -1;
           if (!a.featured && b.featured) return 1;
           return 0;
         });
-
-        displayArticles = articles;
-      }
+      // 1. Use passed articles if available, otherwise fall back to hardcoded articles
     } catch (e) {
       // context.pages not available - using hardcoded articles as fallback
       // This is expected when BlogPage is rendered as a regular route
+      print(e);
     }
 
     return section(classes: 'blog-page', [

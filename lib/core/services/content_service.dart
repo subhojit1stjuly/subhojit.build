@@ -6,7 +6,7 @@ import 'package:subhojit_build/pages/blog/model/blog_article.dart';
 
 class ContentService {
   static Future<List<BlogArticle>> getBlogsAsync() async {
-    final dir = Directory('content/blogs');
+    final dir = Directory('content/blog');
     if (!dir.existsSync()) return [];
 
     return dir.listSync().where((f) => f.path.endsWith('.md')).map((file) {
@@ -21,7 +21,7 @@ class ContentService {
         category: frontmatter['category'] ?? 'General',
         excerpt: frontmatter['excerpt'] ?? '',
         readMin: frontmatter['readMin'] ?? '5 min read',
-        href: '/blogs/${file.path.split('/').last.replaceAll('.md', '')}',
+        href: '/${file.path.split('/').last.replaceAll('.md', '')}',
         imageColor: secondaryContainer,
         featured: frontmatter['featured'] ?? false,
       );
