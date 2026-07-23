@@ -1,11 +1,14 @@
-import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 import 'package:jaspr_router/jaspr_router.dart';
 import 'package:subhojit_build/core/constants/route_constants.dart';
 import 'package:subhojit_build/core/constants/string_constants.dart';
+import 'package:subhojit_build/pages/blog/model/blog_article.dart';
+import 'package:subhojit_build/pages/career/models/certification.dart';
+import 'package:subhojit_build/pages/career/models/job_experience.dart';
+import 'package:subhojit_build/pages/project/models/project_doc.dart';
+import 'package:subhojit_build/shared_components/page_shell.dart';
 
 import 'shared_components/footer.dart';
-import 'shared_components/navbar.dart';
 import 'pages/blog/blog.dart';
 import 'pages/career/career.dart';
 import 'pages/portfolio/home.dart';
@@ -20,7 +23,19 @@ import 'pages/portfolio/home.dart';
 ///   /career/index.html   → Career & Experience
 ///   /blog/index.html     → Technical Insights / Blog
 class App extends StatelessComponent {
-  const App({super.key});
+  final List<List<RouteBase>> contentRoutes; // Injected from ContentApp.custom
+  final List<BlogArticle> blogList;
+  final List<JobExperience> jobs;
+  final List<Certification> certs;
+  final List<ProjectDoc> projects;
+  const App({
+    super.key,
+    required this.contentRoutes,
+    required this.blogList,
+    required this.jobs,
+    required this.certs,
+    required this.projects,
+  });
 
   @override
   Component build(BuildContext context) {
@@ -37,54 +52,29 @@ class App extends StatelessComponent {
             Route(
               path: RouteConstants.career,
               title: StringConstants.careerTitle,
-              builder: (context, state) => const CareerPage(),
+              builder: (context, state) => CareerPage(
+                jobs: jobs,
+                certs: certs,
+              ),
             ),
             Route(
               path: RouteConstants.blogs,
               title: StringConstants.blogTitle,
-              builder: (context, state) => const BlogPage(),
+              builder: (context, state) => BlogPage(
+                articles: blogList,
+              ),
             ),
+            Route(
+              path: RouteConstants.projects,
+              title: StringConstants.projectTitle,
+              builder: (context, state) => BlogPage(
+                articles: blogList,
+              ),
+            ),
+            ...contentRoutes.expand((e) => e), // Injected from ContentApp.custom
           ],
         ),
       ],
     );
   }
-}
-
-/// Shared shell rendered around every page: Navbar at top, Footer at bottom.
-class PageShell extends StatelessComponent {
-  const PageShell({required this.child});
-
-  final Component child;
-
-  static const _navItems = [
-    (label: 'Portfolio', to: RouteConstants.portfolio),
-    (label: 'Career', to: RouteConstants.career),
-    (label: 'Blog', to: RouteConstants.blogs),
-    (label: 'Projects', to: RouteConstants.projects),
-  ];
-
-  static const _footerLinks = [
-    (label: 'GitHub', href: 'https://github.com/subhojit'),
-    (label: 'LinkedIn', href: 'https://linkedin.com/in/subhojit'),
-    (label: 'Email', href: 'mailto:hello@subhojitpramanik.dev'),
-  ];
-
-  @override
-  Component build(BuildContext context) {
-    return div(classes: 'page', [
-      const Navbar(navItems: _navItems),
-      child,
-      const Footer(links: _footerLinks),
-    ]);
-  }
-
-  @css
-  static List<StyleRule> get styles => [
-    css('.page').styles(
-      display: .flex,
-      minHeight: 100.vh,
-      flexDirection: .column,
-    ),
-  ];
 }
