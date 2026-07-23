@@ -12,6 +12,8 @@ import 'package:jaspr_content/components/_internal/tab_bar.dart'
     deferred as _tab_bar;
 import 'package:jaspr_content/components/_internal/zoomable_image.dart'
     deferred as _zoomable_image;
+import 'package:jaspr_content/components/sidebar_toggle_button.dart'
+    deferred as _sidebar_toggle_button;
 import 'package:jaspr_content/components/theme_toggle.dart'
     deferred as _theme_toggle;
 
@@ -51,6 +53,10 @@ ClientOptions get defaultClientOptions => ClientOptions(
         caption: p['caption'] as String?,
       ),
       loader: _zoomable_image.loadLibrary,
+    ),
+    'jaspr_content:sidebar_toggle_button': ClientLoader(
+      (p) => _sidebar_toggle_button.SidebarToggleButton(),
+      loader: _sidebar_toggle_button.loadLibrary,
     ),
     'jaspr_content:theme_toggle': ClientLoader(
       (p) => _theme_toggle.ThemeToggle(),

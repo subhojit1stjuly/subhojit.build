@@ -10,6 +10,7 @@ import 'package:jaspr_content/components/callout.dart';
 import 'package:jaspr_content/components/code_block.dart';
 import 'package:jaspr_content/components/drop_cap.dart';
 import 'package:jaspr_content/components/file_tree.dart';
+import 'package:jaspr_content/components/header.dart';
 import 'package:jaspr_content/components/image.dart';
 import 'package:jaspr_content/components/post_break.dart';
 import 'package:jaspr_content/components/tabs.dart';
@@ -52,7 +53,12 @@ void main() async {
       configResolver: PageConfig.all(
         parsers: [MarkdownParser()],
         layouts: [
-          BlogLayout(),
+          BlogLayout(
+            header: Header(
+              title: 'Jaspr Blog',
+              logo: 'https://raw.githubusercontent.com/schultek/jaspr/refs/heads/main/assets/logo.png',
+            ),
+          ),
           DocsLayout(),
         ],
         components: [

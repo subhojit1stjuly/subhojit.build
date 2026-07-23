@@ -16,6 +16,8 @@ import 'package:jaspr_content/components/drop_cap.dart' as _drop_cap;
 import 'package:jaspr_content/components/file_tree.dart' as _file_tree;
 import 'package:jaspr_content/components/image.dart' as _image;
 import 'package:jaspr_content/components/post_break.dart' as _post_break;
+import 'package:jaspr_content/components/sidebar_toggle_button.dart'
+    as _sidebar_toggle_button;
 import 'package:jaspr_content/components/tabs.dart' as _tabs;
 import 'package:jaspr_content/components/theme_toggle.dart' as _theme_toggle;
 import 'package:subhojit_build/core/theme/theme.dart' as _theme;
@@ -71,6 +73,10 @@ ServerOptions get defaultServerOptions => ServerOptions(
       'jaspr_content:zoomable_image',
       params: __zoomable_imageZoomableImage,
     ),
+    _sidebar_toggle_button.SidebarToggleButton:
+        ClientTarget<_sidebar_toggle_button.SidebarToggleButton>(
+          'jaspr_content:sidebar_toggle_button',
+        ),
     _theme_toggle.ThemeToggle: ClientTarget<_theme_toggle.ThemeToggle>(
       'jaspr_content:theme_toggle',
     ),
