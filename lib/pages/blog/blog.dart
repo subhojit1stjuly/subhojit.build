@@ -4,6 +4,8 @@ import 'package:jaspr_content/jaspr_content.dart';
 import 'package:subhojit_build/core/constants/constants.dart';
 import 'package:subhojit_build/core/constants/dummy_data.dart';
 import 'package:subhojit_build/core/theme/colors.dart';
+import 'package:subhojit_build/pages/blog/components/featured_article_card.dart';
+import 'package:subhojit_build/pages/blog/components/newsletter_card.dart';
 import 'package:subhojit_build/pages/blog/model/blog_article.dart';
 
 // ── Blog page ─────────────────────────────────────────────────────────────────
@@ -59,7 +61,7 @@ class BlogPage extends StatelessComponent {
           // ── Main content (left) ─────────────────────────────────
           div(classes: 'blog-main', [
             // Featured article — large card (first article, preferably featured)
-            if (displayArticles.isNotEmpty) _FeaturedArticleCard(article: displayArticles.first),
+            if (displayArticles.isNotEmpty) FeaturedArticleCard(article: displayArticles.first),
 
             // Article grid — 2 × N
             div(classes: 'blog-grid', [
@@ -84,7 +86,7 @@ class BlogPage extends StatelessComponent {
           // ── Sidebar (right) ─────────────────────────────────────
           aside(classes: 'blog-sidebar', [
             // Newsletter card
-            _NewsletterCard(),
+            NewsletterCard(),
 
             // Taxonomy
             div(classes: 'taxonomy-card tonal-card', [
@@ -417,35 +419,6 @@ Color _parseColor(String? colorStr) {
   return surfaceContainer;
 }
 
-// ── Featured article card ─────────────────────────────────────────────────────
-class _FeaturedArticleCard extends StatelessComponent {
-  const _FeaturedArticleCard({required this.article});
-  final BlogArticle article;
-
-  @override
-  Component build(BuildContext context) {
-    return div(classes: 'featured-card', [
-      div(classes: 'featured-image', styles: Styles(backgroundColor: article.imageColor), [
-        span(classes: 'material-symbols-outlined', styles: Styles(fontSize: 48.px, color: primaryColor), [
-          .text('article'),
-        ]),
-      ]),
-      div(classes: 'featured-content', [
-        div(classes: 'article-meta', [
-          span(classes: 'article-category', [.text(article.category)]),
-          span(classes: 'article-readtime', [.text(article.readMin)]),
-        ]),
-        p(classes: 'article-title', [.text(article.title)]),
-        p(classes: 'article-excerpt', [.text(article.excerpt)]),
-        a(href: article.href, classes: 'article-read-link', [
-          .text('Read Article'),
-          span(classes: 'material-symbols-outlined', [.text('arrow_forward')]),
-        ]),
-      ]),
-    ]);
-  }
-}
-
 // ── Standard article card ─────────────────────────────────────────────────────
 class _ArticleCard extends StatelessComponent {
   const _ArticleCard({required this.article});
@@ -455,9 +428,16 @@ class _ArticleCard extends StatelessComponent {
   Component build(BuildContext context) {
     return div(classes: 'article-card', [
       div(classes: 'article-card-image', styles: Styles(backgroundColor: article.imageColor), [
-        span(classes: 'material-symbols-outlined', styles: Styles(fontSize: 32.px, color: primaryColor), [
-          .text('article'),
-        ]),
+        span(
+          classes: 'material-symbols-outlined',
+          styles: Styles(
+            color: primaryColor,
+            fontSize: 32.px,
+          ),
+          [
+            .text('article'),
+          ],
+        ),
       ]),
       div(classes: 'article-card-body', [
         div(classes: 'article-meta', [
@@ -473,31 +453,6 @@ class _ArticleCard extends StatelessComponent {
           ]),
         ]),
       ]),
-    ]);
-  }
-}
-
-// ── Newsletter card ───────────────────────────────────────────────────────────
-class _NewsletterCard extends StatelessComponent {
-  const _NewsletterCard();
-
-  @override
-  Component build(BuildContext context) {
-    return div(classes: 'newsletter-card', [
-      p(classes: 'newsletter-title', [.text("The Flutter Engineer's Log")]),
-      p(classes: 'newsletter-sub', [
-        .text(
-          'Bi-weekly deep dives into Flutter architecture and mobile performance. '
-          'No fluff — just code and patterns.',
-        ),
-      ]),
-      input(
-        type: InputType.email,
-        classes: 'newsletter-input',
-        attributes: {'placeholder': 'email@example.com'},
-      ),
-      div(classes: 'newsletter-btn', [.text('Subscribe Now')]),
-      p(classes: 'newsletter-note', [.text('Join 2,000+ Flutter engineers. Opt-out anytime.')]),
     ]);
   }
 }
