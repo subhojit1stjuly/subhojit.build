@@ -21,7 +21,6 @@ import 'package:subhojit_build/core/theme/theme.dart';
 
 // Imports the [App] component.
 import 'app.dart';
-import 'pages/blog/blog.dart';
 
 // This file is generated automatically by Jaspr, do not remove or edit.
 import 'main.server.options.dart';
@@ -34,6 +33,9 @@ void main() async {
   // 2. Load your data BEFORE calling runApp
   // This happens once when the server starts
   final blogList = await ContentService.getBlogsAsync();
+  final jobs = await ContentService.getCareersAsync();
+  final carts = await ContentService.getCertificationsAsync();
+  final projects = await ContentService.getProjectsAsync();
 
   // Starts the app with jaspr_content integration.
   //
@@ -80,6 +82,9 @@ void main() async {
         return App(
           contentRoutes: contentRoutes,
           blogList: blogList,
+          jobs: jobs,
+          certs: carts,
+          projects: projects,
         );
       },
     ),

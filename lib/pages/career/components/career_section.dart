@@ -1,9 +1,9 @@
 import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 import 'package:subhojit_build/core/theme/colors.dart';
-
-import '../../../core/theme/theme.dart';
-import '../models/job_experience.dart';
+import 'package:subhojit_build/pages/career/components/desktop_entry.dart';
+import 'package:subhojit_build/pages/career/components/mobile_entry.dart';
+import 'package:subhojit_build/pages/career/models/job_experience.dart';
 
 /// Career timeline section.
 ///
@@ -27,12 +27,12 @@ class CareerSection extends StatelessComponent {
 
         // Mobile: dot-and-line timeline
         div(classes: 'career-timeline career-timeline--mobile', [
-          for (final job in jobs) _MobileEntry(job: job),
+          for (final job in jobs) MobileEntry(job: job),
         ]),
 
         // Desktop: zigzag
         div(classes: 'career-timeline career-timeline--desktop', [
-          for (int i = 0; i < jobs.length; i++) _DesktopEntry(job: jobs[i], isReversed: i.isOdd),
+          for (int i = 0; i < jobs.length; i++) DesktopEntry(job: jobs[i], isReversed: i.isOdd),
         ]),
       ]),
     ]);
@@ -66,56 +66,56 @@ class CareerSection extends StatelessComponent {
       raw: {'flex-shrink': '0', 'padding-top': '4px'},
     ),
     css('.mobile-dot').styles(
+      display: .flex,
       width: 40.px,
       height: 40.px,
       radius: BorderRadius.circular(99.px),
-      backgroundColor: primaryFixed,
-      display: .flex,
-      alignItems: .center,
       justifyContent: .center,
+      alignItems: .center,
       color: primaryColor,
+      backgroundColor: primaryFixed,
       raw: {'flex-shrink': '0', 'z-index': '1'},
     ),
     css('.mobile-spine').styles(
       width: 1.px,
-      backgroundColor: outlineVariant,
       flex: Flex(grow: 1),
+      backgroundColor: outlineVariant,
       raw: {'margin-top': '8px'},
     ),
     css('.mobile-entry:last-child .mobile-spine').styles(display: .none),
     css('.mobile-content').styles(flex: Flex(grow: 1), raw: {'padding-top': '4px'}),
     css('.entry-date').styles(
+      color: primaryColor,
       fontSize: 12.px,
       fontWeight: .w600,
-      color: primaryColor,
       raw: {'margin-bottom': '0.25rem', 'letter-spacing': '0.02em'},
     ),
     css('.entry-role').styles(
+      color: onSurface,
       fontSize: 20.px,
       fontWeight: .w700,
-      color: onSurface,
       raw: {'margin-bottom': '0.125rem'},
     ),
     css('.entry-company').styles(
-      fontSize: 14.px,
       color: primaryColor,
+      fontSize: 14.px,
       fontWeight: .w500,
       raw: {'margin-bottom': '0.75rem'},
     ),
     css('.entry-desc').styles(
-      fontSize: 14.px,
       color: onSurfaceVariant,
+      fontSize: 14.px,
       lineHeight: 1.6.em,
       raw: {'margin-bottom': '0.875rem'},
     ),
     css('.entry-tags').styles(display: .flex, flexWrap: .wrap, gap: Gap.all(0.375.rem)),
     css('.entry-tag').styles(
-      fontSize: 11.px,
-      fontWeight: .w500,
-      color: onSurfaceVariant,
-      backgroundColor: surfaceContainerHigh,
       padding: .symmetric(horizontal: 0.625.rem, vertical: 0.25.rem),
       radius: BorderRadius.circular(4.px),
+      color: onSurfaceVariant,
+      fontSize: 11.px,
+      fontWeight: .w500,
+      backgroundColor: surfaceContainerHigh,
     ),
 
     // ── Desktop zigzag ───────────────────────────────────────────────────────
@@ -159,20 +159,20 @@ class CareerSection extends StatelessComponent {
       // Node column (always centre)
       css('.desktop-node').styles(
         display: .flex,
-        alignItems: .center,
         justifyContent: .center,
+        alignItems: .center,
         raw: {'z-index': '1'},
       ),
       css('.desktop-node-circle').styles(
+        display: .flex,
         width: 56.px,
         height: 56.px,
-        radius: BorderRadius.circular(99.px),
-        backgroundColor: surfaceContainerLowest,
         border: Border.all(color: primaryColor, style: BorderStyle.solid, width: 2.px),
-        display: .flex,
-        alignItems: .center,
+        radius: BorderRadius.circular(99.px),
         justifyContent: .center,
+        alignItems: .center,
         color: primaryColor,
+        backgroundColor: surfaceContainerLowest,
         raw: {'box-shadow': '0 0 0 6px ${primaryFixed.value}'},
       ),
 
@@ -194,87 +194,31 @@ class CareerSection extends StatelessComponent {
       ),
 
       css('.desktop-date').styles(
+        color: primaryColor,
         fontSize: 12.px,
         fontWeight: .w700,
-        color: primaryColor,
         raw: {'letter-spacing': '0.04em', 'margin-bottom': '0.375rem'},
       ),
       css('.desktop-role').styles(
+        color: onSurface,
         fontSize: 22.px,
         fontWeight: .w700,
-        color: onSurface,
         raw: {'margin-bottom': '0.25rem'},
       ),
       css('.desktop-company').styles(
-        fontSize: 14.px,
         color: primaryColor,
+        fontSize: 14.px,
         fontWeight: .w500,
       ),
 
       // Achievement card
       css('.desktop-card').styles(
-        backgroundColor: surfaceContainerLowest,
-        radius: BorderRadius.circular(12.px),
         padding: .all(1.25.rem),
+        radius: BorderRadius.circular(12.px),
+        backgroundColor: surfaceContainerLowest,
         raw: {'box-shadow': '0px 2px 8px rgba(26,28,30,0.04)'},
       ),
       css('.desktop-card .entry-desc').styles(raw: {'margin-bottom': '0.75rem'}),
     ]),
   ];
-}
-
-// ── Mobile entry ──────────────────────────────────────────────────────────────
-class _MobileEntry extends StatelessComponent {
-  const _MobileEntry({required this.job});
-  final JobExperience job;
-
-  @override
-  Component build(BuildContext context) {
-    return div(classes: 'mobile-entry', [
-      div(classes: 'mobile-dot-col', [
-        div(classes: 'mobile-dot', [
-          span(classes: 'material-symbols-outlined', [.text('work')]),
-        ]),
-        div(classes: 'mobile-spine', []),
-      ]),
-      div(classes: 'mobile-content', [
-        p(classes: 'entry-date', [.text(job.duration)]),
-        p(classes: 'entry-role', [.text(job.role)]),
-        p(classes: 'entry-company', [.text(job.company)]),
-        p(classes: 'entry-desc', [.text(job.responsibilities.join(' • '))]),
-      ]),
-    ]);
-  }
-}
-
-// ── Desktop zigzag entry ───────────────────────────────────────────────────────
-class _DesktopEntry extends StatelessComponent {
-  const _DesktopEntry({required this.job, required this.isReversed});
-  final JobExperience job;
-  final bool isReversed;
-
-  @override
-  Component build(BuildContext context) {
-    final modClass = isReversed ? 'desktop-entry--reversed' : 'desktop-entry--normal';
-    return div(classes: 'desktop-entry $modClass', [
-      // Title column
-      div(classes: 'desktop-title-col', [
-        p(classes: 'desktop-date', [.text(job.duration)]),
-        p(classes: 'desktop-role', [.text(job.role)]),
-        p(classes: 'desktop-company', [.text(job.company)]),
-      ]),
-      // Centre node
-      div(classes: 'desktop-node', [
-        div(classes: 'desktop-node-circle', [
-          span(classes: 'material-symbols-outlined', [.text('work')]),
-        ]),
-      ]),
-      // Content card
-      div(classes: 'desktop-card-col', [
-        div(classes: 'desktop-card', [
-          p(classes: 'entry-desc', [.text(job.responsibilities.join(' • '))]),
-        ]),
-      ]),
-    ]);
-  }
 }

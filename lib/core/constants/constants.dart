@@ -1,5 +1,7 @@
+import 'package:jaspr/dom.dart';
 import 'package:subhojit_build/core/constants/route_constants.dart';
 import 'package:subhojit_build/core/constants/string_constants.dart';
+import 'package:subhojit_build/core/theme/colors.dart';
 
 class Constants {
   static const footerLinks = [
@@ -20,6 +22,16 @@ class Constants {
     (label: 'DevOps / CI/CD', count: '4'),
     (label: 'UI & Animations', count: '7'),
   ];
+  static const compSkills = [
+    'Flutter',
+    'Dart',
+    'Firebase',
+    'REST APIs',
+    'GraphQL',
+    'Git & GitHub',
+    'CI/CD',
+    'Agile Methodologies',
+  ];
 
   /// Returns the canonical path to match for active-link detection.
   static String activePath(String location) {
@@ -35,4 +47,17 @@ class Constants {
     RouteConstants.projects => 'projects',
     _ => 'folder_open',
   };
+
+  static Color parseProjectColor(String? colorStr) {
+    switch (colorStr) {
+      case 'primaryFixed':
+        return primaryFixed;
+      case 'secondaryContainer':
+        return secondaryContainer;
+      case 'surfaceContainer':
+        return surfaceContainer;
+      default:
+        return surfaceContainer;
+    }
+  }
 }
