@@ -1,8 +1,10 @@
 import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 import 'package:subhojit_build/core/theme/colors.dart';
-import 'package:subhojit_build/pages/project/components/project_card.dart';
 import 'package:subhojit_build/pages/project/models/project_doc.dart';
+import 'package:subhojit_build/shared/components/post_cards/poject_footer.dart';
+import 'package:subhojit_build/shared/components/post_cards/post_card.dart';
+import 'package:subhojit_build/shared/model/info_card_model.dart';
 
 class ProjectsPage extends StatelessComponent {
   final List<ProjectDoc> projects;
@@ -40,7 +42,20 @@ class ProjectsPage extends StatelessComponent {
 
             // Projects Grid[cite: 1]
             div(classes: 'projects-grid', [
-              for (final p in projects) ProjectCard(project: p),
+              for (final p in projects)
+                PostCard(
+                  data: InfoCardModel(
+                    title: p.title,
+                    description: p.description,
+                    imageUrl: p.imageUrl,
+                    category: p.category,
+                    tags: p.tags,
+                  ),
+                  footerComponet: ProjectFooter(
+                    liveUrl: p.liveUrl ?? '',
+                    repoUrl: p.repoUrl ?? '',
+                  ),
+                ),
             ]),
 
             // Pagination[cite: 1]

@@ -1,25 +1,24 @@
-// ── Article data ──────────────────────────────────────────────────────────────
-
 import 'package:jaspr/dom.dart';
 import 'package:subhojit_build/core/constants/constants.dart';
-import 'package:subhojit_build/shared/model/card_model.dart';
 
 /// Article data class for blog post metadata.
 /// Used by both hardcoded articles and jaspr_content MemoryLoader integration.
-class BlogArticle extends CardModel {
+class BlogArticle {
   BlogArticle({
     required this.category,
     required this.readMin,
-    required super.title,
-    required super.description,
-    required super.imageUrl,
-    required super.href,
+    required this.title,
+    required this.description,
+    required this.imageUrl,
+    required this.href,
     this.featured = false,
     required this.imageColor,
+    required this.tags,
   });
-  final String category, readMin;
+  final String category, readMin, title, description, imageUrl, href;
   final Color imageColor;
   final bool featured;
+  final List<String> tags;
 
   factory BlogArticle.fromMap(Map<String, dynamic> map, String slug) {
     return BlogArticle(
@@ -31,6 +30,7 @@ class BlogArticle extends CardModel {
       imageColor: Constants.parseProjectColor(map['imageColor']),
       featured: map['featured'] ?? false,
       imageUrl: map['imageUrl'] ?? '',
+      tags: List<String>.from(map['tags'] ?? []),
     );
   }
 }

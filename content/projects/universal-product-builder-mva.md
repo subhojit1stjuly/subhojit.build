@@ -1,7 +1,6 @@
 ---
 title: "Universal Product Builder MVA"
 category: "Open Source"
-readMin: "6 min read"
 description: "A modular 'Minimum Viable Architecture' template providing reusable infrastructure primitives including universal filter, sort, and search components for rapid enterprise scaling."
 tags: ["Architecture", "State Management", "UI/UX", "Packages"]
 repoUrl: "https://github.com/subhojitpramanik"

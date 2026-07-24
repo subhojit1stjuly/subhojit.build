@@ -1,7 +1,6 @@
 ---
 title: "AI Dev Workflow CLI Companion"
 category: "Developer Tooling"
-readMin: "3 min read"
 description: "A developer productivity tool designed to streamline prompt engineering workflows and integrate custom code generators directly into terminal environments."
 tags: ["Dart", "CLI", "AI", "Automation", "Workflow"]
 repoUrl: "https://github.com/subhojitpramanik"

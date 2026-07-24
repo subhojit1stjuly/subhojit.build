@@ -1,7 +1,6 @@
 ---
 title: "Offline-First CRDT Sync Engine"
 category: "Architecture"
-readMin: "5 min read"
 description: "A robust local-first data synchronization framework for Flutter using conflict-free replicated data types, ensuring seamless multi-device state consistency without central server bottlenecks."
 tags: ["Flutter", "Dart", "SQLite", "CRDT", "Offline-First"]
 repoUrl: "https://github.com/subhojitpramanik"

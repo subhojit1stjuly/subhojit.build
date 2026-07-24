@@ -1,7 +1,6 @@
 ---
 title: "Pixel Arcade: Flame 2D Engine"
 category: "Game Dev"
-readMin: "4 min read"
 description: "A retro arcade game built with the Flame engine on Flutter, featuring optimized custom sprite-sheet rendering, particle effects, and frame-rate independent physics loops."
 tags: ["Flame", "Flutter", "Pixel Art", "Mobile", "Canvas"]
 repoUrl: "https://github.com/subhojitpramanik"

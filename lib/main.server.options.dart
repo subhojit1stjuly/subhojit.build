@@ -38,8 +38,8 @@ import 'package:subhojit_build/shared/components/header/header_component.dart'
     as _header_component;
 import 'package:subhojit_build/shared/components/header/top_appbar.dart'
     as _top_appbar;
-import 'package:subhojit_build/shared/components/description_card.dart'
-    as _description_card;
+import 'package:subhojit_build/shared/components/post_cards/post_card.dart'
+    as _post_card;
 import 'package:subhojit_build/shared/components/footer.dart' as _footer;
 import 'package:subhojit_build/shared/components/page_shell.dart'
     as _page_shell;
@@ -103,11 +103,11 @@ ServerOptions get defaultServerOptions => ServerOptions(
     ..._hero_section.HeroSection.styles,
     ..._projects_section.ProjectsSection.styles,
     ..._project.ProjectsPage.styles,
-    ..._description_card.DescriptionCard.styles,
     ..._footer.Footer.styles,
     ..._page_shell.PageShell.styles,
     ..._header_component.HeaderComponent.styles,
     ..._top_appbar.TopAppbar.styles,
+    ..._post_card.PostCard.styles,
   ],
 );
 

@@ -3,6 +3,7 @@ title: "Clean Architecture in Flutter: A Production Guide"
 date: "2026-07-20"
 description: "How to structure large Flutter apps with Clean Architecture so your codebase stays maintainable as the team and feature-set grow."
 category: "Architecture"
+tags: ["Dart", "CLI", "AI", "Automation", "Workflow"]
 readMin: "12 min read"
 featured: true
 layout: "blog"

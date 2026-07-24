@@ -3,6 +3,7 @@ title: "Riverpod 3 vs Bloc: When to Use Which"
 date: "2026-07-10"
 description: "A pragmatic comparison of the two dominant state management solutions in Flutter, with real-world trade-off examples."
 category: "State Management"
+tags: ["Dart", "CLI", "AI", "Automation", "Workflow"]
 readMin: "10 min read"
 featured: false
 layout: "blog"

@@ -3,13 +3,12 @@ import 'package:jaspr/jaspr.dart';
 import 'package:subhojit_build/core/constants/constants.dart';
 import 'package:subhojit_build/core/constants/dummy_data.dart';
 import 'package:subhojit_build/core/theme/colors.dart';
-import 'package:subhojit_build/pages/blog/components/article_card.dart';
+import 'package:subhojit_build/shared/components/post_cards/blog_footer.dart';
 import 'package:subhojit_build/pages/blog/components/featured_article_card.dart';
 import 'package:subhojit_build/pages/blog/components/newsletter_card.dart';
 import 'package:subhojit_build/pages/blog/model/blog_article.dart';
-import 'package:subhojit_build/shared/components/description_card.dart';
-
-// ── Blog page ─────────────────────────────────────────────────────────────────
+import 'package:subhojit_build/shared/components/post_cards/post_card.dart';
+import 'package:subhojit_build/shared/model/info_card_model.dart';
 
 /// Technical Insights blog page (/blog).
 ///
@@ -17,7 +16,10 @@ import 'package:subhojit_build/shared/components/description_card.dart';
 /// Mobile:  Single column — newsletter card first, then articles, then pagination.
 class BlogPage extends StatelessComponent {
   final List<BlogArticle> articles;
-  const BlogPage({super.key, this.articles = const []});
+  const BlogPage({
+    super.key,
+    this.articles = const [],
+  });
 
   @override
   Component build(BuildContext context) {
@@ -66,7 +68,20 @@ class BlogPage extends StatelessComponent {
 
             // Article grid — 2 × N
             div(classes: 'blog-grid', [
-              for (final a in displayArticles.skip(1)) DescriptionCard(article: a),
+              for (final a in displayArticles.skip(1))
+                PostCard(
+                  data: InfoCardModel(
+                    title: a.title,
+                    description: a.description,
+                    imageUrl: a.imageUrl,
+                    category: a.category,
+                    tags: a.tags,
+                  ),
+                  footerComponet: BlogFooter(
+                    readMin: a.readMin,
+                    href: a.href,
+                  ),
+                ),
             ]),
 
             // Pagination

@@ -1,13 +1,15 @@
-abstract class CardModel {
+class InfoCardModel {
   final String title;
   final String description;
   final String imageUrl;
-  final String href;
+  final String category;
+  final List<String> tags;
 
-  CardModel({
+  InfoCardModel({
     required this.title,
     required this.description,
     required this.imageUrl,
-    required this.href,
+    required this.category,
+    required this.tags,
   });
 }

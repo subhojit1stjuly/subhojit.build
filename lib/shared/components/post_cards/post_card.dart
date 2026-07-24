@@ -1,49 +1,43 @@
-// ── Standard article card ─────────────────────────────────────────────────────
 import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 import 'package:subhojit_build/core/theme/colors.dart';
-import 'package:subhojit_build/pages/blog/model/blog_article.dart';
+import 'package:subhojit_build/shared/model/info_card_model.dart';
 
-class DescriptionCard extends StatelessComponent {
-  const DescriptionCard({required this.article});
-  final BlogArticle article;
+class PostCard extends StatelessComponent {
+  const PostCard({
+    required this.data,
+    required this.footerComponet,
+  });
+  final InfoCardModel data;
+  final Component footerComponet;
 
   @override
   Component build(BuildContext context) {
     return div(classes: 'common_card', [
-      // Image Container
-      div(classes: 'common_card-header', [
+      div(classes: 'project-image', styles: Styles(backgroundColor: secondaryContainer), [
+        // Image Container
         img(
           classes: 'common_card-img',
-          src: article.imageUrl,
-          alt: article.title,
+          src: data.imageUrl,
+          alt: data.title,
         ),
+        div(classes: 'common_card-category-chip', [.text(data.category)]),
       ]),
-      /*  div(classes: 'common_card-image', styles: Styles(backgroundColor: article.imageColor), [
-        span(
-          classes: 'material-symbols-outlined',
-          styles: Styles(
-            color: primaryColor,
-            fontSize: 32.px,
-          ),
-          [
-            .text('article'),
-          ],
+      // Image Container
+      /* div(classes: 'common_card-header', [
+        img(
+          classes: 'common_card-img',
+          src: data.imageUrl,
+          alt: data.title,
         ),
       ]), */
       div(classes: 'common_card-body', [
-        div(classes: 'article-meta', [
-          span(classes: 'article-category', [.text(article.category)]),
+        p(classes: 'common_card-title', [.text(data.title)]),
+        p(classes: 'common_card-excerpt', [.text(data.description)]),
+        div(classes: 'project-tags', [
+          for (final tag in data.tags) span(classes: 'common_card-tag', [.text(tag)]),
         ]),
-        p(classes: 'common_card-title', [.text(article.title)]),
-        p(classes: 'common_card-excerpt', [.text(article.description)]),
-        div(classes: 'common_card-footer', [
-          span(classes: 'common_card-read', [.text(article.readMin)]),
-          a(href: article.href, classes: 'common_card-read-btn', [
-            .text('Read'),
-            span(classes: 'material-symbols-outlined', [.text('open_in_new')]),
-          ]),
-        ]),
+        footerComponet,
       ]),
     ]);
   }
@@ -63,9 +57,22 @@ class DescriptionCard extends StatelessComponent {
       raw: {'box-shadow': '0px 2px 8px rgba(26,28,30,0.04)'},
     ),
     css('.common_card-img').styles(
-      width: Unit.percent(100),
-      height: Unit.percent(100),
-      raw: {'object-fit': 'cover'},
+      display: .flex,
+      height: 180.px,
+      justifyContent: .center,
+      alignItems: .center,
+      raw: {'position': 'relative', 'object-fit': 'cover'},
+    ),
+    css('.common_card-category-chip').styles(
+      position: .absolute(bottom: 12.px, left: 12.px),
+      padding: .symmetric(horizontal: 0.625.rem, vertical: 0.25.rem),
+      radius: BorderRadius.circular(4.px),
+      color: primaryColor,
+      fontSize: 11.px,
+      fontWeight: .w600,
+      textTransform: TextTransform.upperCase,
+      backgroundColor: primaryFixed,
+      raw: {'letter-spacing': '0.05em'},
     ),
     css('.common_card:hover').styles(
       raw: {'transform': 'translateY(-2px)', 'box-shadow': '0px 8px 24px rgba(26,28,30,0.10)'},
@@ -114,6 +121,20 @@ class DescriptionCard extends StatelessComponent {
       fontWeight: .w700,
       textTransform: TextTransform.upperCase,
       raw: {'letter-spacing': '0.05em'},
+    ),
+    css('.common_card-tags').styles(
+      display: .flex,
+      flexWrap: .wrap,
+      gap: Gap.all(0.375.rem),
+      raw: {'margin-bottom': '1rem'},
+    ),
+    css('.common_card-tag').styles(
+      padding: .symmetric(horizontal: 0.5.rem, vertical: 0.25.rem),
+      radius: BorderRadius.circular(8.px),
+      color: onSurface,
+      fontSize: 11.px,
+      fontWeight: .w500,
+      backgroundColor: surfaceContainerHigh,
     ),
   ];
 }

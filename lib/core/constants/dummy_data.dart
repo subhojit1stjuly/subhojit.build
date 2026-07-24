@@ -16,6 +16,7 @@ class DummyData {
       featured: true,
       imageColor: secondaryContainer,
       imageUrl: '',
+      tags: ['flutter', 'architecture', 'clean architecture'],
     ),
     BlogArticle(
       category: 'Performance',
@@ -27,6 +28,7 @@ class DummyData {
       href: '#',
       imageColor: primaryFixed,
       imageUrl: '',
+      tags: ['flutter', 'architecture', 'clean architecture'],
     ),
     BlogArticle(
       category: 'State Management',
@@ -38,6 +40,7 @@ class DummyData {
       href: '#',
       imageColor: surfaceContainer,
       imageUrl: '',
+      tags: ['flutter', 'architecture', 'clean architecture'],
     ),
     BlogArticle(
       category: 'DevOps',
@@ -49,6 +52,7 @@ class DummyData {
       href: '#',
       imageColor: secondaryContainer,
       imageUrl: '',
+      tags: ['flutter', 'architecture', 'clean architecture'],
     ),
     BlogArticle(
       category: 'Architecture',
@@ -60,6 +64,7 @@ class DummyData {
       href: '#',
       imageColor: primaryFixed,
       imageUrl: '',
+      tags: ['flutter', 'architecture', 'clean architecture'],
     ),
   ];
 }

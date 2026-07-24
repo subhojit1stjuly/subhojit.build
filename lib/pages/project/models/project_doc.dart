@@ -10,9 +10,8 @@ class ProjectDoc {
   final String? liveUrl;
   final Color imageColor;
   final bool featured;
-  final String readTime; // e.g., '3 min read' or architectural scope
   final String href; // Route path for single project view
-  final String imageURL; // Placeholder for image URL or icon name
+  final String imageUrl; // Placeholder for image URL or icon name
 
   const ProjectDoc({
     required this.title,
@@ -23,9 +22,8 @@ class ProjectDoc {
     this.liveUrl,
     required this.imageColor,
     this.featured = false,
-    this.readTime = 'Case Study',
     required this.href,
-    required this.imageURL,
+    required this.imageUrl,
   });
   factory ProjectDoc.fromMap(Map<String, dynamic> map, String slug) {
     return ProjectDoc(
@@ -37,8 +35,7 @@ class ProjectDoc {
       liveUrl: map['liveUrl'],
       imageColor: Constants.parseProjectColor(map['imageColor']),
       featured: map['featured'] ?? false,
-      readTime: map['readMin'] ?? '4 min read',
-      imageURL: map['imageURL'] ?? '',
+      imageUrl: map['imageUrl'] ?? '',
       href: '/$slug',
     );
   }
