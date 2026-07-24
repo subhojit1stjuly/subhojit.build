@@ -2,8 +2,8 @@ import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 import 'package:jaspr_router/jaspr_router.dart';
 import 'package:subhojit_build/core/theme/colors.dart';
-import 'package:subhojit_build/shared_components/header/mobile_navbar.dart';
-import 'package:subhojit_build/shared_components/header/top_appbar.dart';
+import 'package:subhojit_build/shared/components/header/mobile_navbar.dart';
+import 'package:subhojit_build/shared/components/header/top_appbar.dart';
 
 /// Shared top navigation bar — rendered once by the [ShellRoute].
 ///

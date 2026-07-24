@@ -6,9 +6,10 @@ import 'package:subhojit_build/pages/blog/model/blog_article.dart';
 import 'package:subhojit_build/pages/career/models/certification.dart';
 import 'package:subhojit_build/pages/career/models/job_experience.dart';
 import 'package:subhojit_build/pages/project/models/project_doc.dart';
-import 'package:subhojit_build/shared_components/page_shell.dart';
+import 'package:subhojit_build/pages/project/project.dart';
+import 'package:subhojit_build/shared/components/page_shell.dart';
 
-import 'shared_components/footer.dart';
+import 'shared/components/footer.dart';
 import 'pages/blog/blog.dart';
 import 'pages/career/career.dart';
 import 'pages/portfolio/home.dart';
@@ -26,14 +27,14 @@ class App extends StatelessComponent {
   final List<List<RouteBase>> contentRoutes; // Injected from ContentApp.custom
   final List<BlogArticle> blogList;
   final List<JobExperience> jobs;
-  final List<Certification> certs;
+  final List<Certification> certificates;
   final List<ProjectDoc> projects;
   const App({
     super.key,
     required this.contentRoutes,
     required this.blogList,
     required this.jobs,
-    required this.certs,
+    required this.certificates,
     required this.projects,
   });
 
@@ -54,7 +55,7 @@ class App extends StatelessComponent {
               title: StringConstants.careerTitle,
               builder: (context, state) => CareerPage(
                 jobs: jobs,
-                certs: certs,
+                certificates: certificates,
               ),
             ),
             Route(
@@ -67,8 +68,8 @@ class App extends StatelessComponent {
             Route(
               path: RouteConstants.projects,
               title: StringConstants.projectTitle,
-              builder: (context, state) => BlogPage(
-                articles: blogList,
+              builder: (context, state) => ProjectsPage(
+                projects: projects,
               ),
             ),
             ...contentRoutes.expand((e) => e), // Injected from ContentApp.custom

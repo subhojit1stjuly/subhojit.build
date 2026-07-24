@@ -18,7 +18,9 @@ class ContentService {
 
       // Split the frontmatter (starts and ends with ---)
       final parts = content.split('---');
-      final frontmatter = loadYaml(parts[1]); // Requires 'yaml' package
+      // Load and convert YamlMap to Map<String, dynamic>
+      final yamlData = loadYaml(parts[1]);
+      final frontmatter = Map<String, dynamic>.from(yamlData);
 
       final slug = file.path.split('/').last.replaceAll('.md', '');
 
@@ -36,7 +38,9 @@ class ContentService {
 
       // Split the frontmatter (starts and ends with ---)
       final parts = content.split('---');
-      final frontmatter = loadYaml(parts[1]); // Requires 'yaml' package
+      // Load and convert YamlMap to Map<String, dynamic>
+      final yamlData = loadYaml(parts[1]);
+      final frontmatter = Map<String, dynamic>.from(yamlData);
 
       final slug = file.path.split('/').last.replaceAll('.md', '');
 
@@ -54,7 +58,9 @@ class ContentService {
 
       // Split the frontmatter (starts and ends with ---)
       final parts = content.split('---');
-      final frontmatter = loadYaml(parts[1]); // Requires 'yaml' package
+      // Load and convert YamlMap to Map<String, dynamic>
+      final yamlData = loadYaml(parts[1]);
+      final frontmatter = Map<String, dynamic>.from(yamlData);
 
       final slug = file.path.split('/').last.replaceAll('.md', '');
 
@@ -71,7 +77,9 @@ class ContentService {
 
       // Split the frontmatter (starts and ends with ---)
       final parts = content.split('---');
-      final frontmatter = loadYaml(parts[1]); // Requires 'yaml' package
+      // Load and convert YamlMap to Map<String, dynamic>
+      final yamlData = loadYaml(parts[1]);
+      final frontmatter = Map<String, dynamic>.from(yamlData);
 
       final slug = file.path.split('/').last.replaceAll('.md', '');
 

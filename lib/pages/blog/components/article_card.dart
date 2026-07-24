@@ -28,7 +28,7 @@ class ArticleCard extends StatelessComponent {
           span(classes: 'article-category', [.text(article.category)]),
         ]),
         p(classes: 'article-card-title', [.text(article.title)]),
-        p(classes: 'article-card-excerpt', [.text(article.excerpt)]),
+        p(classes: 'article-card-excerpt', [.text(article.description)]),
         div(classes: 'article-card-footer', [
           span(classes: 'article-card-read', [.text(article.readMin)]),
           a(href: article.href, classes: 'article-read-btn', [

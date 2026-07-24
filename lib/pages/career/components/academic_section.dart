@@ -4,8 +4,8 @@ import 'package:subhojit_build/pages/career/components/cert_card.dart';
 import 'package:subhojit_build/pages/career/models/certification.dart';
 
 class AcademicSection extends StatelessComponent {
-  final List<Certification> certs;
-  const AcademicSection({super.key, required this.certs});
+  final List<Certification> certificates;
+  const AcademicSection({super.key, required this.certificates});
 
   @override
   Component build(BuildContext context) {
@@ -16,7 +16,7 @@ class AcademicSection extends StatelessComponent {
           h2(classes: 'academic-title t-headline', [.text('Academic & Validation')]),
         ]),
         div(classes: 'cert-grid', [
-          for (final c in certs) CertCard(cert: c),
+          for (final c in certificates) CertCard(cert: c),
         ]),
       ]),
     ]);

@@ -1,7 +1,7 @@
 import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
-import 'package:subhojit_build/shared_components/footer.dart';
-import 'package:subhojit_build/shared_components/header/header_component.dart';
+import 'package:subhojit_build/shared/components/footer.dart';
+import 'package:subhojit_build/shared/components/header/header_component.dart';
 
 /// Shared shell rendered around every page: Navbar at top, Footer at bottom.
 class PageShell extends StatelessComponent {
