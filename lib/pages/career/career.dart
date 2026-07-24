@@ -13,11 +13,11 @@ import 'models/job_experience.dart';
 /// Career & Experience page (/career).
 class CareerPage extends StatelessComponent {
   final List<JobExperience> jobs;
-  final List<Certification> certs;
+  final List<Certification> certificates;
   const CareerPage({
     super.key,
     required this.jobs,
-    required this.certs,
+    required this.certificates,
   });
 
   @override
@@ -25,7 +25,7 @@ class CareerPage extends StatelessComponent {
     return Component.fragment([
       const CareerHero(),
       CareerSection(jobs: jobs),
-      AcademicSection(certs: certs),
+      AcademicSection(certificates: certificates),
       const CompetenciesSection(),
       const PhilosophySection(),
     ]);
@@ -179,12 +179,12 @@ class CareerPage extends StatelessComponent {
       backgroundColor: primaryContainer,
     ),
     css('.comp-stat-num').styles(
-      color: onPrimary,
+      color: onPrimary.light,
       fontSize: 56.px,
       fontWeight: .w700,
       raw: {'line-height': '1', 'margin-bottom': '0.5rem'},
     ),
-    css('.comp-stat-label').styles(color: onPrimary),
+    css('.comp-stat-label').styles(color: onPrimary.light),
     css('.comp-block--lavender').styles(
       textAlign: TextAlign.center,
       backgroundColor: primaryFixed,

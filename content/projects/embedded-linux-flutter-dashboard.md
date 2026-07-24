@@ -2,12 +2,13 @@
 title: "Embedded Linux Flutter Dashboard"
 category: "Embedded Systems"
 readMin: "4 min read"
-excerpt: "A high-performance system telemetry dashboard built for embedded Linux hardware running on Raspberry Pi, optimized for minimal memory footprint and hardware acceleration."
+description: "A high-performance system telemetry dashboard built for embedded Linux hardware running on Raspberry Pi, optimized for minimal memory footprint and hardware acceleration."
 tags: ["Flutter", "Embedded Linux", "Raspberry Pi", "IoT", "C++"]
 repoUrl: "https://github.com/subhojitpramanik"
 liveUrl: ""
 imageColor: "primaryFixed"
 featured: false
+imageUrl: "https://flutter.dev/assets/shadow-dash.d59d0e8266b087a7a7f8a61c50ad4f6e.png"
 ---
 
 ## Overview

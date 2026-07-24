@@ -3,7 +3,7 @@ import 'package:jaspr/jaspr.dart';
 import 'package:jaspr_content/components/theme_toggle.dart';
 import 'package:jaspr_router/jaspr_router.dart';
 import 'package:subhojit_build/core/theme/colors.dart';
-import 'package:subhojit_build/shared_components/header/web_navbar.dart';
+import 'package:subhojit_build/shared/components/header/web_navbar.dart';
 
 class TopAppbar extends StatelessComponent {
   const TopAppbar({

@@ -150,9 +150,9 @@ class CoreExpertiseSection extends StatelessComponent {
 
     // ── Card base ──────────────────────────────────────────────────────────
     css('.expertise-card').styles(
-      backgroundColor: surfaceContainerLowest,
-      radius: BorderRadius.circular(16.px),
       padding: .all(1.75.rem),
+      radius: BorderRadius.circular(16.px),
+      backgroundColor: surfaceContainerLowest,
       raw: {'box-shadow': '0px 2px 8px rgba(26,28,30,0.04)'},
     ),
 
@@ -166,28 +166,28 @@ class CoreExpertiseSection extends StatelessComponent {
     // Decorative icon block (large card)
     css('.card-icon-block').styles(
       display: .flex,
-      alignItems: .center,
-      justifyContent: .center,
       width: 80.px,
       height: 80.px,
       radius: BorderRadius.circular(16.px),
+      justifyContent: .center,
+      alignItems: .center,
       backgroundColor: primaryFixed,
       raw: {'flex-shrink': '0', 'align-self': 'center'},
     ),
-    css('.card-icon').styles(fontSize: 40.px, color: primaryColor),
+    css('.card-icon').styles(color: primaryColor, fontSize: 40.px),
 
     // Small card icon
     css('.card-icon-sm-wrap').styles(
       display: .inlineFlex,
-      alignItems: .center,
-      justifyContent: .center,
       width: 44.px,
       height: 44.px,
       radius: BorderRadius.circular(12.px),
+      justifyContent: .center,
+      alignItems: .center,
       backgroundColor: primaryFixed,
       raw: {'margin-bottom': '1rem'},
     ),
-    css('.card-icon-sm').styles(fontSize: 22.px, color: primaryColor),
+    css('.card-icon-sm').styles(color: primaryColor, fontSize: 22.px),
 
     // Card typography
     css('.card-title').styles(color: onSurface, raw: {'margin-bottom': '0.625rem'}),
@@ -201,12 +201,12 @@ class CoreExpertiseSection extends StatelessComponent {
       raw: {'margin-top': '1rem'},
     ),
     css('.card-tag').styles(
-      fontSize: 12.px,
-      fontWeight: .w500,
-      color: onSurfaceVariant,
-      backgroundColor: surfaceContainerHigh,
       padding: .symmetric(horizontal: 0.625.rem, vertical: 0.25.rem),
       radius: BorderRadius.circular(4.px),
+      color: onSurfaceVariant,
+      fontSize: 12.px,
+      fontWeight: .w500,
+      backgroundColor: surfaceContainerHigh,
     ),
 
     // Bullet list
@@ -218,9 +218,9 @@ class CoreExpertiseSection extends StatelessComponent {
 
     // Wide card sub-columns
     css('.sub-card').styles(
-      backgroundColor: surfaceContainerLow,
-      radius: BorderRadius.circular(12.px),
       padding: .all(1.25.rem),
+      radius: BorderRadius.circular(12.px),
+      backgroundColor: surfaceContainerLow,
     ),
     css('.sub-card-label').styles(
       color: primaryColor,

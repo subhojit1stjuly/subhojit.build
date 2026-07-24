@@ -18,17 +18,19 @@ final surfaceVariant = ColorToken('surface-variant', Color('#e4e2dd'), dark: Col
 
 // Primary Brand Colors
 final primaryColor = ColorToken('primary', Color('#523fb9'), dark: Color('#c8bfff'));
+const secondaryColor = ColorToken('secondary', Color('#5d4ac4'));
 final primaryContainer = ColorToken('primary-container', Color('#6b59d3'), dark: Color('#452fab'));
 final onPrimary = ColorToken('on-primary', Color('#ffffff'), dark: Color('#1a1c1e'));
 final primaryFixed = ColorToken('primary-fixed', Color('#e5deff'), dark: Color('#2e2548'));
 final onPrimaryFixedVariant = ColorToken('on-primary-fixed-variant', Color('#452fab'), dark: Color('#b5a7ff'));
 final inversePrimary = ColorToken('inverse-primary', Color('#c8bfff'), dark: Color('#523fb9'));
+final trasparent = ColorToken('transparent', Color('#00000000'), dark: Color('#00000000'));
 
 // Text & Content
 final onSurface = ColorToken('on-surface', Color('#1b1c19'), dark: Color('#e4e2dd'));
 final onSurfaceVariant = ColorToken('on-surface-variant', Color('#484553'), dark: Color('#c9c4d5'));
-final inverseSurface = ColorToken('inverse-surface', Color('#30312e'), dark: Color('#e4e2dd'));
-final inverseOnSurface = ColorToken('inverse-on-surface', Color('#f2f1ec'), dark: Color('#1b1c19'));
+final inverseSurface = ColorToken('inverse-surface', Color('#e4e2dd'), dark: Color('#30312e'));
+final inverseOnSurface = ColorToken('inverse-on-surface', Color('#1b1c19'), dark: Color('#f2f1ec'));
 
 // Borders & Dividers
 final outline = ColorToken('outline', Color('#787585'), dark: Color('#8e8c99'));

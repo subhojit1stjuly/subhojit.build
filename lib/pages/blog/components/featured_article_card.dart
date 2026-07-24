@@ -29,7 +29,7 @@ class FeaturedArticleCard extends StatelessComponent {
           span(classes: 'article-readtime', [.text(article.readMin)]),
         ]),
         p(classes: 'article-title', [.text(article.title)]),
-        p(classes: 'article-excerpt', [.text(article.excerpt)]),
+        p(classes: 'article-excerpt', [.text(article.description)]),
         a(href: article.href, classes: 'article-read-link', [
           .text('Read Article'),
           span(classes: 'material-symbols-outlined', [.text('arrow_forward')]),

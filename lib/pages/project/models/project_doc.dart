@@ -1,6 +1,5 @@
 import 'package:jaspr/dom.dart';
 import 'package:subhojit_build/core/constants/constants.dart';
-import 'package:subhojit_build/core/theme/colors.dart';
 
 class ProjectDoc {
   final String title;
@@ -13,6 +12,7 @@ class ProjectDoc {
   final bool featured;
   final String readTime; // e.g., '3 min read' or architectural scope
   final String href; // Route path for single project view
+  final String imageURL; // Placeholder for image URL or icon name
 
   const ProjectDoc({
     required this.title,
@@ -25,11 +25,12 @@ class ProjectDoc {
     this.featured = false,
     this.readTime = 'Case Study',
     required this.href,
+    required this.imageURL,
   });
   factory ProjectDoc.fromMap(Map<String, dynamic> map, String slug) {
     return ProjectDoc(
       title: map['title'] ?? '',
-      description: map['excerpt'] ?? '',
+      description: map['description'] ?? '',
       category: map['category'] ?? 'Engineering',
       tags: List<String>.from(map['tags'] ?? []),
       repoUrl: map['repoUrl'],
@@ -37,7 +38,8 @@ class ProjectDoc {
       imageColor: Constants.parseProjectColor(map['imageColor']),
       featured: map['featured'] ?? false,
       readTime: map['readMin'] ?? '4 min read',
-      href: '/projects/$slug',
+      imageURL: map['imageURL'] ?? '',
+      href: '/$slug',
     );
   }
 }

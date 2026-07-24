@@ -29,7 +29,7 @@ class Certification {
       credentialId: map['credentialId'],
       credentialUrl: map['credentialUrl'],
       description: map['description'] ?? '',
-      href: '/certifications/$slug',
+      href: '/$slug',
       image: map['image'] ?? '',
       type: map['type'] ?? '',
     );

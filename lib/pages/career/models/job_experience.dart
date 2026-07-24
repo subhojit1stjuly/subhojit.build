@@ -28,7 +28,7 @@ class JobExperience {
       description: map['description'] ?? '',
       highlights: List<String>.from(map['highlights'] ?? []),
       current: map['current'] ?? false,
-      href: '/career/$slug',
+      href: '/$slug',
     );
   }
 }

@@ -2,12 +2,13 @@
 title: "Universal Product Builder MVA"
 category: "Open Source"
 readMin: "6 min read"
-excerpt: "A modular 'Minimum Viable Architecture' template providing reusable infrastructure primitives including universal filter, sort, and search components for rapid enterprise scaling."
+description: "A modular 'Minimum Viable Architecture' template providing reusable infrastructure primitives including universal filter, sort, and search components for rapid enterprise scaling."
 tags: ["Architecture", "State Management", "UI/UX", "Packages"]
 repoUrl: "https://github.com/subhojitpramanik"
 liveUrl: ""
 imageColor: "surfaceContainer"
 featured: false
+imageUrl: "https://flutter.dev/assets/shadow-dash.d59d0e8266b087a7a7f8a61c50ad4f6e.png"
 ---
 
 ## Overview

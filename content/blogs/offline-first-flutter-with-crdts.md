@@ -1,12 +1,13 @@
 ---
 title: "Offline-First Flutter with CRDTs"
 date: "2026-07-15"
-excerpt: "Implementing conflict-free replicated data types to give your app seamless offline sync that just works, even with multiple devices."
+description: "Implementing conflict-free replicated data types to give your app seamless offline sync that just works, even with multiple devices."
 category: "Architecture"
 readMin: "9 min read"
 featured: false
 layout: "blog"
 imageColor: "#e2f2d1"
+imageUrl: "https://flutter.dev/assets/shadow-dash.d59d0e8266b087a7a7f8a61c50ad4f6e.png"
 ---
 
 # Offline-First Flutter with CRDTs

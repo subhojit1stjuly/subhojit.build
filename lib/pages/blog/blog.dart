@@ -1,12 +1,13 @@
 import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
-import 'package:jaspr_content/jaspr_content.dart';
 import 'package:subhojit_build/core/constants/constants.dart';
 import 'package:subhojit_build/core/constants/dummy_data.dart';
 import 'package:subhojit_build/core/theme/colors.dart';
+import 'package:subhojit_build/pages/blog/components/article_card.dart';
 import 'package:subhojit_build/pages/blog/components/featured_article_card.dart';
 import 'package:subhojit_build/pages/blog/components/newsletter_card.dart';
 import 'package:subhojit_build/pages/blog/model/blog_article.dart';
+import 'package:subhojit_build/shared/components/description_card.dart';
 
 // ── Blog page ─────────────────────────────────────────────────────────────────
 
@@ -65,7 +66,7 @@ class BlogPage extends StatelessComponent {
 
             // Article grid — 2 × N
             div(classes: 'blog-grid', [
-              for (final a in displayArticles.skip(1)) _ArticleCard(article: a),
+              for (final a in displayArticles.skip(1)) DescriptionCard(article: a),
             ]),
 
             // Pagination
@@ -159,12 +160,12 @@ class BlogPage extends StatelessComponent {
       padding: .all(1.75.rem),
       flexDirection: .column,
       justifyContent: .center,
-      gap: Gap.all(0.75.rem),
+      gap: .all(0.75.rem),
     ),
     css('.article-meta').styles(
       display: .flex,
       alignItems: .center,
-      gap: Gap.all(0.75.rem),
+      gap: .all(0.75.rem),
     ),
     css('.article-category').styles(
       padding: .symmetric(horizontal: 0.625.rem, vertical: 0.25.rem),
@@ -176,7 +177,10 @@ class BlogPage extends StatelessComponent {
       backgroundColor: primaryFixed,
       raw: {'letter-spacing': '0.06em'},
     ),
-    css('.article-readtime').styles(fontSize: 12.px, color: onSurfaceVariant),
+    css('.article-readtime').styles(
+      color: onSurfaceVariant,
+      fontSize: 12.px,
+    ),
     css('.article-title').styles(
       color: onSurface,
       fontSize: 22.px,
@@ -224,7 +228,12 @@ class BlogPage extends StatelessComponent {
     css('.article-card:hover').styles(
       raw: {'transform': 'translateY(-2px)', 'box-shadow': '0px 8px 24px rgba(26,28,30,0.10)'},
     ),
-    css('.article-card-image').styles(height: 160.px, display: .flex, alignItems: .center, justifyContent: .center),
+    css('.article-card-image').styles(
+      display: .flex,
+      height: 160.px,
+      justifyContent: .center,
+      alignItems: .center,
+    ),
     css('.article-card-body').styles(
       display: .flex,
       padding: .all(1.25.rem),
@@ -289,8 +298,14 @@ class BlogPage extends StatelessComponent {
       fontWeight: .w500,
       backgroundColor: surfaceContainerHigh,
     ),
-    css('.page-btn:hover').styles(backgroundColor: surfaceContainerHighest, color: onSurface),
-    css('.page-btn--active').styles(backgroundColor: primaryColor, color: onPrimary),
+    css('.page-btn:hover').styles(
+      color: onSurface,
+      backgroundColor: surfaceContainerHighest,
+    ),
+    css('.page-btn--active').styles(
+      color: onPrimary,
+      backgroundColor: primaryColor,
+    ),
 
     // ── Sidebar ───────────────────────────────────────────────────────────
     css('.blog-sidebar').styles(
@@ -309,8 +324,16 @@ class BlogPage extends StatelessComponent {
       gap: Gap.all(0.75.rem),
       backgroundColor: primaryContainer,
     ),
-    css('.newsletter-title').styles(fontSize: 17.px, fontWeight: .w700, color: onPrimary),
-    css('.newsletter-sub').styles(fontSize: 13.px, color: onPrimary, raw: {'opacity': '0.88', 'line-height': '1.5'}),
+    css('.newsletter-title').styles(
+      color: onPrimary,
+      fontSize: 17.px,
+      fontWeight: .w700,
+    ),
+    css('.newsletter-sub').styles(
+      color: onPrimary,
+      fontSize: 13.px,
+      raw: {'opacity': '0.88', 'line-height': '1.5'},
+    ),
     css('.newsletter-input').styles(
       padding: .symmetric(horizontal: 1.rem, vertical: 0.75.rem),
       radius: BorderRadius.circular(8.px),
@@ -335,7 +358,11 @@ class BlogPage extends StatelessComponent {
       fontWeight: .w700,
       backgroundColor: surfaceContainerLowest,
     ),
-    css('.newsletter-note').styles(fontSize: 11.px, color: onPrimary, raw: {'opacity': '0.7'}),
+    css('.newsletter-note').styles(
+      color: onPrimary,
+      fontSize: 11.px,
+      raw: {'opacity': '0.7'},
+    ),
 
     // Taxonomy card
     css('.taxonomy-card').styles(padding: .all(1.25.rem)),
@@ -376,7 +403,11 @@ class BlogPage extends StatelessComponent {
       backgroundColor: primaryContainer,
       raw: {'flex-shrink': '0'},
     ),
-    css('.author-name').styles(fontSize: 14.px, fontWeight: .w700, color: onSurface),
+    css('.author-name').styles(
+      color: onSurface,
+      fontSize: 14.px,
+      fontWeight: .w700,
+    ),
     css('.author-title').styles(color: onSurfaceVariant),
 
     // ── Mobile: single-column, sidebar stacks below ────────────────────────
@@ -402,57 +433,4 @@ class BlogPage extends StatelessComponent {
       ),
     ]),
   ];
-}
-
-// ── Helper function to parse color from string ────────────────────────────────
-Color _parseColor(String? colorStr) {
-  if (colorStr == null || colorStr.isEmpty) return surfaceContainer;
-
-  // Remove # if present
-  final hex = colorStr.replaceAll('#', '');
-
-  // Parse hex color
-  if (hex.length == 6) {
-    return Color('#$hex');
-  }
-
-  return surfaceContainer;
-}
-
-// ── Standard article card ─────────────────────────────────────────────────────
-class _ArticleCard extends StatelessComponent {
-  const _ArticleCard({required this.article});
-  final BlogArticle article;
-
-  @override
-  Component build(BuildContext context) {
-    return div(classes: 'article-card', [
-      div(classes: 'article-card-image', styles: Styles(backgroundColor: article.imageColor), [
-        span(
-          classes: 'material-symbols-outlined',
-          styles: Styles(
-            color: primaryColor,
-            fontSize: 32.px,
-          ),
-          [
-            .text('article'),
-          ],
-        ),
-      ]),
-      div(classes: 'article-card-body', [
-        div(classes: 'article-meta', [
-          span(classes: 'article-category', [.text(article.category)]),
-        ]),
-        p(classes: 'article-card-title', [.text(article.title)]),
-        p(classes: 'article-card-excerpt', [.text(article.excerpt)]),
-        div(classes: 'article-card-footer', [
-          span(classes: 'article-card-read', [.text(article.readMin)]),
-          a(href: article.href, classes: 'article-read-btn', [
-            .text('Read'),
-            span(classes: 'material-symbols-outlined', [.text('open_in_new')]),
-          ]),
-        ]),
-      ]),
-    ]);
-  }
 }
