@@ -38,11 +38,7 @@ class CareerPage extends StatelessComponent {
     // ── Career Hero ─────────────────────────────────────────────────────────
     css('.chero-section').styles(
       padding: .symmetric(vertical: 5.rem),
-      raw: {
-        'padding-top': '8rem',
-        'text-align': 'center',
-        'background': 'linear-gradient(to bottom, ${surfaceContainerLow.value}, ${surfaceColor.value})',
-      },
+      backgroundColor: surfaceContainerLow,
     ),
     css('.chero-inner').styles(
       display: .flex,

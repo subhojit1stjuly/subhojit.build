@@ -134,8 +134,11 @@ class BlogPage extends StatelessComponent {
       padding: .symmetric(vertical: 5.rem),
       raw: {'padding-top': '7rem'},
     ),
-    css('.blog-header').styles(raw: {'margin-bottom': '2.5rem'}),
-    css('.blog-headline').styles(color: onSurface, raw: {'margin-bottom': '0.5rem'}),
+    css('.blog-header').styles(raw: {'margin-bottom': '3rem'}),
+    css('.blog-headline').styles(
+      color: onSurface,
+      raw: {'margin-bottom': '1rem', 'font-size': '3rem', 'font-weight': '600', 'letter-spacing': '-0.02em'},
+    ),
     css('.blog-sub').styles(color: onSurfaceVariant),
 
     // ── Two-column layout ─────────────────────────────────────────────────

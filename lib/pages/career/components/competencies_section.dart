@@ -7,7 +7,7 @@ class CompetenciesSection extends StatelessComponent {
 
   @override
   Component build(BuildContext context) {
-    return section(classes: 'comp-section', [
+    return section(classes: 'comp-section', id: 'tech-stack', [
       div(classes: 'comp-inner container', [
         div(classes: 'comp-grid', [
           div(classes: 'comp-block comp-block--dark', [

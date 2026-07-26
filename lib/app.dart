@@ -48,7 +48,9 @@ class App extends StatelessComponent {
             Route(
               path: RouteConstants.portfolio,
               title: StringConstants.portfolioTitle,
-              builder: (context, state) => const Home(),
+              builder: (context, state) => Home(
+                projects: projects,
+              ),
             ),
             Route(
               path: RouteConstants.career,

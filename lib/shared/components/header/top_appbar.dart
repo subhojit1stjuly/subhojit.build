@@ -2,6 +2,7 @@ import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 import 'package:jaspr_content/components/theme_toggle.dart';
 import 'package:jaspr_router/jaspr_router.dart';
+import 'package:subhojit_build/core/constants/link_constants.dart';
 import 'package:subhojit_build/core/theme/colors.dart';
 import 'package:subhojit_build/shared/components/header/web_navbar.dart';
 
@@ -28,7 +29,7 @@ class TopAppbar extends StatelessComponent {
       div(classes: 'topbar-right', [
         const ThemeToggle(),
         const div(classes: 'topbar-avatar', [.text('SP')]),
-        const Link(to: '/#contact', classes: 'resume-btn', child: .text('Resume')),
+        const Link(to: LinkConstants.resume, classes: 'resume-btn', child: .text('Resume')),
       ]),
     ]);
   }

@@ -1,5 +1,6 @@
 import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
+import 'package:subhojit_build/core/constants/link_constants.dart';
 import 'package:subhojit_build/core/theme/colors.dart';
 
 /// Philosophy section — a quote, brief statement, and contact CTA.
@@ -16,7 +17,7 @@ class PhilosophySection extends StatelessComponent {
           div(classes: 'philosophy-card tonal-card', [
             // Quote
             div(classes: 'philosophy-quote', [
-              span(classes: 'quote-mark', [.text('\u201c')]),
+              span(classes: 'material-symbols-outlined quote-icon', [.text('format_quote')]),
               p(classes: 'quote-text', [
                 .text(
                   "Build for the problem of today, but architect "
@@ -28,7 +29,7 @@ class PhilosophySection extends StatelessComponent {
               .text(
                 "I believe in simple, human-readable solutions to complex problems. "
                 "Over-engineering is a smell. The best mobile app is one that users "
-                "never think about because it just works — fast, reliably, and beautifully.",
+                "never think about because it just works - fast, reliably, and beautifully.",
               ),
             ]),
             // CTA
@@ -41,9 +42,9 @@ class PhilosophySection extends StatelessComponent {
                 ),
               ]),
               div(classes: 'cta-actions', [
-                a(href: 'mailto:hello@subhojitpramanik.dev', classes: 'cta-btn-primary', [.text('Get in Touch')]),
+                a(href: LinkConstants.email, classes: 'cta-btn-primary', [.text('Get in Touch')]),
                 a(
-                  href: 'https://github.com/subhojit',
+                  href: LinkConstants.gitHub,
                   classes: 'cta-btn-ghost',
                   attributes: {'target': '_blank', 'rel': 'noopener'},
                   [.text('View GitHub')],

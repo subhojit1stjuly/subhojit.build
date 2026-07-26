@@ -1,11 +1,15 @@
 import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
+import 'package:jaspr_router/jaspr_router.dart';
+import 'package:subhojit_build/core/constants/route_constants.dart';
 import 'package:subhojit_build/core/theme/colors.dart';
-
-import '../models/project.dart';
+import 'package:subhojit_build/pages/project/models/project_doc.dart';
+import 'package:subhojit_build/shared/components/post_cards/poject_footer.dart';
+import 'package:subhojit_build/shared/components/post_cards/post_card.dart';
+import 'package:subhojit_build/shared/model/info_card_model.dart';
 
 class ProjectsSection extends StatelessComponent {
-  final List<Project> projects;
+  final List<ProjectDoc> projects;
 
   const ProjectsSection({super.key, required this.projects});
 
@@ -22,19 +26,32 @@ class ProjectsSection extends StatelessComponent {
               p(classes: 'projects-eyebrow t-label', [.text('Featured Projects')]),
               h2(classes: 'projects-title t-headline', [.text('What I\'ve Built')]),
             ]),
-            a(
-              href: 'https://github.com/subhojit',
+            Link(
+              to: RouteConstants.projects, // The separate path route
               classes: 'projects-all-link',
-              attributes: {'target': '_blank', 'rel': 'noopener'},
-              [
-                .text('All Projects \u2192'),
+              children: [
+                .text('All Projects'),
+                span(classes: 'material-symbols-outlined', [.text('chevron_right')]),
               ],
             ),
           ]),
 
           // Project list
           div(classes: 'projects-list', [
-            for (final p in projects) _ProjectCard(project: p),
+            for (final p in projects.take(3))
+              PostCard(
+                data: InfoCardModel(
+                  title: p.title,
+                  description: p.description,
+                  imageUrl: p.imageUrl,
+                  category: p.category,
+                  tags: p.tags,
+                ),
+                footerComponet: ProjectFooter(
+                  liveUrl: p.liveUrl ?? '',
+                  repoUrl: p.repoUrl ?? '',
+                ),
+              ),
           ]),
         ]),
       ],
@@ -46,20 +63,20 @@ class ProjectsSection extends StatelessComponent {
     css('.projects-section').styles(padding: .symmetric(vertical: 5.rem)),
     css('.projects-header').styles(
       display: .flex,
+      flexWrap: .wrap,
       justifyContent: .spaceBetween,
       alignItems: .end,
-      flexWrap: .wrap,
       gap: Gap.all(1.rem),
       raw: {'margin-bottom': '2.5rem'},
     ),
     css('.projects-eyebrow').styles(color: primaryColor, raw: {'margin-bottom': '0.5rem'}),
     css('.projects-title').styles(color: onSurface),
     css('.projects-all-link').styles(
+      transition: Transition('color', duration: Duration(milliseconds: 150)),
+      color: primaryColor,
       fontSize: 14.px,
       fontWeight: .w600,
-      color: primaryColor,
       raw: {'white-space': 'nowrap'},
-      transition: Transition('color', duration: Duration(milliseconds: 150)),
     ),
     css('.projects-all-link:hover').styles(color: onPrimaryFixedVariant),
     css('.projects-list').styles(
@@ -70,15 +87,15 @@ class ProjectsSection extends StatelessComponent {
 
     // Card
     css('.project-card').styles(
-      backgroundColor: surfaceContainerLowest,
+      display: .flex,
       radius: BorderRadius.circular(16.px),
       overflow: .clip,
-      display: .flex,
-      flexDirection: .column,
       transition: Transition.combine([
         Transition('box-shadow', duration: Duration(milliseconds: 200)),
         Transition('transform', duration: Duration(milliseconds: 200)),
       ]),
+      flexDirection: .column,
+      backgroundColor: surfaceContainerLowest,
       raw: {'box-shadow': '0px 2px 8px rgba(26,28,30,0.04)'},
     ),
     css('.project-card:hover').styles(
@@ -107,14 +124,14 @@ class ProjectsSection extends StatelessComponent {
     ),
     css('.project-body').styles(padding: .all(1.5.rem)),
     css('.project-title').styles(
+      color: onSurface,
       fontSize: 18.px,
       fontWeight: .w700,
-      color: onSurface,
       raw: {'margin-bottom': '0.5rem'},
     ),
     css('.project-desc').styles(
-      fontSize: 14.px,
       color: onSurfaceVariant,
+      fontSize: 14.px,
       lineHeight: 1.6.em,
       raw: {'margin-bottom': '1rem'},
     ),
@@ -127,21 +144,21 @@ class ProjectsSection extends StatelessComponent {
       raw: {'margin-bottom': '1rem'},
     ),
     css('.project-tag').styles(
-      fontSize: 11.px,
-      fontWeight: .w500,
-      color: onSurfaceVariant,
-      backgroundColor: surfaceContainerHigh,
       padding: .symmetric(horizontal: 0.5.rem, vertical: 0.25.rem),
       radius: BorderRadius.circular(4.px),
+      color: onSurfaceVariant,
+      fontSize: 11.px,
+      fontWeight: .w500,
+      backgroundColor: surfaceContainerHigh,
     ),
     css('.project-link').styles(
       display: .inlineFlex,
+      transition: Transition('color', duration: Duration(milliseconds: 150)),
       alignItems: .center,
+      gap: Gap.all(0.25.rem),
+      color: primaryColor,
       fontSize: 13.px,
       fontWeight: .w600,
-      color: primaryColor,
-      gap: Gap.all(0.25.rem),
-      transition: Transition('color', duration: Duration(milliseconds: 150)),
     ),
     css('.project-link:hover').styles(color: onPrimaryFixedVariant),
 
@@ -156,39 +173,4 @@ class ProjectsSection extends StatelessComponent {
       ),
     ]),
   ];
-}
-
-class _ProjectCard extends StatelessComponent {
-  const _ProjectCard({required this.project});
-  final Project project;
-
-  @override
-  Component build(BuildContext context) {
-    return div(classes: 'project-card', [
-      // Tonal image placeholder with category chip
-      div(classes: 'project-image', styles: Styles(backgroundColor: secondaryContainer), [
-        span(classes: 'material-symbols-outlined', styles: Styles(fontSize: 36.px, color: primaryColor), [
-          .text('code'),
-        ]),
-        div(classes: 'project-category-chip', [.text('Project')]),
-      ]),
-      div(classes: 'project-body', [
-        p(classes: 'project-title', [.text(project.name)]),
-        p(classes: 'project-desc', [.text(project.description)]),
-        div(classes: 'project-tags', [
-          for (final tag in project.technologies) span(classes: 'project-tag', [.text(tag)]),
-        ]),
-        if (project.externalLink != null)
-          a(
-            href: project.externalLink!,
-            classes: 'project-link',
-            attributes: {'target': '_blank', 'rel': 'noopener'},
-            [
-              .text('View Source'),
-              span(classes: 'material-symbols-outlined', [.text('open_in_new')]),
-            ],
-          ),
-      ]),
-    ]);
-  }
 }

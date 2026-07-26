@@ -215,7 +215,11 @@ class CoreExpertiseSection extends StatelessComponent {
       fontSize: 13.px,
       raw: {'margin-top': '0.875rem', 'padding-left': '1.25rem', 'line-height': '1.8'},
     ),
-
+    css('.wide-card-sub').styles(
+      display: .flex,
+      flexDirection: .column,
+      gap: Gap.all(1.rem),
+    ),
     // Wide card sub-columns
     css('.sub-card').styles(
       padding: .all(1.25.rem),

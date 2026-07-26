@@ -11,7 +11,7 @@ class StringConstants {
   static const String projectTitle = 'Project Insights — Subhojit Pramanik';
   static const String project = 'Project';
 
-  // links
+  // links tags
   static const String gitHub = 'GitHub';
   static const String linkedIn = 'LinkedIn';
   static const String email = 'Email';
