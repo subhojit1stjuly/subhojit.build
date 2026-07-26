@@ -1,5 +1,6 @@
 import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
+import 'package:subhojit_build/core/constants/route_constants.dart';
 import 'package:subhojit_build/core/theme/colors.dart';
 
 /// Hero section — the first thing a visitor sees.
@@ -44,10 +45,13 @@ class HeroSection extends StatelessComponent {
               a(
                 href: '#projects',
                 classes: 'btn-primary',
-                [.text('View Projects \u2192')],
+                [
+                  .text('View Projects'),
+                  span(classes: 'material-symbols-outlined', [.text('chevron_right')]),
+                ],
               ),
               a(
-                href: '#about',
+                href: '${RouteConstants.career}/#tech-stack',
                 classes: 'btn-ghost',
                 [.text('Technical Stack')],
               ),

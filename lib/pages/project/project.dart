@@ -149,7 +149,7 @@ class ProjectsPage extends StatelessComponent {
     css('.projects-header').styles(raw: {'margin-bottom': '3rem'}),
     css('.projects-headline').styles(
       color: onSurface,
-      raw: {'margin-bottom': '0.5rem', 'font-size': '3.5rem', 'font-weight': '600', 'letter-spacing': '-0.02em'},
+      raw: {'margin-bottom': '0.5rem', 'font-size': '3rem', 'font-weight': '600', 'letter-spacing': '-0.02em'},
     ),
     css('.projects-sub').styles(color: onSurfaceVariant, raw: {'max-width': '42rem'}),
 

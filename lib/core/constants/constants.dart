@@ -1,13 +1,14 @@
 import 'package:jaspr/dom.dart';
+import 'package:subhojit_build/core/constants/link_constants.dart';
 import 'package:subhojit_build/core/constants/route_constants.dart';
 import 'package:subhojit_build/core/constants/string_constants.dart';
 import 'package:subhojit_build/core/theme/colors.dart';
 
 class Constants {
   static const footerLinks = [
-    (label: StringConstants.gitHub, href: 'https://github.com/subhojit1stjuly'),
-    (label: StringConstants.linkedIn, href: 'https://www.linkedin.com/in/subhojit-pramanik-033789126/'),
-    (label: StringConstants.email, href: 'mailto:subhojit1stjuly@gmail.com'),
+    (label: StringConstants.gitHub, href: LinkConstants.gitHub),
+    (label: StringConstants.linkedIn, href: LinkConstants.linkedIn),
+    (label: StringConstants.email, href: LinkConstants.email),
   ];
   static const navItems = [
     (label: StringConstants.portfolio, to: RouteConstants.portfolio),
