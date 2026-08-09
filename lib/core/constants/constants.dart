@@ -45,7 +45,7 @@ class Constants {
   static String iconFor(String to) => switch (to) {
     RouteConstants.career => 'work_history',
     RouteConstants.blogs => 'article',
-    RouteConstants.projects => 'projects',
+    RouteConstants.projects => 'work',
     _ => 'folder_open',
   };
 

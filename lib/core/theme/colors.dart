@@ -18,7 +18,7 @@ final surfaceVariant = ColorToken('surface-variant', Color('#e4e2dd'), dark: Col
 
 // Primary Brand Colors
 final primaryColor = ColorToken('primary', Color('#523fb9'), dark: Color('#c8bfff'));
-const secondaryColor = ColorToken('secondary', Color('#5d4ac4'));
+final secondaryColor = ColorToken('secondary', Color('#5d4ac4'));
 final primaryContainer = ColorToken('primary-container', Color('#6b59d3'), dark: Color('#452fab'));
 final onPrimary = ColorToken('on-primary', Color('#ffffff'), dark: Color('#1a1c1e'));
 final primaryFixed = ColorToken('primary-fixed', Color('#e5deff'), dark: Color('#2e2548'));
