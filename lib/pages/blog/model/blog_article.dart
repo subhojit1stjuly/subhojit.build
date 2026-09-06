@@ -26,11 +26,27 @@ class BlogArticle {
       description: map['description'] ?? '',
       category: map['category'] ?? 'General',
       readMin: map['readMin'] ?? '5 min read',
-      href: '/$slug',
-      imageColor: Constants.parseProjectColor(map['imageColor']),
+      href: map['href'] ?? '/$slug',
+      imageColor: map['imageColor'] is Color ? map['imageColor'] : Constants.parseProjectColor(map['imageColor']),
       featured: map['featured'] ?? false,
       imageUrl: map['imageUrl'] ?? '',
       tags: List<String>.from(map['tags'] ?? []),
     );
+  }
+
+  /// Convert to Map for serialization to @client components
+  Map<String, dynamic> toMap() {
+    return {
+      'title': title,
+      'description': description,
+      'category': category,
+      'readMin': readMin,
+      'href': href,
+      'imageColor': imageColor.value, // Serialize color as hex string
+      'featured': featured,
+      'imageUrl': imageUrl,
+      'tags': tags,
+      'slug': href.replaceAll('/', ''), // Extract slug from href
+    };
   }
 }

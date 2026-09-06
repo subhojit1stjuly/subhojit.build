@@ -1,6 +1,5 @@
 import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
-import 'package:subhojit_build/core/theme/colors.dart';
 import 'package:subhojit_build/shared/model/info_card_model.dart';
 
 class PostCard extends StatelessComponent {
@@ -14,7 +13,7 @@ class PostCard extends StatelessComponent {
   @override
   Component build(BuildContext context) {
     return div(classes: 'common_card', [
-      div(classes: 'project-image', styles: Styles(backgroundColor: secondaryContainer), [
+      div(classes: 'project-image', styles: Styles(backgroundColor: Color.variable('--secondary-container')), [
         // Image Container
         img(
           classes: 'common_card-img',
@@ -53,7 +52,7 @@ class PostCard extends StatelessComponent {
         Transition('box-shadow', duration: Duration(milliseconds: 200)),
       ]),
       flexDirection: .column,
-      backgroundColor: surfaceContainerLowest,
+      backgroundColor: Color.variable('--surface-container-lowest'),
       raw: {'box-shadow': '0px 2px 8px rgba(26,28,30,0.04)'},
     ),
     css('.common_card-img').styles(
@@ -67,11 +66,11 @@ class PostCard extends StatelessComponent {
       position: .absolute(bottom: 12.px, left: 12.px),
       padding: .symmetric(horizontal: 0.625.rem, vertical: 0.25.rem),
       radius: BorderRadius.circular(4.px),
-      color: primaryColor,
+      color: Color.variable('--primary'),
       fontSize: 11.px,
       fontWeight: .w600,
       textTransform: TextTransform.upperCase,
-      backgroundColor: primaryFixed,
+      backgroundColor: Color.variable('--primary-fixed'),
       raw: {'letter-spacing': '0.05em'},
     ),
     css('.common_card:hover').styles(
@@ -91,14 +90,14 @@ class PostCard extends StatelessComponent {
       flex: Flex(grow: 1),
     ),
     css('.common_card-title').styles(
-      color: onSurface,
+      color: Color.variable('--on-surface'),
       fontSize: 16.px,
       fontWeight: .w700,
       raw: {'line-height': '1.4'},
     ),
     css('.common_card-excerpt').styles(
       flex: Flex(grow: 1),
-      color: onSurfaceVariant,
+      color: Color.variable('--on-surface-variant'),
       fontSize: 13.px,
       lineHeight: 1.55.em,
     ),
@@ -109,14 +108,14 @@ class PostCard extends StatelessComponent {
       raw: {'margin-top': '0.5rem'},
     ),
     css('.common_card-read').styles(
-      color: onSurfaceVariant,
+      color: Color.variable('--on-surface-variant'),
       fontSize: 12.px,
     ),
     css('.common_card-read-btn').styles(
       display: .inlineFlex,
       alignItems: .center,
       gap: Gap.all(0.125.rem),
-      color: primaryColor,
+      color: Color.variable('--primary'),
       fontSize: 11.px,
       fontWeight: .w700,
       textTransform: TextTransform.upperCase,
@@ -131,10 +130,10 @@ class PostCard extends StatelessComponent {
     css('.common_card-tag').styles(
       padding: .symmetric(horizontal: 0.5.rem, vertical: 0.25.rem),
       radius: BorderRadius.circular(8.px),
-      color: onSurface,
+      color: Color.variable('--on-surface'),
       fontSize: 11.px,
       fontWeight: .w500,
-      backgroundColor: surfaceContainerHigh,
+      backgroundColor: Color.variable('--surface-container-high'),
     ),
   ];
 }

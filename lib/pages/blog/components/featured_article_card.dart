@@ -1,7 +1,6 @@
 // ── Featured article card ─────────────────────────────────────────────────────
 import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
-import 'package:subhojit_build/core/theme/colors.dart';
 import 'package:subhojit_build/pages/blog/model/blog_article.dart';
 
 class FeaturedArticleCard extends StatelessComponent {
@@ -15,7 +14,7 @@ class FeaturedArticleCard extends StatelessComponent {
         span(
           classes: 'material-symbols-outlined',
           styles: Styles(
-            color: primaryColor,
+            color: Color.variable('--primary'),
             fontSize: 48.px,
           ),
           [
