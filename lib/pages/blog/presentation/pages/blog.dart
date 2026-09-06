@@ -1,7 +1,7 @@
 import 'package:jaspr/jaspr.dart';
 import 'package:subhojit_build/core/constants/dummy_data.dart';
-import 'package:subhojit_build/pages/blog/model/blog_article.dart';
-import 'package:subhojit_build/pages/blog/blog_page_client.dart';
+import 'package:subhojit_build/pages/blog/data/model/blog_article.dart';
+import 'package:subhojit_build/pages/blog/presentation/pages/blog_page_client.dart';
 
 /// Blog page wrapper component.
 ///

@@ -1,7 +1,7 @@
 // ── Featured article card ─────────────────────────────────────────────────────
 import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
-import 'package:subhojit_build/pages/blog/model/blog_article.dart';
+import 'package:subhojit_build/pages/blog/data/model/blog_article.dart';
 
 class FeaturedArticleCard extends StatelessComponent {
   const FeaturedArticleCard({required this.article});

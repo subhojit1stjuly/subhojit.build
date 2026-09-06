@@ -3,7 +3,7 @@ import 'package:subhojit_build/pages/career/models/certification.dart';
 import 'package:subhojit_build/pages/career/models/job_experience.dart';
 import 'package:subhojit_build/pages/project/models/project_doc.dart';
 import 'package:yaml/yaml.dart';
-import 'package:subhojit_build/pages/blog/model/blog_article.dart';
+import 'package:subhojit_build/pages/blog/data/model/blog_article.dart';
 
 //TODO(Subhojit): Simplify this service to use a single generic method for reading
 //markdown files and parsing frontmatter, instead of having separate methods

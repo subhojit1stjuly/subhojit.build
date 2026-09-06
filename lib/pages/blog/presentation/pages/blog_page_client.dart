@@ -1,6 +1,6 @@
 import 'package:jaspr/jaspr.dart';
-import 'package:subhojit_build/pages/blog/blog_view.dart';
-import 'package:subhojit_build/pages/blog/model/blog_article.dart';
+import 'package:subhojit_build/pages/blog/presentation/pages/blog_view.dart';
+import 'package:subhojit_build/pages/blog/data/model/blog_article.dart';
 
 /// Client-side blog page with pagination state.
 ///

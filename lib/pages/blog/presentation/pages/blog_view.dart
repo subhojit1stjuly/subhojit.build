@@ -1,10 +1,10 @@
 import 'package:jaspr/jaspr.dart';
 import 'package:jaspr/dom.dart';
 import 'package:subhojit_build/core/constants/constants.dart';
-import 'package:subhojit_build/pages/blog/model/blog_article.dart';
-import 'package:subhojit_build/pages/blog/components/featured_article_card.dart';
-import 'package:subhojit_build/pages/blog/components/newsletter_card.dart';
-import 'package:subhojit_build/pages/blog/components/pagination_controls.dart';
+import 'package:subhojit_build/pages/blog/data/model/blog_article.dart';
+import 'package:subhojit_build/pages/blog/presentation/components/featured_article_card.dart';
+import 'package:subhojit_build/pages/blog/presentation/components/newsletter_card.dart';
+import 'package:subhojit_build/pages/blog/presentation/components/pagination_controls.dart';
 import 'package:subhojit_build/shared/components/post_cards/post_card.dart';
 import 'package:subhojit_build/shared/components/post_cards/blog_footer.dart';
 import 'package:subhojit_build/shared/model/info_card_model.dart';
