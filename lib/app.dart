@@ -2,7 +2,7 @@ import 'package:jaspr/jaspr.dart';
 import 'package:jaspr_router/jaspr_router.dart';
 import 'package:subhojit_build/core/constants/route_constants.dart';
 import 'package:subhojit_build/core/constants/string_constants.dart';
-\import 'package:subhojit_build/pages/blog/presentation/pages/blogs_page.dart';
+import 'package:subhojit_build/pages/blog/presentation/pages/blogs_page.dart';
 import 'package:subhojit_build/pages/career/models/certification.dart';
 import 'package:subhojit_build/pages/career/models/job_experience.dart';
 import 'package:subhojit_build/pages/project/models/project_doc.dart';
@@ -24,14 +24,14 @@ import 'pages/portfolio/home.dart';
 ///   /blog/index.html     → Technical Insights / Blog
 class App extends StatelessComponent {
   final List<List<RouteBase>> contentRoutes; // Injected from ContentApp.custom
-  
+
   final List<JobExperience> jobs;
   final List<Certification> certificates;
   final List<ProjectDoc> projects;
   const App({
     super.key,
     required this.contentRoutes,
-  
+
     required this.jobs,
     required this.certificates,
     required this.projects,
