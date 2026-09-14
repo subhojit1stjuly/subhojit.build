@@ -1,11 +1,11 @@
 import 'package:subhojit_build/core/theme/colors.dart';
-import 'package:subhojit_build/pages/blog/data/model/blog_article.dart';
+import 'package:subhojit_build/pages/blog/data/model/blog_post_model.dart';
 
 class DummyData {
   /// Exported for jaspr_content MemoryLoader in main.server.dart.
   /// These hardcoded articles serve as fallback during infrastructure validation.
   static final hardcodedArticles = [
-    BlogArticle(
+    BlogPostModel(
       category: 'Architecture',
       readMin: '12 min read',
       title: 'Clean Architecture in Flutter: A Production Guide',
@@ -17,8 +17,9 @@ class DummyData {
       imageColor: secondaryContainer,
       imageUrl: '',
       tags: ['flutter', 'architecture', 'clean architecture'],
+      date: DateTime.now(),
     ),
-    BlogArticle(
+    BlogPostModel(
       category: 'Performance',
       readMin: '8 min read',
       title: 'The P99 Problem: Solving Tail Latency in Flutter',
@@ -29,8 +30,10 @@ class DummyData {
       imageColor: primaryFixed,
       imageUrl: '',
       tags: ['flutter', 'architecture', 'clean architecture'],
+      date: DateTime.now(),
+      featured: false,
     ),
-    BlogArticle(
+    BlogPostModel(
       category: 'State Management',
       readMin: '10 min read',
       title: 'Riverpod 3 vs Bloc: When to Use Which',
@@ -41,8 +44,10 @@ class DummyData {
       imageColor: surfaceContainer,
       imageUrl: '',
       tags: ['flutter', 'architecture', 'clean architecture'],
+      date: DateTime.now(),
+      featured: false,
     ),
-    BlogArticle(
+    BlogPostModel(
       category: 'DevOps',
       readMin: '15 min read',
       title: 'Automating Flutter Releases with GitHub Actions',
@@ -53,8 +58,10 @@ class DummyData {
       imageColor: secondaryContainer,
       imageUrl: '',
       tags: ['flutter', 'architecture', 'clean architecture'],
+      date: DateTime.now(),
+      featured: false,
     ),
-    BlogArticle(
+    BlogPostModel(
       category: 'Architecture',
       readMin: '9 min read',
       title: 'Offline-First Flutter with CRDTs',
@@ -65,6 +72,8 @@ class DummyData {
       imageColor: primaryFixed,
       imageUrl: '',
       tags: ['flutter', 'architecture', 'clean architecture'],
+      date: DateTime.now(),
+      featured: false,
     ),
   ];
 }
