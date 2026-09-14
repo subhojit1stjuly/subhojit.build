@@ -48,8 +48,9 @@ class PaginationControls extends StatelessComponent {
           span(classes: 'page-ellipsis', [.text('...')])
         else
           button(
-            classes: pageNum == (currentPage - 1) ? 'page-btn page-btn--active' : 'page-btn',
-            onClick: () => onPageChanged(pageNum - 1),
+            classes: 'page-btn ${pageNum != (currentPage + 1) ? 'page-btn page-btn--active' : ''}',
+            disabled: pageNum != (currentPage + 1),
+            onClick: () => pageNum != (currentPage + 1) ? onPageChanged(pageNum - 1) : null,
             [Component.text('$pageNum')],
           ),
 

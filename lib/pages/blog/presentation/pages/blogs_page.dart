@@ -12,7 +12,7 @@ import 'package:subhojit_build/pages/blog/presentation/controller/blog_page_cont
 import 'package:subhojit_build/shared/components/post_cards/blog_footer.dart';
 import 'package:subhojit_build/shared/components/post_cards/post_card.dart';
 import 'package:subhojit_build/shared/model/info_card_model.dart';
-import 'package:web/web.dart' as web;
+import 'package:subhojit_build/core/utils/scrolling/scroll.dart';
 
 /// Blog page view component - pure presentation without state.
 ///
@@ -48,13 +48,7 @@ class BlogsPage extends StatelessComponent {
             onChange: (previous, current) {
               // Check if the page index specifically changed
               if (previous.currentPageIndex != current.currentPageIndex) {
-                web.window.scrollTo(
-                  web.ScrollToOptions(
-                    top: 0,
-                    left: 0,
-                    behavior: 'smooth',
-                  ),
-                );
+                nativeScrollToTop();
               }
             },
             builder: (context, state) {
