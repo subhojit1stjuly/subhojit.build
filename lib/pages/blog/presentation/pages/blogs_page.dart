@@ -1,38 +1,31 @@
 import 'package:jaspr/jaspr.dart';
 import 'package:jaspr/dom.dart';
+import 'package:subhojit_build/core/components/value_builder.dart';
 import 'package:subhojit_build/core/constants/constants.dart';
-import 'package:subhojit_build/pages/blog/data/model/blog_article.dart';
+import 'package:subhojit_build/di/injection.dart';
+import 'package:subhojit_build/pages/blog/presentation/components/blog_list_shimmer.dart';
 import 'package:subhojit_build/pages/blog/presentation/components/featured_article_card.dart';
 import 'package:subhojit_build/pages/blog/presentation/components/newsletter_card.dart';
 import 'package:subhojit_build/pages/blog/presentation/components/pagination_controls.dart';
-import 'package:subhojit_build/shared/components/post_cards/post_card.dart';
+import 'package:subhojit_build/pages/blog/presentation/controller/blog_list_state.dart';
+import 'package:subhojit_build/pages/blog/presentation/controller/blog_page_controller.dart';
 import 'package:subhojit_build/shared/components/post_cards/blog_footer.dart';
+import 'package:subhojit_build/shared/components/post_cards/post_card.dart';
 import 'package:subhojit_build/shared/model/info_card_model.dart';
+import 'package:web/web.dart' as web;
 
 /// Blog page view component - pure presentation without state.
 ///
 /// Receives paginated articles and renders the blog layout.
-class BlogView extends StatelessComponent {
-  final List<BlogArticle> articles;
-  final int currentPage;
-  final void Function(int) onPageChange;
-
-  static const int articlesPerPage = 7; // 1 featured + 6 grid
-
-  const BlogView({
-    required this.articles,
-    required this.currentPage,
-    required this.onPageChange,
+@client
+class BlogsPage extends StatelessComponent {
+  const BlogsPage({
     super.key,
   });
 
   @override
   Component build(BuildContext context) {
-    // Calculate pagination
-    final totalPages = (articles.length / articlesPerPage).ceil();
-    final startIndex = (currentPage - 1) * articlesPerPage;
-    final endIndex = (startIndex + articlesPerPage).clamp(0, articles.length);
-    final displayArticles = articles.sublist(startIndex, endIndex);
+    final BlogPageController notifier = getIt<BlogPageController>();
 
     return section(classes: 'blog-page', [
       div(classes: 'blog-page-inner container', [
@@ -50,36 +43,61 @@ class BlogView extends StatelessComponent {
         // Two-column body: main + sidebar
         div(classes: 'blog-body', [
           // ── Main content (left) ─────────────────────────────────
-          div(classes: 'blog-main', [
-            // Featured article — large card (first article, preferably featured)
-            if (displayArticles.isNotEmpty) FeaturedArticleCard(article: displayArticles.first),
-
-            // Article grid — 2 × N
-            div(classes: 'blog-grid', [
-              for (final a in displayArticles.skip(1))
-                PostCard(
-                  data: InfoCardModel(
-                    title: a.title,
-                    description: a.description,
-                    imageUrl: a.imageUrl,
-                    category: a.category,
-                    tags: a.tags,
+          ValueBuilder<BlogListState>(
+            valueNotifier: notifier,
+            onChange: (previous, current) {
+              // Check if the page index specifically changed
+              if (previous.currentPageIndex != current.currentPageIndex) {
+                web.window.scrollTo(
+                  web.ScrollToOptions(
+                    top: 0,
+                    left: 0,
+                    behavior: 'smooth',
                   ),
-                  footerComponet: BlogFooter(
-                    readMin: a.readMin,
-                    href: a.href,
+                );
+              }
+            },
+            builder: (context, state) {
+              if (state.isLoading) return BlogListShimmer();
+              return div(classes: 'blog-main', [
+                // Featured article — large card (first article, preferably featured)
+                if (state.featuredBlog != null)
+                  FeaturedArticleCard(
+                    article: state.featuredBlog!,
                   ),
-                ),
-            ]),
 
-            // Pagination - Client-side interactive controls
-            if (totalPages > 1)
-              PaginationControls(
-                totalPages: totalPages,
-                currentPage: currentPage,
-                onPageChange: onPageChange,
-              ),
-          ]),
+                // Article grid — 2 × N
+                div(classes: 'blog-grid', [
+                  for (final a in state.displayArticles)
+                    PostCard(
+                      data: InfoCardModel(
+                        title: a.title,
+                        description: a.description,
+                        imageUrl: a.imageUrl,
+                        category: a.category,
+                        tags: a.tags,
+                      ),
+                      footerComponet: BlogFooter(
+                        readMin: a.readMin,
+                        href: a.href,
+                      ),
+                    ),
+                ]),
+                // Pagination - Client-side interactive controls
+                if (state.totalPages > 1)
+                  PaginationControls(
+                    pages: state.getPageNumbers,
+                    isFirstPage: state.currentPageIndex == 0,
+                    isLastPage: state.currentPageIndex == (state.totalPages - 1),
+                    currentPage: state.currentPageIndex,
+                    onPageChanged: (pageIndex) {
+                      notifier.toPage(pageIndex);
+                      // Scroll smoothly to the blog header section
+                    },
+                  ),
+              ]);
+            },
+          ),
 
           // ── Sidebar (right) ─────────────────────────────────────
           aside(classes: 'blog-sidebar', [

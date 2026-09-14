@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:jaspr/dom.dart';
 import 'package:subhojit_build/pages/blog/domain/entities/post.dart';
 
 class BlogPostModel extends Post {
@@ -21,12 +24,13 @@ class BlogPostModel extends Post {
       description: map['description'],
       imageUrl: map['imageUrl'],
       href: map['href'],
-      imageColor: map['imageColor'],
+      imageColor: Color(map['imageColor']),
       featured: map['featured'],
-      tags: List<String>.from(map['tags']),
+      tags: List<String>.from(jsonDecode(map['tags'])),
       date: DateTime.parse(map['date']),
     );
   }
+  @override
   Map<String, dynamic> toMap() {
     return {
       'category': category,

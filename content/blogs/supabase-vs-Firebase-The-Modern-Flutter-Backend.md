@@ -4,8 +4,6 @@ date: "2026-08-22"
 description: "Evaluating the NoSQL giant against the open-source Postgres challenger for your next Flutter project."
 category: "Backend"
 tags: ["Flutter", "Firebase", "Supabase", "Database", "Auth"]
-readMin: "12 min read"
-featured: false
 layout: "blog"
 imageColor: "#e8f5e9"
 imageUrl: "https://storage.googleapis.com/cms-storage-bucket/70760bf1f889f4850fae.png"

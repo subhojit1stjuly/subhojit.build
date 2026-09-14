@@ -4,6 +4,7 @@ import 'package:subhojit_build/core/constants/route_constants.dart';
 import 'package:subhojit_build/core/constants/string_constants.dart';
 
 class Constants {
+  static const itemsPerPage = 6;
   static const footerLinks = [
     (label: StringConstants.gitHub, href: LinkConstants.gitHub),
     (label: StringConstants.linkedIn, href: LinkConstants.linkedIn),

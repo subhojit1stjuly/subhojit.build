@@ -1,15 +1,16 @@
 import 'package:jaspr/dom.dart';
+import 'package:subhojit_build/core/utils/json_datasource.dart';
 
 // so we can have different implementations like PostModel for data handling
 
-abstract class Post {
+abstract class Post extends JsonSerializable {
   final String category, readMin, title, description, imageUrl, href;
   final Color imageColor;
   final bool featured;
   final List<String> tags;
   final DateTime date;
 
-  Post({
+  const Post({
     required this.category,
     required this.readMin,
     required this.title,

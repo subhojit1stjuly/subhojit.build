@@ -4,8 +4,6 @@ date: "2026-09-28"
 description: "Stop breaking your builds when switching projects. A look at the best tools to manage multiple Flutter SDK environments."
 category: "Tooling"
 tags: ["Flutter", "CLI", "FVM", "Puro", "Environment"]
-readMin: "5 min read"
-featured: false
 layout: "blog"
 imageColor: "#e8eaf6"
 imageUrl: "https://dart.dev/assets/dash/dash-code.png"
