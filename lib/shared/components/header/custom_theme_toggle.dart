@@ -1,7 +1,7 @@
 import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 import 'package:subhojit_build/core/theme/colors.dart';
-import 'package:subhojit_build/core/utils/theme_storage.dart' as theme_storage;
+import 'package:subhojit_build/core/theme/theme_utils/theme_storage.dart' as theme_storage;
 
 @client
 class CustomThemeToggle extends StatelessComponent {

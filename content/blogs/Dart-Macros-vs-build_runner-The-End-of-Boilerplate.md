@@ -4,8 +4,7 @@ date: "2026-08-25"
 description: "How native Dart Macros are replacing code generation tools like Freezed and JSON Serializable."
 category: "Dart"
 tags: ["Dart", "Macros", "Tooling", "Performance"]
-readMin: "7 min read"
-featured: true
+
 layout: "blog"
 imageColor: "#fff3e0"
 imageUrl: "https://dart.dev/assets/dash/dash-mascot.png"

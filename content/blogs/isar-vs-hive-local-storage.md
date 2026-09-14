@@ -4,8 +4,6 @@ date: "2026-09-02"
 description: "Comparing Flutter's top local storage solutions for offline-first architecture and rapid data retrieval."
 category: "Database"
 tags: ["Flutter", "Isar", "Hive", "Offline", "NoSQL"]
-readMin: "6 min read"
-featured: false
 layout: "blog"
 imageColor: "#e0f7fa"
 imageUrl: "https://flutter.dev/assets/ui/layout/layout-0-b4bd60350719875f5bcfb1c1e57c6b54.png"

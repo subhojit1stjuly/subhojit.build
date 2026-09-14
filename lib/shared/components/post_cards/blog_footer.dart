@@ -1,5 +1,5 @@
 import 'package:jaspr/dom.dart';
-import 'package:jaspr/server.dart';
+import 'package:jaspr/jaspr.dart';
 
 class BlogFooter extends StatelessComponent {
   final String readMin;

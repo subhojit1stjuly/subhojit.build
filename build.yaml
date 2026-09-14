@@ -1,0 +1,35 @@
+builders:
+  generate_meta_builder:
+    import: "package:subhojit_build/builder.dart"
+    builder_factories: ["generateMetaBuilder"]
+    build_extensions: { "content/posts.cfg": ["lib/generated/meta.g.dart"] }
+    auto_apply: root_package
+    build_to: source
+    applies_builders: ["source_gen|combining_builder"]
+
+targets:
+  $default:
+  # ---------------------------------------------------------------------------
+    # OVERRIDING DEFAULT SOURCES
+    # By defining 'sources', we completely overwrite build_runner's defaults.
+    # 
+    # 1. content/** : The primary reason for this override. This forces the 
+    #                 build graph to track our custom markdown files.
+    # 2. lib/**, web/** : Must be manually restored so Jaspr and Injectable 
+    #                     don't break during web compilation.
+    # 3. $package$, pubspec.* : Restored so builders can read project configs.
+    # ---------------------------------------------------------------------------
+    sources:
+      - lib/**
+      - bin/**
+      - test/**
+      - tool/**
+      - web/**
+      - pubspec.*
+      - $package$
+      - content/**
+    builders:
+      subhojit_build|generate_meta_builder:
+        enabled: true
+        generate_for:
+          - content/posts.cfg

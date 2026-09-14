@@ -4,8 +4,6 @@ date: "2026-09-15"
 description: "How to ship bug fixes to users instantly without waiting for app store review cycles."
 category: "DevOps"
 tags: ["Flutter", "Shorebird", "CI/CD", "OTA", "Releases"]
-readMin: "9 min read"
-featured: true
 layout: "blog"
 imageColor: "#f3e5f5"
 imageUrl: "https://storage.googleapis.com/cms-storage-bucket/0dbfcc7a59cd1cf16282.png"

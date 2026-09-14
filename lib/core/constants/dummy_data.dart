@@ -1,5 +1,5 @@
 import 'package:subhojit_build/core/theme/colors.dart';
-import 'package:subhojit_build/pages/blog/model/blog_article.dart';
+import 'package:subhojit_build/pages/blog/data/model/blog_article.dart';
 
 class DummyData {
   /// Exported for jaspr_content MemoryLoader in main.server.dart.

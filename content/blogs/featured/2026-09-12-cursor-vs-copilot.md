@@ -4,8 +4,6 @@ date: "2026-09-12"
 description: "Comparing IDE-native deep codebase indexing with inline autocompletion for Dart engineers."
 category: "Tooling"
 tags: ["Dart", "Flutter", "AI", "Cursor", "Copilot"]
-readMin: "7 min read"
-featured: false
 layout: "blog"
 imageColor: "#fbe9e7"
 imageUrl: "https://flutter.dev/images/catalog-widget-placeholder.png"

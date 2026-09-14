@@ -4,8 +4,6 @@ date: "2026-08-15"
 description: "A deep dive into declarative routing approaches, comparing Google's official package with the leading code-generation alternative."
 category: "Navigation"
 tags: ["Flutter", "Routing", "GoRouter", "AutoRoute"]
-readMin: "8 min read"
-featured: true
 layout: "blog"
 imageColor: "#e1f5fe"
 imageUrl: "https://flutter.dev/images/catalog-widget-placeholder.png"

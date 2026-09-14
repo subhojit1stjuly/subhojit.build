@@ -1,9 +1,9 @@
-import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 import 'package:jaspr_router/jaspr_router.dart';
 import 'package:subhojit_build/core/constants/route_constants.dart';
 import 'package:subhojit_build/core/constants/string_constants.dart';
-import 'package:subhojit_build/pages/blog/model/blog_article.dart';
+import 'package:subhojit_build/pages/blog/data/model/blog_article.dart';
+import 'package:subhojit_build/pages/blog/presentation/pages/blogs_page.dart';
 import 'package:subhojit_build/pages/career/models/certification.dart';
 import 'package:subhojit_build/pages/career/models/job_experience.dart';
 import 'package:subhojit_build/pages/project/models/project_doc.dart';
@@ -11,7 +11,6 @@ import 'package:subhojit_build/pages/project/project.dart';
 import 'package:subhojit_build/shared/components/page_shell.dart';
 
 import 'shared/components/footer.dart';
-import 'pages/blog/blog.dart';
 import 'pages/career/career.dart';
 import 'pages/portfolio/home.dart';
 
@@ -64,9 +63,7 @@ class App extends StatelessComponent {
             Route(
               path: RouteConstants.blogs,
               title: StringConstants.blogTitle,
-              builder: (context, state) => BlogPage(
-                articles: blogList,
-              ),
+              builder: (context, state) => const BlogsPage(),
             ),
             Route(
               path: RouteConstants.projects,

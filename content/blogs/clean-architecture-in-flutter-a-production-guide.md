@@ -4,8 +4,6 @@ date: "2026-07-20"
 description: "How to structure large Flutter apps with Clean Architecture so your codebase stays maintainable as the team and feature-set grow."
 category: "Architecture"
 tags: ["Dart", "CLI", "AI", "Automation", "Workflow"]
-readMin: "12 min read"
-featured: true
 layout: "blog"
 imageColor: "#d1e6f2"
 imageUrl: "https://flutter.dev/assets/shadow-dash.d59d0e8266b087a7a7f8a61c50ad4f6e.png"

@@ -16,9 +16,9 @@ import 'package:jaspr_content/components/image.dart';
 import 'package:jaspr_content/components/post_break.dart';
 import 'package:jaspr_content/components/tabs.dart';
 import 'package:jaspr_content/jaspr_content.dart';
-import 'package:subhojit_build/core/services/content_service.dart';
 import 'package:subhojit_build/core/theme/theme.dart' as theme;
-import 'package:subhojit_build/core/utils.dart' as utils;
+import 'package:subhojit_build/core/theme/theme_script.dart' as utils;
+import 'package:subhojit_build/di/injection.dart';
 
 // Imports the [App] component.
 import 'app.dart';
@@ -27,16 +27,19 @@ import 'app.dart';
 import 'main.server.options.dart';
 
 void main() async {
+  // 1. Initialize DI for the server runtime (SSR)
+  configureDependencies();
   // Initializes the server environment with the generated default options.
   Jaspr.initializeApp(
     options: defaultServerOptions,
   );
+
   // 2. Load your data BEFORE calling runApp
   // This happens once when the server starts
-  final blogList = await ContentService.getBlogsAsync();
-  final jobs = await ContentService.getCareersAsync();
-  final certificates = await ContentService.getCertificationsAsync();
-  final projects = await ContentService.getProjectsAsync();
+  // final blogList = await ContentService.getBlogsAsync();
+  // final jobs = await ContentService.getCareersAsync();
+  // final certificates = await ContentService.getCertificationsAsync();
+  // final projects = await ContentService.getProjectsAsync();
 
   // Starts the app with jaspr_content integration.
   //
@@ -86,10 +89,10 @@ void main() async {
         routerBuilder: (contentRoutes) {
           return App(
             contentRoutes: contentRoutes,
-            blogList: blogList,
-            jobs: jobs,
-            certificates: certificates,
-            projects: projects,
+            blogList: [],
+            jobs: [],
+            certificates: [],
+            projects: [],
           );
         },
       ),
