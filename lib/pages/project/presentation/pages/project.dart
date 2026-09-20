@@ -9,6 +9,7 @@ import 'package:subhojit_build/pages/project/presentation/controller/project_pag
 import 'package:subhojit_build/core/components/post_cards/poject_footer.dart';
 import 'package:subhojit_build/core/components/post_cards/post_card.dart';
 import 'package:subhojit_build/core/model/info_card_model.dart';
+import 'package:subhojit_build/core/utils/scrolling/scroll.dart';
 
 @client
 class ProjectsPage extends StatelessComponent {
@@ -40,6 +41,12 @@ class ProjectsPage extends StatelessComponent {
           // ── Main Content (Left) ──────────────────────────────────────────
           ValueBuilder<ProjectListState>(
             valueNotifier: notifier,
+            onChange: (previous, current) {
+              // Check if the page index specifically changed
+              if (previous.currentPageIndex != current.currentPageIndex) {
+                nativeScrollToTop();
+              }
+            },
             builder: (context, state) {
               return div(classes: 'projects-main', [
                 // Filter Bar
