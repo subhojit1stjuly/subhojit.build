@@ -34,6 +34,14 @@ class GenerateMetaBuilder implements Builder {
 
       folderGroups.putIfAbsent(folder, () => []).add(frontmatter);
     }
+    // Sort each folder's items by their 'featured' status (featured items first) in ascending order.
+    folderGroups.forEach((folderName, items) {
+      items.sort((a, b) {
+        final aFeatured = a['featured'] as bool? ?? false;
+        final bFeatured = b['featured'] as bool? ?? false;
+        return bFeatured ? 1 : (aFeatured ? -1 : 0);
+      });
+    });
 
     final buffer = StringBuffer();
     buffer.writeln('// GENERATED CODE - DO NOT MODIFY BY HAND\n');

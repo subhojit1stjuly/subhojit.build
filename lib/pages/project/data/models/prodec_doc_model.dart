@@ -1,35 +1,39 @@
 import 'dart:convert';
 
-import 'package:jaspr/dom.dart';
-import 'package:subhojit_build/pages/blog/domain/entities/post.dart';
+import 'package:subhojit_build/core/constants/constants.dart';
+import 'package:subhojit_build/pages/project/domain/entities/project_post.dart';
 
-class BlogPostModel extends Post {
-  BlogPostModel({
+class ProjectDocModel extends ProjectPost {
+  ProjectDocModel({
     required super.category,
-    required super.readMin, // not present in project
+    required super.readMin,
     required super.title,
     required super.description,
     required super.imageUrl,
-    required super.href, // this gets auto genarated
+    required super.href,
+    super.repoUrl,
+    super.liveUrl,
     required super.imageColor,
     required super.featured,
     required super.tags,
-    required super.date, // this needsto be added in the project
   });
-  factory BlogPostModel.fromMap(Map<String, dynamic> map) {
-    return BlogPostModel(
+
+  factory ProjectDocModel.fromMap(Map<String, dynamic> map) {
+    return ProjectDocModel(
       category: map['category'],
       readMin: map['readMin'],
       title: map['title'],
       description: map['description'],
       imageUrl: map['imageUrl'],
       href: map['href'],
-      imageColor: Color(map['imageColor']),
+      repoUrl: map['repoUrl'] as String?,
+      liveUrl: map['liveUrl'] as String?,
+      imageColor: Constants.parseProjectColor(map['imageColor'] as String?),
       featured: map['featured'],
       tags: List<String>.from(jsonDecode(map['tags'])),
-      date: DateTime.parse(map['date']),
     );
   }
+
   @override
   Map<String, dynamic> toMap() {
     return {
@@ -39,10 +43,11 @@ class BlogPostModel extends Post {
       'description': description,
       'imageUrl': imageUrl,
       'href': href,
+      'repoUrl': repoUrl,
+      'liveUrl': liveUrl,
       'imageColor': imageColor,
       'featured': featured,
       'tags': tags,
-      'date': date.toIso8601String(),
     };
   }
 }

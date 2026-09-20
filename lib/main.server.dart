@@ -34,13 +34,6 @@ void main() async {
     options: defaultServerOptions,
   );
 
-  // 2. Load your data BEFORE calling runApp
-  // This happens once when the server starts
-  // final blogList = await ContentService.getBlogsAsync();
-  // final jobs = await ContentService.getCareersAsync();
-  // final certificates = await ContentService.getCertificationsAsync();
-  // final projects = await ContentService.getProjectsAsync();
-
   // Starts the app with jaspr_content integration.
   //
   // Hybrid mode: FilesystemLoader loads new content from content/ directory,
@@ -89,10 +82,6 @@ void main() async {
         routerBuilder: (contentRoutes) {
           return App(
             contentRoutes: contentRoutes,
-            blogList: [],
-            jobs: [],
-            certificates: [],
-            projects: [],
           );
         },
       ),

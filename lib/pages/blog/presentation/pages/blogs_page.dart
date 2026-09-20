@@ -6,12 +6,12 @@ import 'package:subhojit_build/di/injection.dart';
 import 'package:subhojit_build/pages/blog/presentation/components/blog_list_shimmer.dart';
 import 'package:subhojit_build/pages/blog/presentation/components/featured_article_card.dart';
 import 'package:subhojit_build/pages/blog/presentation/components/newsletter_card.dart';
-import 'package:subhojit_build/pages/blog/presentation/components/pagination_controls.dart';
+import 'package:subhojit_build/core/components/pagination_controls.dart';
 import 'package:subhojit_build/pages/blog/presentation/controller/blog_list_state.dart';
 import 'package:subhojit_build/pages/blog/presentation/controller/blog_page_controller.dart';
-import 'package:subhojit_build/shared/components/post_cards/blog_footer.dart';
-import 'package:subhojit_build/shared/components/post_cards/post_card.dart';
-import 'package:subhojit_build/shared/model/info_card_model.dart';
+import 'package:subhojit_build/core/components/post_cards/blog_footer.dart';
+import 'package:subhojit_build/core/components/post_cards/post_card.dart';
+import 'package:subhojit_build/core/model/info_card_model.dart';
 import 'package:subhojit_build/core/utils/scrolling/scroll.dart';
 
 /// Blog page view component - pure presentation without state.
@@ -284,39 +284,6 @@ class BlogsPage extends StatelessComponent {
       fontWeight: .w700,
       textTransform: TextTransform.upperCase,
       raw: {'letter-spacing': '0.05em'},
-    ),
-
-    // ── Pagination ────────────────────────────────────────────────────────
-    css('.blog-pagination').styles(
-      display: .flex,
-      justifyContent: .center,
-      alignItems: .center,
-      gap: Gap.all(0.375.rem),
-    ),
-    css('.page-btn').styles(
-      display: .flex,
-      width: 36.px,
-      height: 36.px,
-      radius: BorderRadius.circular(99.px),
-      cursor: Cursor.pointer,
-      transition: Transition.combine([
-        Transition('color', duration: Duration(milliseconds: 150)),
-        Transition('background-color', duration: Duration(milliseconds: 150)),
-      ]),
-      justifyContent: .center,
-      alignItems: .center,
-      color: Color.variable('--on-surface-variant'),
-      fontSize: 14.px,
-      fontWeight: .w500,
-      backgroundColor: Color.variable('--surface-container-high'),
-    ),
-    css('.page-btn:hover').styles(
-      color: Color.variable('--on-surface'),
-      backgroundColor: Color.variable('--surface-container-highest'),
-    ),
-    css('.page-btn--active').styles(
-      color: Color.variable('--on-primary'),
-      backgroundColor: Color.variable('--primary'),
     ),
 
     // ── Sidebar ───────────────────────────────────────────────────────────
