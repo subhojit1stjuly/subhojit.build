@@ -20,7 +20,7 @@ final class ProjectLocalDatasource extends JsonDatasource<ProjectDocModel> {
   Stream<(List<ProjectDocModel>, int)> get currentProjects => _currentProjects.stream;
 
   void _updateCurrentProjects(List<ProjectDocModel> data, int totalCounts) {
-    _currentProjects.add((data, data.length));
+    _currentProjects.add((data, totalCounts));
   }
 
   /// Fetches the current list of blog posts based on the provided page index and items per page.
