@@ -2,19 +2,19 @@ import 'package:injectable/injectable.dart';
 import 'package:jaspr/jaspr.dart';
 import 'package:subhojit_build/pages/blog/domain/usecases/cureent_blogs_usecase.dart';
 import 'package:subhojit_build/pages/blog/domain/usecases/filter_blogs_usecase.dart';
-import 'package:subhojit_build/pages/blog/domain/usecases/pagination_usecase.dart';
+import 'package:subhojit_build/pages/blog/domain/usecases/blog_pagination_usecase.dart';
 import 'package:subhojit_build/pages/blog/presentation/controller/blog_list_state.dart';
 
 @singleton
 class BlogPageController extends ValueNotifier<BlogListState> {
   final CurrentBlogsUseCase _currentBlogsUseCase;
   final FilterBlogsUsecase _filterBlogsUseCase;
-  final PaginationUseCase _paginationUseCase;
+  final BlogsPaginationUseCase _paginationUseCase;
 
   BlogPageController({
     required CurrentBlogsUseCase currentBlogsUseCase,
     required FilterBlogsUsecase filterBlogsUseCase,
-    required PaginationUseCase paginationUseCase,
+    required BlogsPaginationUseCase paginationUseCase,
   }) : _paginationUseCase = paginationUseCase,
        _filterBlogsUseCase = filterBlogsUseCase,
        _currentBlogsUseCase = currentBlogsUseCase,

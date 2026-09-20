@@ -82,9 +82,6 @@ void main() async {
         routerBuilder: (contentRoutes) {
           return App(
             contentRoutes: contentRoutes,
-            jobs: [],
-            certificates: [],
-            projects: [],
           );
         },
       ),
