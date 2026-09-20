@@ -31,17 +31,16 @@ final class ProjectLocalDatasource extends JsonDatasource<ProjectDocModel> {
     int itemsPerPage = Constants.itemsPerPage,
     String? category,
   }) {
-    final filtered = category == null ? allData : allData.where((p) => p.category == category).toList();
     final start = pageIndex * itemsPerPage;
     final end = start + itemsPerPage;
-    final paginatedProjects = filtered.sublist(
+    final paginatedProjects = allData.sublist(
       start,
       end > allData.length ? allData.length : end,
     );
 
     /// currently the total count is simply the length of allData.
     /// This may change in the future if filtering is applied.
-    _updateCurrentProjects(paginatedProjects, filtered.length);
+    _updateCurrentProjects(paginatedProjects, allData.length);
   }
 
   void dispose() {
