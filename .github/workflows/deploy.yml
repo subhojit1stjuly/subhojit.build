@@ -46,7 +46,7 @@ jobs:
         
       - name: Build static site
         # This generates the static HTML/CSS/JS files
-        run: jaspr build --dart-define BASE_PATH=/${{ github.event.repository.name }}/
+        run: jaspr build --dart-define=BASE_PATH=/${{ github.event.repository.name }}
         
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
