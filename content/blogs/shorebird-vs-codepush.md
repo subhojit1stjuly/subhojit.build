@@ -6,7 +6,7 @@ category: "DevOps"
 tags: ["Flutter", "Shorebird", "CI/CD", "OTA", "Releases"]
 layout: "blog"
 imageColor: "#f3e5f5"
-imageUrl: "https://storage.googleapis.com/cms-storage-bucket/0dbfcc7a59cd1cf16282.png"
+imageUrl: "https://flutter.dev/assets/shadow-dash.d59d0e8266b087a7a7f8a61c50ad4f6e.png"
 ---
 
 # Shorebird vs CodePush: Over-The-Air Updates in 2026

@@ -6,7 +6,7 @@ category: "Tooling"
 tags: ["Dart", "Flutter", "AI", "Cursor", "Copilot"]
 layout: "blog"
 imageColor: "#fbe9e7"
-imageUrl: "https://flutter.dev/images/catalog-widget-placeholder.png"
+imageUrl: "https://flutter.dev/assets/shadow-dash.d59d0e8266b087a7a7f8a61c50ad4f6e.png"
 ---
 
 # Cursor vs GitHub Copilot: AI-Driven Flutter Development

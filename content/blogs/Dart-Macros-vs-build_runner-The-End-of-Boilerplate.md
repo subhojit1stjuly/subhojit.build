@@ -7,7 +7,7 @@ tags: ["Dart", "Macros", "Tooling", "Performance"]
 
 layout: "blog"
 imageColor: "#fff3e0"
-imageUrl: "https://dart.dev/assets/dash/dash-mascot.png"
+imageUrl: "https://flutter.dev/assets/shadow-dash.d59d0e8266b087a7a7f8a61c50ad4f6e.png"
 ---
 
 # Dart Macros vs build_runner: The End of Boilerplate
