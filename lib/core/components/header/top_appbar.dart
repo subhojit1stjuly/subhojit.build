@@ -2,6 +2,7 @@ import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 import 'package:jaspr_router/jaspr_router.dart';
 import 'package:subhojit_build/core/constants/link_constants.dart';
+import 'package:subhojit_build/core/constants/route_constants.dart';
 import 'package:subhojit_build/core/theme/colors.dart';
 import 'package:subhojit_build/core/components/header/custom_theme_toggle.dart';
 import 'package:subhojit_build/core/components/header/web_navbar.dart';
@@ -20,7 +21,11 @@ class TopAppbar extends StatelessComponent {
           span(classes: 'material-symbols-outlined', [.text('menu')]),
         ]),
         // Logo / brand — always navigates to home.
-        Link(to: '/', classes: 'topbar-logo', child: .text('Subhojit.dev')),
+        Link(
+          to: '${RouteConstants.basePath}${RouteConstants.portfolio}',
+          classes: 'topbar-logo',
+          child: .text('Subhojit.dev'),
+        ),
       ]),
 
       // Desktop/Web/Tab inline nav links.
