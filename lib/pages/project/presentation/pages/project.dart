@@ -2,6 +2,7 @@ import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 import 'package:subhojit_build/core/components/pagination_controls.dart';
 import 'package:subhojit_build/core/components/value_builder.dart';
+import 'package:subhojit_build/core/constants/constants.dart';
 import 'package:subhojit_build/core/theme/colors.dart';
 import 'package:subhojit_build/di/injection.dart';
 import 'package:subhojit_build/pages/project/presentation/controller/project_list_state.dart';
@@ -49,14 +50,15 @@ class ProjectsPage extends StatelessComponent {
             },
             builder: (context, state) {
               return div(classes: 'projects-main', [
-                // Filter Bar
+                /*   // Filter Bar
                 div(classes: 'filter-bar', [
+                  for (final btnString in Constants.projectCategories)
                   button(classes: 'filter-btn filter-btn--active', [.text('All')]),
                   button(classes: 'filter-btn', [.text('Flutter')]),
                   button(classes: 'filter-btn', [.text('Backend')]),
                   button(classes: 'filter-btn', [.text('Infrastructure')]),
                   button(classes: 'filter-btn', [.text('Tooling')]),
-                ]),
+                ]), */
 
                 // Projects Grid
                 div(classes: 'projects-grid', [

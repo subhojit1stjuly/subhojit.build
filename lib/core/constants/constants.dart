@@ -61,4 +61,14 @@ class Constants {
         return Color.variable('--surface-container');
     }
   }
+
+  static List<String> projectCategories = [
+    'All',
+    'Tooling',
+    'Android',
+    'iOS',
+    'Flutter',
+    'DevOps / CI/CD',
+    'Automations',
+  ];
 }
