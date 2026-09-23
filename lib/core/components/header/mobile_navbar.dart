@@ -2,6 +2,7 @@ import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 import 'package:jaspr_router/jaspr_router.dart';
 import 'package:subhojit_build/core/constants/constants.dart';
+import 'package:subhojit_build/core/constants/route_constants.dart';
 
 class MobileNavbar extends StatelessComponent {
   const MobileNavbar({
@@ -25,7 +26,7 @@ class MobileNavbar extends StatelessComponent {
       nav(classes: 'drawer-nav', [
         for (final item in Constants.navItems)
           Link(
-            to: item.to,
+            to: '${RouteConstants.basePath}${item.to}',
             classes: item.to == activeTo ? 'drawer-link drawer-link--active' : 'drawer-link',
             children: [
               span(classes: 'material-symbols-outlined', [

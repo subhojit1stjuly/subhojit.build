@@ -39,7 +39,7 @@ class Constants {
     if (location.startsWith(RouteConstants.career)) return RouteConstants.career;
     if (location.startsWith(RouteConstants.blogs)) return RouteConstants.blogs;
     if (location.startsWith(RouteConstants.projects)) return RouteConstants.projects;
-    return '/';
+    return RouteConstants.portfolio;
   }
 
   static String iconFor(String to) => switch (to) {

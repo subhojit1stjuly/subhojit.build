@@ -2,6 +2,7 @@ import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 import 'package:jaspr_router/jaspr_router.dart';
 import 'package:subhojit_build/core/constants/constants.dart';
+import 'package:subhojit_build/core/constants/route_constants.dart';
 
 class WebNavbar extends StatelessComponent {
   const WebNavbar({super.key});
@@ -15,7 +16,7 @@ class WebNavbar extends StatelessComponent {
     return nav(classes: 'topbar-nav', [
       for (final item in Constants.navItems)
         Link(
-          to: item.to,
+          to: '${RouteConstants.basePath}${item.to}',
           classes: item.to == activeTo ? 'topbar-link topbar-link--active' : 'topbar-link',
           child: .text(item.label),
         ),
