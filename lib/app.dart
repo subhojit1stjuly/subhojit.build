@@ -2,17 +2,13 @@ import 'package:jaspr/jaspr.dart';
 import 'package:jaspr_router/jaspr_router.dart';
 import 'package:subhojit_build/core/constants/route_constants.dart';
 import 'package:subhojit_build/core/constants/string_constants.dart';
-import 'package:subhojit_build/pages/blog/model/blog_article.dart';
-import 'package:subhojit_build/pages/career/models/certification.dart';
-import 'package:subhojit_build/pages/career/models/job_experience.dart';
-import 'package:subhojit_build/pages/project/models/project_doc.dart';
-import 'package:subhojit_build/pages/project/project.dart';
-import 'package:subhojit_build/shared/components/page_shell.dart';
+import 'package:subhojit_build/pages/blog/presentation/pages/blogs_page.dart';
+import 'package:subhojit_build/pages/project/presentation/pages/project.dart';
+import 'package:subhojit_build/core/components/page_shell.dart';
 
-import 'shared/components/footer.dart';
-import 'pages/blog/blog.dart';
-import 'pages/career/career.dart';
-import 'pages/portfolio/home.dart';
+import 'core/components/footer.dart';
+import 'pages/career/presentaiton/pages/career.dart';
+import 'pages/portfolio/presentation/pages/home.dart';
 
 /// Root application component.
 ///
@@ -25,17 +21,9 @@ import 'pages/portfolio/home.dart';
 ///   /blog/index.html     → Technical Insights / Blog
 class App extends StatelessComponent {
   final List<List<RouteBase>> contentRoutes; // Injected from ContentApp.custom
-  final List<BlogArticle> blogList;
-  final List<JobExperience> jobs;
-  final List<Certification> certificates;
-  final List<ProjectDoc> projects;
   const App({
     super.key,
     required this.contentRoutes,
-    required this.blogList,
-    required this.jobs,
-    required this.certificates,
-    required this.projects,
   });
 
   @override
@@ -48,31 +36,22 @@ class App extends StatelessComponent {
             Route(
               path: RouteConstants.portfolio,
               title: StringConstants.portfolioTitle,
-              builder: (context, state) => Home(
-                projects: projects,
-              ),
+              builder: (context, state) => Home(),
             ),
             Route(
               path: RouteConstants.career,
               title: StringConstants.careerTitle,
-              builder: (context, state) => CareerPage(
-                jobs: jobs,
-                certificates: certificates,
-              ),
+              builder: (context, state) => CareerPage(),
             ),
             Route(
               path: RouteConstants.blogs,
               title: StringConstants.blogTitle,
-              builder: (context, state) => BlogPage(
-                articles: blogList,
-              ),
+              builder: (context, state) => const BlogsPage(),
             ),
             Route(
               path: RouteConstants.projects,
               title: StringConstants.projectTitle,
-              builder: (context, state) => ProjectsPage(
-                projects: projects,
-              ),
+              builder: (context, state) => ProjectsPage(),
             ),
             ...contentRoutes.expand((e) => e), // Injected from ContentApp.custom
           ],

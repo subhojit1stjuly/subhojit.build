@@ -118,10 +118,9 @@ List<StyleRule> get styles => [
   ),
 
   // Theme transitions ───────────────────────────────────────
-  css('*, *::before, *::after').styles(
+  css('body, .tonal-card, button, a, nav, header').styles(
     raw: {
-      'transition':
-          'background-color 200ms ease, color 200ms ease, border-color 200ms ease, fill 200ms ease, stroke 200ms ease',
+      'transition': 'background-color 200ms ease, color 200ms ease, border-color 200ms ease',
     },
   ),
 

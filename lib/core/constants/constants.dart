@@ -2,9 +2,9 @@ import 'package:jaspr/dom.dart';
 import 'package:subhojit_build/core/constants/link_constants.dart';
 import 'package:subhojit_build/core/constants/route_constants.dart';
 import 'package:subhojit_build/core/constants/string_constants.dart';
-import 'package:subhojit_build/core/theme/colors.dart';
 
 class Constants {
+  static const itemsPerPage = 6;
   static const footerLinks = [
     (label: StringConstants.gitHub, href: LinkConstants.gitHub),
     (label: StringConstants.linkedIn, href: LinkConstants.linkedIn),
@@ -45,20 +45,30 @@ class Constants {
   static String iconFor(String to) => switch (to) {
     RouteConstants.career => 'work_history',
     RouteConstants.blogs => 'article',
-    RouteConstants.projects => 'projects',
+    RouteConstants.projects => 'work',
     _ => 'folder_open',
   };
 
   static Color parseProjectColor(String? colorStr) {
     switch (colorStr) {
       case 'primaryFixed':
-        return primaryFixed;
+        return Color.variable('--primary-fixed');
       case 'secondaryContainer':
-        return secondaryContainer;
+        return Color.variable('--secondary-container');
       case 'surfaceContainer':
-        return surfaceContainer;
+        return Color.variable('--surface-container');
       default:
-        return surfaceContainer;
+        return Color.variable('--surface-container');
     }
   }
+
+  static List<String> projectCategories = [
+    'All',
+    'Tooling',
+    'Android',
+    'iOS',
+    'Flutter',
+    'DevOps / CI/CD',
+    'Automations',
+  ];
 }

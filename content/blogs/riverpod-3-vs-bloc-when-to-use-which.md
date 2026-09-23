@@ -4,8 +4,6 @@ date: "2026-07-10"
 description: "A pragmatic comparison of the two dominant state management solutions in Flutter, with real-world trade-off examples."
 category: "State Management"
 tags: ["Dart", "CLI", "AI", "Automation", "Workflow"]
-readMin: "10 min read"
-featured: false
 layout: "blog"
 imageColor: "#f2d1d1"
 imageUrl: "https://flutter.dev/assets/shadow-dash.d59d0e8266b087a7a7f8a61c50ad4f6e.png"
