@@ -18,6 +18,7 @@ import 'package:jaspr_content/components/tabs.dart';
 import 'package:jaspr_content/jaspr_content.dart';
 import 'package:subhojit_build/core/theme/theme.dart' as theme;
 import 'package:subhojit_build/core/theme/theme_script.dart' as utils;
+import 'package:subhojit_build/core/utils/config_parser.dart';
 import 'package:subhojit_build/di/injection.dart';
 
 // Imports the [App] component.
@@ -59,7 +60,10 @@ void main() async {
         ],
         eagerlyLoadAllPages: true,
         configResolver: PageConfig.all(
-          parsers: [MarkdownParser()],
+          parsers: [
+            MarkdownParser(),
+            CfgIgnoreParser(),
+          ],
           layouts: [
             BlogLayout(
               header: Header(
