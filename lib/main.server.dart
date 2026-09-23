@@ -33,6 +33,10 @@ void main() async {
   Jaspr.initializeApp(
     options: defaultServerOptions,
   );
+  const String basePath = String.fromEnvironment(
+    'BASE_PATH',
+    defaultValue: '/',
+  );
 
   // Starts the app with jaspr_content integration.
   //
@@ -41,6 +45,7 @@ void main() async {
   // This provides zero-risk migration path and graceful degradation.
   runApp(
     Document(
+      base: basePath,
       title: 'Subhojit Build',
       styles: theme.styles,
       head: [script(content: utils.themeInitScript)],
