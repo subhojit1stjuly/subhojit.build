@@ -8,5 +8,5 @@ class CfgIgnoreParser extends PageParser {
   }
 
   @override
-  Pattern get pattern => RegExp(r'\.cfg$');
+  Pattern get pattern => RegExp(r'.*\.cfg$');
 }
