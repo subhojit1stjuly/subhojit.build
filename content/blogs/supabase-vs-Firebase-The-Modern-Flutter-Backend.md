@@ -6,7 +6,7 @@ category: "Backend"
 tags: ["Flutter", "Firebase", "Supabase", "Database", "Auth"]
 layout: "blog"
 imageColor: "#e8f5e9"
-imageUrl: "https://storage.googleapis.com/cms-storage-bucket/70760bf1f889f4850fae.png"
+imageUrl: "https://flutter.dev/assets/shadow-dash.d59d0e8266b087a7a7f8a61c50ad4f6e.png"
 ---
 
 # Supabase vs Firebase: The Modern Flutter Backend

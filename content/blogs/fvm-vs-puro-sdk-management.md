@@ -6,7 +6,7 @@ category: "Tooling"
 tags: ["Flutter", "CLI", "FVM", "Puro", "Environment"]
 layout: "blog"
 imageColor: "#e8eaf6"
-imageUrl: "https://dart.dev/assets/dash/dash-code.png"
+imageUrl: "https://flutter.dev/assets/shadow-dash.d59d0e8266b087a7a7f8a61c50ad4f6e.png"
 ---
 
 # FVM vs Puro: Mastering Flutter SDK Management

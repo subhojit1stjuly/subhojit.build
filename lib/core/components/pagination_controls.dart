@@ -49,7 +49,7 @@ class PaginationControls extends StatelessComponent {
         else
           button(
             classes: 'page-btn ${pageNum != (currentPage + 1) ? 'page-btn page-btn--active' : ''}',
-            disabled: pageNum != (currentPage + 1),
+            disabled: pageNum == (currentPage + 1),
             onClick: () => pageNum != (currentPage + 1) ? onPageChanged(pageNum - 1) : null,
             [Component.text('$pageNum')],
           ),

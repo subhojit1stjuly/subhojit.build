@@ -6,7 +6,7 @@ category: "Database"
 tags: ["Flutter", "Isar", "Hive", "Offline", "NoSQL"]
 layout: "blog"
 imageColor: "#e0f7fa"
-imageUrl: "https://flutter.dev/assets/ui/layout/layout-0-b4bd60350719875f5bcfb1c1e57c6b54.png"
+imageUrl: "https://flutter.dev/assets/shadow-dash.d59d0e8266b087a7a7f8a61c50ad4f6e.png"
 ---
 
 # Isar vs Hive: High-Performance Local Databases
