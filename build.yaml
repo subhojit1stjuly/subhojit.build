@@ -2,7 +2,7 @@ builders:
   generate_meta_builder:
     import: "package:subhojit_build/builder.dart"
     builder_factories: ["generateMetaBuilder"]
-    build_extensions: { "config/posts.cfg": ["lib/generated/meta.g.dart"] }
+    build_extensions: { "content/posts.cfg": ["lib/generated/meta.g.dart"] }
     auto_apply: root_package
     build_to: source
     applies_builders: ["source_gen|combining_builder"]
@@ -28,9 +28,8 @@ targets:
       - pubspec.*
       - $package$
       - content/**
-      - config/**
     builders:
       subhojit_build|generate_meta_builder:
         enabled: true
         generate_for:
-          - config/posts.cfg
+          - content/posts.cfg
