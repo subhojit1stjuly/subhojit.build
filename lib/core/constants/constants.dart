@@ -16,13 +16,6 @@ class Constants {
     (label: StringConstants.blog, to: RouteConstants.blogs),
     (label: StringConstants.project, to: RouteConstants.projects),
   ];
-  static const taxonomy = [
-    (label: 'Architecture', count: '8'),
-    (label: 'Performance', count: '5'),
-    (label: 'State Management', count: '6'),
-    (label: 'DevOps / CI/CD', count: '4'),
-    (label: 'UI & Animations', count: '7'),
-  ];
   static const compSkills = [
     'Flutter',
     'Dart',
