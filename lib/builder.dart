@@ -15,11 +15,14 @@ class GenerateMetaBuilder implements Builder {
   Future<void> build(BuildStep buildStep) async {
     final glob = Glob('content/**.md');
     final assets = await buildStep.findAssets(glob).toList();
+    final bloggingTags = Map<String, int>();
+    final bloggingCategories = Map<String, int>();
 
     // Group post metadata by top-level folder name (blogs, projects, etc.).
     final Map<String, List<Map<String, dynamic>>> folderGroups = {};
     for (final asset in assets) {
       final content = await buildStep.readAsString(asset);
+      final isAblog = asset.path.contains('blogs/');
 
       final relativePath = asset.path.replaceFirst('content/', '');
       final pathSegments = relativePath.split('/');
@@ -31,6 +34,17 @@ class GenerateMetaBuilder implements Builder {
       final frontmatter = _parseFrontmatter(content);
       frontmatter['featured'] = isFeatured;
       frontmatter['href'] = slug;
+      if (isAblog) {
+        final tags = (frontmatter['tags'] as String?)?.split(',').map((e) => e.trim()) ?? [];
+        for (final tag in tags) {
+          bloggingTags[tag] = (bloggingTags[tag] ?? 0) + 1;
+        }
+
+        final categories = (frontmatter['category'] as String?)?.split(',').map((e) => e.trim()) ?? [];
+        for (final category in categories) {
+          bloggingCategories[category] = (bloggingCategories[category] ?? 0) + 1;
+        }
+      }
 
       folderGroups.putIfAbsent(folder, () => []).add(frontmatter);
     }
@@ -54,6 +68,17 @@ class GenerateMetaBuilder implements Builder {
       buffer.writeln('  $encodedItems');
       buffer.writeln('];\n');
     });
+    // Generate code for blogging tags and categories
+    final encodedBloggingTags = bloggingTags.entries.map((e) => "'${e.key}': ${e.value}").join(',\n  ');
+    final encodedBloggingCategories = bloggingCategories.entries.map((e) => "'${e.key}': ${e.value}").join(',\n  ');
+
+    buffer.writeln('const Map<String, int> bloggingTags = {');
+    buffer.writeln('  $encodedBloggingTags');
+    buffer.writeln('};\n');
+
+    buffer.writeln('const Map<String, int> bloggingCategories = {');
+    buffer.writeln('  $encodedBloggingCategories');
+    buffer.writeln('};\n');
 
     final outputId = buildStep.allowedOutputs.single;
     await buildStep.writeAsString(outputId, buffer.toString());

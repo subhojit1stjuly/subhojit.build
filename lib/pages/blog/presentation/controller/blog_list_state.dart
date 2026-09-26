@@ -10,6 +10,8 @@ class BlogListState {
   final int currentPageIndex;
   final FilterParams? currentFilter;
   final int totalBlogsCount;
+  final Map<String, int> categories;
+  final Map<String, int> tags;
 
   /// cheks if featuredblog exists.
   bool get _hasFeaturedBlog => currentBlogs.isNotEmpty && currentBlogs.first.featured == true;
@@ -79,6 +81,8 @@ class BlogListState {
     required this.currentPageIndex,
     required this.currentFilter,
     required this.totalBlogsCount,
+    required this.categories,
+    required this.tags,
   });
   BlogListState.initial({
     this.currentBlogs = const [],
@@ -86,6 +90,8 @@ class BlogListState {
     this.currentPageIndex = 0,
     this.currentFilter,
     this.totalBlogsCount = 0,
+    this.categories = const {},
+    this.tags = const {},
   });
 
   BlogListState copyWith({
@@ -94,6 +100,8 @@ class BlogListState {
     int? currentPageIndex,
     FilterParams? currentFilter,
     int? totalBlogsCount,
+    Map<String, int>? categories,
+    Map<String, int>? tags,
   }) {
     return BlogListState(
       currentBlogs: currentBlogs ?? this.currentBlogs,
@@ -101,6 +109,8 @@ class BlogListState {
       currentPageIndex: currentPageIndex ?? this.currentPageIndex,
       currentFilter: currentFilter ?? this.currentFilter,
       totalBlogsCount: totalBlogsCount ?? this.totalBlogsCount,
+      categories: categories ?? this.categories,
+      tags: tags ?? this.tags,
     );
   }
 }

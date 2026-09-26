@@ -38,4 +38,14 @@ class BlogPostsRepositoryImpl implements BlogPostsRepository {
       itemsPerPage: Constants.itemsPerPage,
     );
   }
+
+  @override
+  Map<String, int> getCategories() {
+    return _datasource.bloggingCategoriesMap;
+  }
+
+  @override
+  Map<String, int> getTags() {
+    return _datasource.bloggingTagsMap;
+  }
 }

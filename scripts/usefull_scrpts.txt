@@ -1,0 +1,2 @@
+/// for debuging a build_runner codes.
+dart run build_runner build --dart-jit-vm-arg=--observe --dart-jit-vm-arg=--pause-isolates-on-start

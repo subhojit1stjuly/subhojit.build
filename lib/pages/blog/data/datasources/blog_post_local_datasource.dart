@@ -11,6 +11,11 @@ final class BlogPostJsonDatasource extends JsonDatasource<BlogPostModel> {
   @override
   final List<BlogPostModel> allData = List.from(blogs).map((json) => BlogPostModel.fromMap(json)).toList();
 
+  final List<String> bloggingCategoriesList = bloggingCategories.keys.toList();
+  final List<String> bloggingTagsList = bloggingTags.keys.toList();
+  final Map<String, int> bloggingCategoriesMap = bloggingCategories;
+  final Map<String, int> bloggingTagsMap = bloggingTags;
+
   final StreamController<(List<BlogPostModel>, int)> _currentBlogs = StreamController<(List<BlogPostModel>, int)>();
 
   /// A stream that emits the current list of blog posts(with pagination applied)

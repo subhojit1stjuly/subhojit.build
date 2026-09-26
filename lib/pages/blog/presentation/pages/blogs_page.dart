@@ -99,14 +99,19 @@ class BlogsPage extends StatelessComponent {
             NewsletterCard(),
 
             // Taxonomy
-            div(classes: 'taxonomy-card tonal-card', [
-              p(classes: 'taxonomy-title t-label', [.text('Taxonomy')]),
-              for (final t in Constants.taxonomy)
-                div(classes: 'taxonomy-row', [
-                  span(classes: 'taxonomy-label t-body', [.text(t.label)]),
-                  span(classes: 'taxonomy-count t-label', [.text(t.count)]),
-                ]),
-            ]),
+            ValueBuilder<BlogListState>(
+              valueNotifier: notifier,
+              builder: (context, state) {
+                return div(classes: 'taxonomy-card tonal-card', [
+                  p(classes: 'taxonomy-title t-label', [.text('Taxonomy')]),
+                  for (final t in state.categories.entries)
+                    div(classes: 'taxonomy-row', [
+                      span(classes: 'taxonomy-label t-body', [.text(t.key)]),
+                      span(classes: 'taxonomy-count t-label', [.text(t.value.toString())]),
+                    ]),
+                ]);
+              },
+            ),
 
             // Author card
             div(classes: 'author-card tonal-card', [

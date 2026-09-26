@@ -14,4 +14,7 @@ abstract class BlogPostsRepository {
 
   /// Paginates the list of blog posts based on the current filter and pagination settings.
   void paginate(int page);
+
+  Map<String, int> getCategories();
+  Map<String, int> getTags();
 }
